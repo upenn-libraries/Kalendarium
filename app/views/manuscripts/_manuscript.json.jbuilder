@@ -1,0 +1,2 @@
+json.extract! manuscript, :id, :shelfmark, :name, :calendar_integral, :numbering_method, :book_type, :manuscript_or_print, :language, :origin, :origin_note, :destination, :destination_note, :script, :text_height, :text_width, :text_depth, :writing_surface_height, :writing_surface_width, :start_date, :end_date, :date_note, :extent, :provenance, :state_of_completion, :resource, :columns, :start_folio, :end_folio, :color_weighting, :has_shading, :created_at, :updated_at
+json.url manuscript_url(manuscript, format: :json)

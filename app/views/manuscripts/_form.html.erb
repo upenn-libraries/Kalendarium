@@ -1,0 +1,162 @@
+<%= form_with(model: manuscript, local: true) do |form| %>
+  <% if manuscript.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(manuscript.errors.count, "error") %> prohibited this manuscript from being saved:</h2>
+
+      <ul>
+      <% manuscript.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :shelfmark %>
+    <%= form.text_field :shelfmark, id: :manuscript_shelfmark %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :manuscript_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calendar_integral %>
+    <%= form.check_box :calendar_integral, id: :manuscript_calendar_integral %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numbering_method %>
+    <%= form.text_field :numbering_method, id: :manuscript_numbering_method %>
+  </div>
+
+  <div class="field">
+    <%= form.label :book_type %>
+    <%= form.text_field :book_type, id: :manuscript_book_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :manuscript_or_print %>
+    <%= form.text_field :manuscript_or_print, id: :manuscript_manuscript_or_print %>
+  </div>
+
+  <div class="field">
+    <%= form.label :language %>
+    <%= form.text_field :language, id: :manuscript_language %>
+  </div>
+
+  <div class="field">
+    <%= form.label :origin %>
+    <%= form.text_field :origin, id: :manuscript_origin %>
+  </div>
+
+  <div class="field">
+    <%= form.label :origin_note %>
+    <%= form.text_area :origin_note, id: :manuscript_origin_note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :destination %>
+    <%= form.text_field :destination, id: :manuscript_destination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :destination_note %>
+    <%= form.text_area :destination_note, id: :manuscript_destination_note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :script %>
+    <%= form.text_field :script, id: :manuscript_script %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text_height %>
+    <%= form.number_field :text_height, id: :manuscript_text_height %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text_width %>
+    <%= form.number_field :text_width, id: :manuscript_text_width %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text_depth %>
+    <%= form.number_field :text_depth, id: :manuscript_text_depth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :writing_surface_height %>
+    <%= form.number_field :writing_surface_height, id: :manuscript_writing_surface_height %>
+  </div>
+
+  <div class="field">
+    <%= form.label :writing_surface_width %>
+    <%= form.number_field :writing_surface_width, id: :manuscript_writing_surface_width %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.number_field :start_date, id: :manuscript_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.number_field :end_date, id: :manuscript_end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_note %>
+    <%= form.text_area :date_note, id: :manuscript_date_note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :extent %>
+    <%= form.text_field :extent, id: :manuscript_extent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :provenance %>
+    <%= form.text_field :provenance, id: :manuscript_provenance %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_of_completion %>
+    <%= form.text_field :state_of_completion, id: :manuscript_state_of_completion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :resource %>
+    <%= form.text_field :resource, id: :manuscript_resource %>
+  </div>
+
+  <div class="field">
+    <%= form.label :columns %>
+    <%= form.text_area :columns, id: :manuscript_columns %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_folio %>
+    <%= form.text_field :start_folio, id: :manuscript_start_folio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_folio %>
+    <%= form.text_field :end_folio, id: :manuscript_end_folio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_weighting %>
+    <%= form.text_area :color_weighting, id: :manuscript_color_weighting %>
+  </div>
+
+  <div class="field">
+    <%= form.label :has_shading %>
+    <%= form.check_box :has_shading, id: :manuscript_has_shading %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
