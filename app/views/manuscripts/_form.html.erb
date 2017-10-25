@@ -17,18 +17,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :manuscript_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :calendar_integral %>
-    <%= form.check_box :calendar_integral, id: :manuscript_calendar_integral %>
-  </div>
-
-  <div class="field">
-    <%= form.label :numbering_method %>
-    <%= form.text_field :numbering_method, id: :manuscript_numbering_method %>
+    <%= form.label :name, "*Name" %>
+    <%= form.text_field :name, id: :manuscript_name, required: true %>
   </div>
 
   <div class="field">
@@ -37,13 +27,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :manuscript_or_print %>
-    <%= form.text_field :manuscript_or_print, id: :manuscript_manuscript_or_print %>
+    <%= form.label :manuscript_or_print, 'Is it a manuscript or print book?' %><br>
+    <%= form.label :manuscript_or_print, 'manuscript', id: :manuscript_or_print %>
+    <%= form.radio_button :manuscript_or_print, 'manuscript' %>
+     <%= form.label :manuscript_or_print, 'print' %>
+    <%= form.radio_button :manuscript_or_print, 'print', id: :manuscript_or_print %>
+     <%= form.label :manuscript_or_print, 'unknown' %>
+    <%= form.radio_button :manuscript_or_print, 'unknown', id: :manuscript_or_print %>
   </div>
 
   <div class="field">
     <%= form.label :language %>
-    <%= form.text_field :language, id: :manuscript_language %>
+    <%= form.select :language, Manuscript::LANGUAGES, id: :manuscript_language %>
   </div>
 
   <div class="field">
@@ -51,9 +46,10 @@
     <%= form.text_field :origin, id: :manuscript_origin %>
   </div>
 
+
   <div class="field">
     <%= form.label :origin_note %>
-    <%= form.text_area :origin_note, id: :manuscript_origin_note %>
+    <%= form.text_field :origin_note, id: :manuscript_origin_note %>
   </div>
 
   <div class="field">
@@ -61,9 +57,10 @@
     <%= form.text_field :destination, id: :manuscript_destination %>
   </div>
 
+
   <div class="field">
     <%= form.label :destination_note %>
-    <%= form.text_area :destination_note, id: :manuscript_destination_note %>
+    <%= form.text_field :destination_note, id: :manuscript_destination_note %>
   </div>
 
   <div class="field">
@@ -71,44 +68,48 @@
     <%= form.text_field :script, id: :manuscript_script %>
   </div>
 
+  <h3>Text block</h3>
+
   <div class="field">
-    <%= form.label :text_height %>
-    <%= form.number_field :text_height, id: :manuscript_text_height %>
+    <%= form.label :text_height, 'Height (mm)' %>
+    <%= form.number_field :text_height, min: 0, id: :manuscript_text_height %>
   </div>
 
   <div class="field">
-    <%= form.label :text_width %>
-    <%= form.number_field :text_width, id: :manuscript_text_width %>
+    <%= form.label :text_width, 'Width (mm)' %>
+    <%= form.number_field :text_width, min: 0, id: :manuscript_text_width %>
   </div>
 
   <div class="field">
-    <%= form.label :text_depth %>
-    <%= form.number_field :text_depth, id: :manuscript_text_depth %>
+    <%= form.label :text_depth, 'Depth (mm)' %>
+    <%= form.number_field :text_depth, min: 0, id: :manuscript_text_depth %>
+  </div>
+
+
+  <h3>Writing surface</h3>
+
+  <div class="field">
+    <%= form.label :writing_surface_height, 'Height (mm)' %>
+    <%= form.number_field :writing_surface_height, min: 0, id: :manuscript_writing_surface_height %>
   </div>
 
   <div class="field">
-    <%= form.label :writing_surface_height %>
-    <%= form.number_field :writing_surface_height, id: :manuscript_writing_surface_height %>
+    <%= form.label :writing_surface_width, 'Width (mm)' %>
+    <%= form.number_field :writing_surface_width, min: 0, id: :manuscript_writing_surface_width %>
   </div>
 
-  <div class="field">
-    <%= form.label :writing_surface_width %>
-    <%= form.number_field :writing_surface_width, id: :manuscript_writing_surface_width %>
-  </div>
 
-  <div class="field">
-    <%= form.label :start_year %>
-    <%= form.number_field :start_year, id: :manuscript_start_year %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_year %>
-    <%= form.number_field :end_year, id: :manuscript_end_year %>
+  <h3>Date Range</h3>
+   <div class="field">
+    <%= form.label :start_year, 'Start' %>
+    <%= form.number_field :start_year, min: 0, id: :manuscript_start_year %>
+    <%= form.label :end_year, 'End' %>
+    <%= form.number_field :end_year, min: 0, id: :manuscript_end_year %>
   </div>
 
   <div class="field">
     <%= form.label :date_note %>
-    <%= form.text_area :date_note, id: :manuscript_date_note %>
+    <%= form.text_field :date_note, id: :manuscript_date_note %>
   </div>
 
   <div class="field">
@@ -116,10 +117,12 @@
     <%= form.text_field :extent, id: :manuscript_extent %>
   </div>
 
+
   <div class="field">
     <%= form.label :provenance %>
     <%= form.text_field :provenance, id: :manuscript_provenance %>
   </div>
+
 
   <div class="field">
     <%= form.label :state_of_completion %>
@@ -132,18 +135,21 @@
   </div>
 
   <div class="field">
+    <%= form.label :numbering_method %>
+    <%= form.select :numbering_method, Manuscript::NUMBERING_METHODS, id: :manuscript_numbering_method %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calendar_integral, 'Is the calendar integral to the manuscript?' %>
+    <%= form.check_box :calendar_integral, id: :manuscript_calendar_integral %>
+  </div>
+
+  <h3>Calendar Details</h3>
+
+
+  <div class="field">
     <%= form.label :columns %>
     <%= form.text_area :columns, id: :manuscript_columns %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_folio %>
-    <%= form.text_field :start_folio, id: :manuscript_start_folio %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_folio %>
-    <%= form.text_field :end_folio, id: :manuscript_end_folio %>
   </div>
 
   <div class="field">
@@ -152,9 +158,21 @@
   </div>
 
   <div class="field">
-    <%= form.label :has_shading %>
+    <%= form.label :has_shading, 'Is there shading?' %>
     <%= form.check_box :has_shading, id: :manuscript_has_shading %>
   </div>
+
+  <div class="field">
+    <%= form.label :start_folio, 'Starts on folio:' %>
+    <%= form.text_field :start_folio, id: :manuscript_start_folio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_folio, 'Ends on folio:' %>
+    <%= form.text_field :end_folio, id: :manuscript_end_folio %>
+  </div>
+
+
 
   <div class="actions">
     <%= form.submit %>

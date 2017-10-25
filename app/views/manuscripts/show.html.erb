@@ -10,15 +10,6 @@
   <%= @manuscript.name %>
 </p>
 
-<p>
-  <strong>Calendar integral:</strong>
-  <%= @manuscript.calendar_integral %>
-</p>
-
-<p>
-  <strong>Numbering method:</strong>
-  <%= @manuscript.numbering_method %>
-</p>
 
 <p>
   <strong>Book type:</strong>
@@ -60,7 +51,7 @@
   <%= @manuscript.script %>
 </p>
 
-<p>
+ <p>
   <strong>Text height:</strong>
   <%= @manuscript.text_height %>
 </p>
@@ -76,22 +67,22 @@
 </p>
 
 <p>
-  <strong>Writing surface height:</strong>
+  <strong>Writing surface_height:</strong>
   <%= @manuscript.writing_surface_height %>
 </p>
 
 <p>
-  <strong>Writing surface width:</strong>
+  <strong>Writing surface_width:</strong>
   <%= @manuscript.writing_surface_width %>
 </p>
 
 <p>
-  <strong>Start date:</strong>
+  <strong>Start year:</strong>
   <%= @manuscript.start_year %>
 </p>
 
 <p>
-  <strong>End date:</strong>
+  <strong>End year:</strong>
   <%= @manuscript.end_year %>
 </p>
 
@@ -120,30 +111,40 @@
   <%= @manuscript.resource %>
 </p>
 
+
 <p>
-  <strong>Columns:</strong>
-  <%= @manuscript.columns %>
+  <strong>Numbering method:</strong>
+  <%= @manuscript.numbering_method %>
 </p>
 
 <p>
-  <strong>Start folio:</strong>
+  <strong>Calender integral?:</strong>
+  <%= yes_no(@manuscript.calendar_integral) %>
+</p>
+
+<p>
+  <strong>Calendar starts on folio: </strong>
   <%= @manuscript.start_folio %>
 </p>
 
 <p>
-  <strong>End folio:</strong>
+  <strong>Calendar ends on folio: </strong>
   <%= @manuscript.end_folio %>
 </p>
 
 <p>
-  <strong>Color weighting:</strong>
-  <%= @manuscript.color_weighting %>
+  <strong>Calendar columns...</strong>
 </p>
 
 <p>
-  <strong>Has shading:</strong>
-  <%= @manuscript.has_shading %>
+  <strong>Color weighting...</strong>
 </p>
+
+<p>
+  <strong>Calender has shading?:</strong>
+  <%= yes_no(@manuscript.has_shading) %>
+</p>
+
 
 <%= link_to 'Edit', edit_manuscript_path(@manuscript) %> |
 <%= link_to 'Back', manuscripts_path %>
