@@ -95,6 +95,13 @@ class ManuscriptsController < ApplicationController
         :state_of_completion,
         :resource,
         :columns,
+
+        :column1,
+        :column2,
+        :column3,
+        :column4,
+        :column5,
+
         :start_folio,
         :end_folio,
         :color_weighting,

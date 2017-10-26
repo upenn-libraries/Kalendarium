@@ -67,12 +67,12 @@
 </p>
 
 <p>
-  <strong>Writing surface_height:</strong>
+  <strong>Writing surface height:</strong>
   <%= @manuscript.writing_surface_height %>
 </p>
 
 <p>
-  <strong>Writing surface_width:</strong>
+  <strong>Writing surface width:</strong>
   <%= @manuscript.writing_surface_width %>
 </p>
 
@@ -123,18 +123,22 @@
 </p>
 
 <p>
-  <strong>Calendar starts on folio: </strong>
+  <strong>Calendar starts on folio:</strong>
   <%= @manuscript.start_folio %>
 </p>
 
 <p>
-  <strong>Calendar ends on folio: </strong>
+  <strong>Calendar ends on folio:</strong>
   <%= @manuscript.end_folio %>
 </p>
 
+<h3> Columns </h3>
+<% @manuscript.columns.each_with_index do |column, index| %>
 <p>
-  <strong>Calendar columns...</strong>
+  <strong><%= "#{index + 1}:" %></strong>
+  <%= column %>
 </p>
+<% end %>
 
 <p>
   <strong>Color weighting...</strong>
