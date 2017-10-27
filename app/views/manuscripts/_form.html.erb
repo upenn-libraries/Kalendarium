@@ -30,9 +30,9 @@
     <%= form.label :manuscript_or_print, 'Is it a manuscript or print book?' %><br>
     <%= form.label :manuscript_or_print, 'manuscript', id: :manuscript_or_print %>
     <%= form.radio_button :manuscript_or_print, 'manuscript' %>
-     <%= form.label :manuscript_or_print, 'print' %>
+    <%= form.label :manuscript_or_print, 'print' %>
     <%= form.radio_button :manuscript_or_print, 'print', id: :manuscript_or_print %>
-     <%= form.label :manuscript_or_print, 'unknown' %>
+    <%= form.label :manuscript_or_print, 'unknown' %>
     <%= form.radio_button :manuscript_or_print, 'unknown', id: :manuscript_or_print %>
   </div>
 
@@ -100,12 +100,20 @@
 
 
   <h3>Date Range</h3>
+  <table>
+  <td>
    <div class="field">
-    <%= form.label :start_year, 'Start' %>
-    <%= form.number_field :start_year, min: 0, id: :manuscript_start_year %>
-    <%= form.label :end_year, 'End' %>
-    <%= form.number_field :end_year, min: 0, id: :manuscript_end_year %>
-  </div>
+      <%= form.label :start_year, 'Start' %>
+      <%= form.number_field :start_year, min: 0, id: :manuscript_start_year %>
+   </div>
+  </td>
+  <td>
+    <div class="field">
+      <%= form.label :end_year, 'End' %>
+      <%= form.number_field :end_year, min: 0, id: :manuscript_end_year %>
+    </div>
+  </td>
+  </table>
 
   <div class="field">
     <%= form.label :date_note %>
@@ -144,7 +152,7 @@
     <%= form.check_box :calendar_integral, id: :manuscript_calendar_integral %>
   </div>
 
-  <h3>Calendar Details</h3>
+  <h2>Calendar Details</h2>
 
 
   <div class="field">
@@ -172,12 +180,81 @@
     <%= form.select :column5, Manuscript::COLUMN_TYPES %>
   </div>
 
+  <br>
+  Color Weight:
 
 
-  <div class="field">
+    <td>
+      <div class="field">
+        <%= form.label :color_weighting_red, 'Red' %>
+        <%= form.number_field :color_weighting_red, min: 0, max: 7, id: :manuscript_color_weighting_red %>
+      </div>
+    </td>
+    <td>
+    <div class="field">
+      <%= form.label :color_weighting_black, 'Black' %>
+      <%= form.number_field :color_weighting_black, min: 0, max: 7, id: :manuscript_color_weighting_black %>
+    </div>
+    </td>
+  </table>
+
+
+  <table>
+    <td>
+      <div class="field">
+        <%= form.label :color_weighting_black, 'Black' %>
+        <%= form.number_field :color_weighting_black, min: 0, max: 7, id: :manuscript_color_weighting_black %>
+      </div>
+    </td>
+
+    <td>
+      <div class="field">
+        <%= form.label :color_weighting_blue, 'Blue' %>
+        <%= form.number_field :color_weighting_blue, min: 0, max: 7, id: :manuscript_color_weighting_blue %>
+      </div>
+    </td>
+
+    <td>
+      <div class="field">
+        <%= form.label :color_weighting_green, 'Green' %>
+        <%= form.number_field :color_weighting_green, min: 0, max: 7, id: :manuscript_color_weighting_green %>
+      </div>
+    </td>
+
+    <td>
+      <div class="field">
+        <%= form.label :color_weighting_pink, 'Pink' %>
+        <%= form.number_field :color_weighting_pink, min: 0, max: 7, id: :manuscript_color_weighting_pink %>
+      </div>
+    </td>
+
+    <td>
+      <div class="field">
+        <%= form.label :color_weighting_red, 'Red' %>
+        <%= form.number_field :color_weighting_red, min: 0, max: 7, id: :manuscript_color_weighting_red %>
+      </div>
+    </td>
+
+    <td>
+      <div class="field">
+        <%= form.label :color_weighting_purple, 'Purple' %>
+        <%= form.number_field :color_weighting_purple, min: 0, max: 7, id: :manuscript_color_weighting_purple %>
+      </div>
+    </td>
+
+    <td>
+      <div class="field">
+        <%= form.label :color_weighting_gold, 'Gold' %>
+        <%= form.number_field :color_weighting_gold, min: 0, max: 7, id: :manuscript_color_weighting_gold %>
+      </div>
+    </td>
+  </table>
+
+
+ <!--  <div class="field">
     <%= form.label :color_weighting %>
     <%= form.text_area :color_weighting, id: :manuscript_color_weighting %>
-  </div>
+  </div> -->
 
   <div class="field">
     <%= form.label :has_shading, 'Is there shading?' %>

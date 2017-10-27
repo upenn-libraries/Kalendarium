@@ -132,17 +132,24 @@
   <%= @manuscript.end_folio %>
 </p>
 
-<h3> Columns </h3>
+<h4> Columns </h4>
 <% @manuscript.columns.each_with_index do |column, index| %>
-<p>
-  <strong><%= "#{index + 1}:" %></strong>
-  <%= column %>
-</p>
+  <p>
+    <strong><%= "#{index + 1}:" %></strong>
+    <%= column %>
+  </p>
 <% end %>
 
-<p>
-  <strong>Color weighting...</strong>
-</p>
+<% unless @manuscript.color_weighting.blank? %>
+  <h4> Color Weight </h4>
+  <% @manuscript.color_weighting.keys.each do |color| %>
+    <p>
+      <strong><%= "#{color.to_s.capitalize}:" %></strong>
+      <%= @manuscript.color_weighting[color] %>
+    </p>
+  <% end %>
+<% end %>
+
 
 <p>
   <strong>Calender has shading?:</strong>

@@ -105,6 +105,15 @@ class ManuscriptsController < ApplicationController
         :start_folio,
         :end_folio,
         :color_weighting,
+
+        :color_weighting_black,
+        :color_weighting_blue,
+        :color_weighting_green,
+        :color_weighting_pink,
+        :color_weighting_red,
+        :color_weighting_purple,
+        :color_weighting_gold,
+
         :has_shading
       )
     end
