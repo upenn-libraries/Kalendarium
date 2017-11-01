@@ -48,7 +48,7 @@
 
   <div class="field">
     <%= form.label :language %>
-    <%= form.select :language, Manuscript::LANGUAGES, id: :manuscript_language %>
+    <%= form.select :language, Manuscript::LANGUAGES, include_blank: true, id: :manuscript_language %>
   </div>
 
   <div class="field">
@@ -171,27 +171,27 @@
 
   <div class="field">
     <%= form.label :column1, "Column 1" %>
-    <%= form.select :column1, Manuscript::COLUMN_TYPES %>
+    <%= form.select :column1, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
 
   <div class="field">
     <%= form.label :column2, "Column 2" %>
-    <%= form.select :column2, Manuscript::COLUMN_TYPES %>
+    <%= form.select :column2, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
 
   <div class="field">
     <%= form.label :column3, "Column 3" %>
-    <%= form.select :column3, Manuscript::COLUMN_TYPES %>
+    <%= form.select :column3, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
 
   <div class="field">
     <%= form.label :column4, "Column 4" %>
-    <%= form.select :column4, Manuscript::COLUMN_TYPES %>
+    <%= form.select :column4, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
 
   <div class="field">
     <%= form.label :column5, "Column 5" %>
-    <%= form.select :column5, Manuscript::COLUMN_TYPES %>
+    <%= form.select :column5, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
 
   <br>
