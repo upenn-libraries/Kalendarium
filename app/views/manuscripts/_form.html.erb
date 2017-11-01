@@ -26,20 +26,38 @@
     <%= form.text_field :book_type, id: :manuscript_book_type %>
   </div>
 
+
+
   <div class="field">
-    <%= form.label :manuscript_or_print, 'Is it a manuscript or print book?' %><br>
-    <%= form.label :manuscript_or_print, 'manuscript', id: :manuscript_or_print %>
-    <%= form.radio_button :manuscript_or_print, 'manuscript' %>
-    <%= form.label :manuscript_or_print, 'print' %>
-    <%= form.radio_button :manuscript_or_print, 'print', id: :manuscript_or_print %>
-    <%= form.label :manuscript_or_print, 'unknown' %>
-    <%= form.radio_button :manuscript_or_print, 'unknown', id: :manuscript_or_print %>
+    <%= form.label :manuscript_or_print, 'Manuscript or print book?' %>
+    <table>
+      <td>
+        <%= form.label :manuscript_or_print, 'manuscript', id: :manuscript_or_print %>
+        <%= form.radio_button :manuscript_or_print, 'manuscript' %>
+      </td>
+      <td>
+        <%= form.label :manuscript_or_print, 'print' %>
+        <%= form.radio_button :manuscript_or_print, 'print', id: :manuscript_or_print %>
+      </td>
+      <td>
+        <%= form.label :manuscript_or_print, 'unknown' %>
+        <%= form.radio_button :manuscript_or_print, 'unknown', id: :manuscript_or_print %>
+      </td>
+    </table>
   </div>
 
   <div class="field">
     <%= form.label :language %>
     <%= form.select :language, Manuscript::LANGUAGES, id: :manuscript_language %>
   </div>
+
+  <div class="field">
+    <%= form.label :script %>
+    <%= form.text_field :script, id: :manuscript_script %>
+  </div>
+
+
+  <h3>Provenance?</h3>
 
   <div class="field">
     <%= form.label :origin %>
@@ -63,10 +81,6 @@
     <%= form.text_field :destination_note, id: :manuscript_destination_note %>
   </div>
 
-  <div class="field">
-    <%= form.label :script %>
-    <%= form.text_field :script, id: :manuscript_script %>
-  </div>
 
   <h3>Text block</h3>
 
@@ -104,13 +118,13 @@
   <td>
    <div class="field">
       <%= form.label :start_year, 'Start' %>
-      <%= form.number_field :start_year, min: 0, id: :manuscript_start_year %>
+      <%= form.number_field :start_year, min: 0, max: 9999, id: :manuscript_start_year %>
    </div>
   </td>
   <td>
     <div class="field">
       <%= form.label :end_year, 'End' %>
-      <%= form.number_field :end_year, min: 0, id: :manuscript_end_year %>
+      <%= form.number_field :end_year, min: 0, max: 9999, id: :manuscript_end_year %>
     </div>
   </td>
   </table>
@@ -182,22 +196,6 @@
 
   <br>
   Color Weight:
-
-
-    <td>
-      <div class="field">
-        <%= form.label :color_weighting_red, 'Red' %>
-        <%= form.number_field :color_weighting_red, min: 0, max: 7, id: :manuscript_color_weighting_red %>
-      </div>
-    </td>
-    <td>
-    <div class="field">
-      <%= form.label :color_weighting_black, 'Black' %>
-      <%= form.number_field :color_weighting_black, min: 0, max: 7, id: :manuscript_color_weighting_black %>
-    </div>
-    </td>
-  </table>
-
 
   <table>
     <td>

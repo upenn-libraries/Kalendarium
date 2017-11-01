@@ -1,15 +1,11 @@
+<h1><%= @manuscript.name %></h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Shelfmark:</strong>
   <%= @manuscript.shelfmark %>
 </p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @manuscript.name %>
-</p>
-
 
 <p>
   <strong>Book type:</strong>
@@ -27,9 +23,17 @@
 </p>
 
 <p>
+  <strong>Script:</strong>
+  <%= @manuscript.script %>
+</p>
+
+<h3>Provenance?</h3>
+
+<p>
   <strong>Origin:</strong>
   <%= @manuscript.origin %>
 </p>
+
 
 <p>
   <strong>Origin note:</strong>
@@ -46,33 +50,34 @@
   <%= @manuscript.destination_note %>
 </p>
 
-<p>
-  <strong>Script:</strong>
-  <%= @manuscript.script %>
-</p>
+
+
+  <h3>Text block</h3>
 
  <p>
-  <strong>Text height:</strong>
+  <strong>Height:</strong>
   <%= @manuscript.text_height %>
 </p>
 
 <p>
-  <strong>Text width:</strong>
+  <strong>Width:</strong>
   <%= @manuscript.text_width %>
 </p>
 
 <p>
-  <strong>Text depth:</strong>
+  <strong>Depth:</strong>
   <%= @manuscript.text_depth %>
 </p>
 
+<h3>Writing Surface</h3>
+
 <p>
-  <strong>Writing surface height:</strong>
+  <strong>Height:</strong>
   <%= @manuscript.writing_surface_height %>
 </p>
 
 <p>
-  <strong>Writing surface width:</strong>
+  <strong>Width:</strong>
   <%= @manuscript.writing_surface_width %>
 </p>
 
