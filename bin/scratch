@@ -39,6 +39,13 @@ rails g scaffold manuscript \
         has_shading:boolean \
         $generator_options
 
+rails g model feast \
+        transcription:text
+        saint_name:string \
+        saint_attributes:text \
+        modifier:string \
+        shading:text \
+        color:string
 
 # rails g model calendar \
 #         columns:text \

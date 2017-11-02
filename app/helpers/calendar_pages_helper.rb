@@ -1,0 +1,2 @@
+module CalendarPagesHelper
+end

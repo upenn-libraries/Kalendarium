@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Calendar Pages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Folio</th>
+      <th>Start month</th>
+      <th>End month</th>
+      <th>Start day</th>
+      <th>End day</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @calendar_pages.each do |calendar_page| %>
+      <tr>
+        <td><%= calendar_page.folio %></td>
+        <td><%= calendar_page.start_month %></td>
+        <td><%= calendar_page.end_month %></td>
+        <td><%= calendar_page.start_day %></td>
+        <td><%= calendar_page.end_day %></td>
+        <td><%= link_to 'Show', calendar_page %></td>
+        <td><%= link_to 'Edit', edit_calendar_page_path(calendar_page) %></td>
+        <td><%= link_to 'Destroy', calendar_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Calendar Page', new_calendar_page_path %>

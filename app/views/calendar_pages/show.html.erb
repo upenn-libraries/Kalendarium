@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Folio:</strong>
+  <%= @calendar_page.folio %>
+</p>
+
+<p>
+  <strong>Start month:</strong>
+  <%= @calendar_page.start_month %>
+</p>
+
+<p>
+  <strong>End month:</strong>
+  <%= @calendar_page.end_month %>
+</p>
+
+<p>
+  <strong>Start day:</strong>
+  <%= @calendar_page.start_day %>
+</p>
+
+<p>
+  <strong>End day:</strong>
+  <%= @calendar_page.end_day %>
+</p>
+
+<%= link_to 'Edit', edit_calendar_page_path(@calendar_page) %> |
+<%= link_to 'Back', calendar_pages_path %>
