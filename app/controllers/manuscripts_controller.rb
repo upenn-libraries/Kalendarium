@@ -94,6 +94,7 @@ class ManuscriptsController < ApplicationController
         :provenance,
         :state_of_completion,
         :resource,
+
         :columns,
 
         :column1,
@@ -103,7 +104,13 @@ class ManuscriptsController < ApplicationController
         :column5,
 
         :start_folio,
+        :start_folio_number,
+        :start_folio_side,
+
         :end_folio,
+        :end_folio_number,
+        :end_folio_side,
+
         :color_weighting,
 
         :color_weighting_black,

@@ -1,4 +1,9 @@
 class Manuscript < ApplicationRecord
+  has_many :calendar_pages, dependent: :destroy
+  # has_many :feasts
+  accepts_nested_attributes_for :calendar_pages
+  # accepts_nested_attributes_for :feasts
+
   validates_presence_of :name
   serialize :columns
   serialize :color_weighting
@@ -17,16 +22,24 @@ class Manuscript < ApplicationRecord
   attr_accessor :color_weighting_purple
   attr_accessor :color_weighting_gold
 
-  after_find  :populate_columns
-  after_find  :populate_color_weighting
+  attr_accessor :start_folio_number
+  attr_accessor :start_folio_side
+  attr_accessor :end_folio_number
+  attr_accessor :end_folio_side
+
   before_save :consolidate_columns
   before_save :consolidate_color_weighting
+  before_save :combine_folio_information
+  after_find  :populate_columns
+  after_find  :populate_color_weighting
+  after_find  :split_folio_information
+
 
   NUMBERING_METHODS = %w(Foliated Paginated)
 
   LANGUAGES = %w(English French Italian Spanish German Latin Klingon)
 
-  COLUMN_TYPES = ['Golden Number', 'Dominical Letter', 'Day', 'Roman Day', 'Text']
+  COLUMN_TYPES = ['Day', 'Golden Number', 'Dominical Letter', 'Roman Day', 'Text']
 
   # COLOR_CODES = {
   #   black:  [  0,   0,   0],
@@ -52,14 +65,6 @@ class Manuscript < ApplicationRecord
   end
 
   private
-    def populate_columns
-      self.column1 = columns[0]
-      self.column2 = columns[1]
-      self.column3 = columns[2]
-      self.column4 = columns[3]
-      self.column5 = columns[4]
-    end
-
     def consolidate_columns
       self.columns = []
       self.columns[0] = column1
@@ -68,6 +73,26 @@ class Manuscript < ApplicationRecord
       self.columns[3] = column4
       self.columns[4] = column5
     end
+
+    def populate_columns
+      self.column1 = columns[0]
+      self.column2 = columns[1]
+      self.column3 = columns[2]
+      self.column4 = columns[3]
+      self.column5 = columns[4]
+    end
+
+    def consolidate_color_weighting
+     self.color_weighting = Hash.new
+     self.color_weighting[:black]  = color_weighting_black  unless color_weighting_black.blank?
+     self.color_weighting[:blue]   = color_weighting_blue   unless color_weighting_blue.blank?
+     self.color_weighting[:green]  = color_weighting_green  unless color_weighting_green.blank?
+     self.color_weighting[:pink]   = color_weighting_pink   unless color_weighting_pink.blank?
+     self.color_weighting[:red]    = color_weighting_red    unless color_weighting_red.blank?
+     self.color_weighting[:purple] = color_weighting_purple unless color_weighting_purple.blank?
+     self.color_weighting[:gold]   = color_weighting_gold   unless color_weighting_gold.blank?
+    end
+
 
     def populate_color_weighting
       self.color_weighting_black  = color_weighting[:black]
@@ -79,15 +104,24 @@ class Manuscript < ApplicationRecord
       self.color_weighting_gold   = color_weighting[:gold]
     end
 
-    def consolidate_color_weighting
-     self.color_weighting = Hash.new
-     self.color_weighting[:black]  = color_weighting_black unless color_weighting_black.blank?
-     self.color_weighting[:blue]   = color_weighting_blue unless color_weighting_blue.blank?
-     self.color_weighting[:green]  = color_weighting_green unless color_weighting_green.blank?
-     self.color_weighting[:pink]   = color_weighting_pink unless color_weighting_pink.blank?
-     self.color_weighting[:red]    = color_weighting_red unless color_weighting_red.blank?
-     self.color_weighting[:purple] = color_weighting_purple unless color_weighting_purple.blank?
-     self.color_weighting[:gold]   = color_weighting_gold unless color_weighting_gold.blank?
+    def combine_folio_information
+      self.start_folio = start_folio_number + start_folio_side
+      self.end_folio = end_folio_number + end_folio_side
+    end
+
+    def split_folio_information
+      if %w(r v).include? start_folio[-1]
+        self.start_folio_number = start_folio.chop
+        self.start_folio_side   = start_folio[-1]
+      else
+        self.start_folio_number = start_folio
+      end
+      if %w(r v).include? end_folio[-1]
+        self.end_folio_number = end_folio.chop
+        self.end_folio_side   = end_folio[-1]
+      else
+        self.end_folio_number = end_folio
+      end
     end
 end
 

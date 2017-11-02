@@ -249,16 +249,49 @@
   </table>
 
 
- <!--  <div class="field">
-    <%= form.label :color_weighting %>
-    <%= form.text_area :color_weighting, id: :manuscript_color_weighting %>
-  </div> -->
-
   <div class="field">
     <%= form.label :has_shading, 'Is there shading?' %>
     <%= form.check_box :has_shading, id: :manuscript_has_shading %>
   </div>
 
+
+  <table>
+    <th>Starts on folio:</th>
+    <tr>
+      <td>
+        <div class="field">
+          <%#= form.label :start_folio_number %>
+          <%= form.number_field :start_folio_number, min: 1, id: :manuscript_start_folio %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%#= form.label :start_folio_side %>
+          <%= form.select :start_folio_side, %w(r v), include_blank: true, id: :manuscript_start_folio %>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+
+  <table>
+    <th>Ends on folio:</th>
+    <tr>
+      <td>
+        <div class="field">
+          <%= form.number_field :end_folio_number, min: 1, id: :manuscript_end_folio %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.select :end_folio_side, %w(r v), include_blank: true, id: :manuscript_end_folio %>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+
+<!--
   <div class="field">
     <%= form.label :start_folio, 'Starts on folio:' %>
     <%= form.text_field :start_folio, id: :manuscript_start_folio %>
@@ -268,7 +301,7 @@
     <%= form.label :end_folio, 'Ends on folio:' %>
     <%= form.text_field :end_folio, id: :manuscript_end_folio %>
   </div>
-
+ -->
 
 
   <div class="actions">
