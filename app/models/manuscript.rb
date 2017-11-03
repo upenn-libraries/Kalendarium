@@ -116,12 +116,12 @@ class Manuscript < ApplicationRecord
     end
 
     def split_folio_information
-      # if %w(r v).include? start_folio[-1]
+      if %w(r v).include? start_folio[-1]
         self.start_folio_number = start_folio.chop
         self.start_folio_side   = start_folio[-1]
-      # else
-      #   self.start_folio_number = start_folio
-      # end
+      else
+        self.start_folio_number = start_folio
+      end
       if %w(r v).include? end_folio[-1]
         self.end_folio_number = end_folio.chop
         self.end_folio_side   = end_folio[-1]
