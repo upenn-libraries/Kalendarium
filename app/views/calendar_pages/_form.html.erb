@@ -1,4 +1,4 @@
-<%= form_with(model: calendar_page, local: true) do |form| %>
+<%= form_for [@manuscript, @calendar_page] do |form| %>
   <% if calendar_page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(calendar_page.errors.count, "error") %> prohibited this calendar_page from being saved:</h2>
@@ -13,12 +13,13 @@
 
   <div class="field">
     <%= form.label :folio %>
-    <%= form.text_field :folio, id: :calendar_page_folio %>
-    <%#== form.select :folio, @manuscript.calendar_folios, id: :calendar_page_folio %>
+    <%#= form.text_field :folio, id: :calendar_page_folio %>
+    <%#= form.select :folio, @manuscript.calendar_folios, id: :calendar_page_folio %>
+    <%= form.select :folio, @manuscript.calendar_folios, id: :calendar_page_folio %>
   </div>
 
   <h3>Start</h3>
-  <table>
+<!--   <table>
     <td>
       <div class="field">
         <%= form.label :start_month, 'Month' %>
@@ -32,10 +33,15 @@
         <%= form.select :start_day, (1..31), id: :calendar_page_start_day %>
       </div>
     </td>
-  </table>
+  </table> -->
+
+  <div class="field">
+    <%= form.select :start_month, CalendarPage::MONTHS, id: :calendar_page_start_month %>
+    <%= form.select :start_day, (1..31), id: :calendar_page_start_day %>
+  </div>
 
   <h3>End</h3>
-  <table>
+ <!--  <table>
     <td>
       <div class="field">
         <%= form.label :end_month, 'Month' %>
@@ -49,10 +55,15 @@
         <%= form.select :end_day, (1..31), id: :calendar_page_end_day %>
       </div>
     </td>
-  </table>
+  </table> -->
+
+  <div class="field">
+    <%= form.select :end_month, CalendarPage::MONTHS, id: :calendar_page_end_month  %>
+    <%= form.select :end_day, (1..31), id: :calendar_page_end_day %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
-
 <% end %>
+

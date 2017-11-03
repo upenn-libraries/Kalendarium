@@ -27,6 +27,7 @@ class Manuscript < ApplicationRecord
   attr_accessor :end_folio_number
   attr_accessor :end_folio_side
 
+
   before_save :consolidate_columns
   before_save :consolidate_color_weighting
   before_save :combine_folio_information
@@ -34,6 +35,11 @@ class Manuscript < ApplicationRecord
   after_find  :populate_color_weighting
   after_find  :split_folio_information
 
+
+
+  # attr_reader :calendar_folios
+  serialize :calendar_folios # database attribute
+  before_save :generate_calendar_folios
 
   NUMBERING_METHODS = %w(Foliated Paginated)
 
@@ -110,18 +116,33 @@ class Manuscript < ApplicationRecord
     end
 
     def split_folio_information
-      if %w(r v).include? start_folio[-1]
+      # if %w(r v).include? start_folio[-1]
         self.start_folio_number = start_folio.chop
         self.start_folio_side   = start_folio[-1]
-      else
-        self.start_folio_number = start_folio
-      end
+      # else
+      #   self.start_folio_number = start_folio
+      # end
       if %w(r v).include? end_folio[-1]
         self.end_folio_number = end_folio.chop
         self.end_folio_side   = end_folio[-1]
       else
         self.end_folio_number = end_folio
       end
+    end
+
+    def generate_calendar_folios
+      self.calendar_folios =
+      begin
+     # if numbering_method == 'foliated'
+        start_recto = start_folio_side == 'r'
+        end_verso   =   end_folio_side == 'v'
+        initials = start_recto ? [start_folio_number + 'r', start_folio_number + 'v'] : [start_folio_number + 'v']
+        finals   = end_verso   ? [end_folio_number   + 'r', end_folio_number   + 'v'] : [end_folio_number   + 'r']
+        intermediates = ((start_folio_number.to_i + 1)..(end_folio_number.to_i - 1)).to_a.map{ |n| ["#{n}r", "#{n}v"] }
+        (initials + intermediates + finals).flatten
+     # else
+     #   (start_f.to_i..end_folio.to_i).to_a.map{ |n| n.to_s }
+       end
     end
 end
 

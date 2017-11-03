@@ -254,7 +254,7 @@
     <%= form.check_box :has_shading, id: :manuscript_has_shading %>
   </div>
 
-
+<!--
   <table>
     <th>Starts on folio:</th>
     <tr>
@@ -288,8 +288,19 @@
         </div>
       </td>
     </tr>
-  </table>
+  </table> -->
 
+  Starts on folio:
+  <div class="field">
+    <%= form.number_field :start_folio_number, min: 1, max: 999, id: :manuscript_start_folio %>
+    <%= form.select :start_folio_side, %w(r v), include_blank: true, id: :manuscript_start_folio %>
+   </div>
+
+  Ends on folio:
+  <div class="field">
+     <%= form.number_field :end_folio_number, min: 1, max: 999, id: :manuscript_end_folio %>
+     <%= form.select :end_folio_side, %w(r v), include_blank: true, id: :manuscript_end_folio %>
+  </div>
 
 <!--
   <div class="field">

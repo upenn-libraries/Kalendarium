@@ -6,24 +6,16 @@
 </p>
 
 <p>
-  <strong>Start month:</strong>
-  <%= @calendar_page.start_month %>
+  <strong>Start:</strong>
+  <%= "#{@calendar_page.start_month} #{@calendar_page.start_day}" %>
 </p>
 
 <p>
-  <strong>End month:</strong>
-  <%= @calendar_page.end_month %>
+  <strong>End:</strong>
+  <%= "#{@calendar_page.end_month} #{@calendar_page.end_day}" %>
 </p>
 
-<p>
-  <strong>Start day:</strong>
-  <%= @calendar_page.start_day %>
-</p>
 
-<p>
-  <strong>End day:</strong>
-  <%= @calendar_page.end_day %>
-</p>
+<%= link_to 'Edit', edit_manuscript_calendar_page_path(@manuscript, @calendar_page) %> |
+<%= link_to 'Back', manuscript_path(@manuscript) %>
 
-<%= link_to 'Edit', edit_calendar_page_path(@calendar_page) %> |
-<%= link_to 'Back', calendar_pages_path %>

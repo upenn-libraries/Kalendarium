@@ -1,5 +1,6 @@
 class CalendarPagesController < ApplicationController
   before_action :set_calendar_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_manuscript
 
   # GET /calendar_pages
   # GET /calendar_pages.json
@@ -25,11 +26,13 @@ class CalendarPagesController < ApplicationController
   # POST /calendar_pages
   # POST /calendar_pages.json
   def create
-    @calendar_page = CalendarPage.new(calendar_page_params)
+  # @evidence = @book.evidence.build evidence_params
+    @calendar_page = @manuscript.calendar_pages.build calendar_page_params
+  # @calendar_page = CalendarPage.new(calendar_page_params)
 
     respond_to do |format|
       if @calendar_page.save
-        format.html { redirect_to @calendar_page, notice: 'Calendar page was successfully created.' }
+        format.html { redirect_to [@manuscript, @calendar_page], notice: 'Calendar page was successfully created.' }
         format.json { render :show, status: :created, location: @calendar_page }
       else
         format.html { render :new }
@@ -43,7 +46,7 @@ class CalendarPagesController < ApplicationController
   def update
     respond_to do |format|
       if @calendar_page.update(calendar_page_params)
-        format.html { redirect_to @calendar_page, notice: 'Calendar page was successfully updated.' }
+        format.html { redirect_to [@manuscript, @calendar_page], notice: 'Calendar page was successfully updated.' }
         format.json { render :show, status: :ok, location: @calendar_page }
       else
         format.html { render :edit }
@@ -71,5 +74,9 @@ class CalendarPagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def calendar_page_params
       params.require(:calendar_page).permit(:folio, :start_month, :end_month, :start_day, :end_day)
+    end
+
+    def set_manuscript
+      @manuscript = Manuscript.find(params[:manuscript_id])
     end
 end
