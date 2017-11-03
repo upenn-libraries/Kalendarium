@@ -1,5 +1,5 @@
 body {
-  background-color: #ec8/*#fff*/;
+  background-color: #959ba5/*#fff*/;
   color: #333;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -23,7 +23,7 @@ a {
   color: #000;
 
   &:visited {
-    color: #666;
+    color: #060660/*#666*/;
   }
 
   &:hover {
@@ -47,20 +47,16 @@ div {
 }
 
 /* ....................... */
-select {
+input, select {
+  font-size: 15px;
   background-color: #000;
-  font-size: 15px;
-  color: #ff8;
+  color: #d9d6ff/*#ff8*/;
 }
-
-input {
-  font-size: 15px;
-}
-
 /* ....................... */
 
 #notice {
-  color: green;
+ /* color: green;*/
+  color: white;
 }
 
 .field_with_errors {
