@@ -43,6 +43,7 @@ group :development, :test do
   # ===== DE: Add database_cleaner and rspec-rails =====
   gem 'database_cleaner', '~> 1.6.1'
   gem 'rspec-rails', '~> 3.7.0'
+  gem 'pry-rails'
 end
 
 group :development do
