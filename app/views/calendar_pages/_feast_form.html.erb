@@ -1,0 +1,18 @@
+<%= form_for :feast do |form| %>
+  <div>
+    saint name:
+    <%= form.select :saint_name, %w(Matthew Mark Luke John), include_blank: true %>
+  <!--
+  transcription
+  saint_name
+  saint_attributes
+  modifier
+  shading
+  color
+   -->
+   modifier:
+  <%= form.text_field :modifier %>
+  <%= form.submit %>
+  </div>
+<% end %>
+

@@ -1,0 +1,20 @@
+<%#= form_for [@manuscript, Feast.new] do |form| %>
+<%= form_for [@manuscript, @feast] do |form| %>
+  <div>
+    <%= form.select :saint_name, %w(Matthew Mark Luke John), include_blank: true %>
+  <!--
+  transcription
+  saint_name
+  saint_attributes
+  modifier
+  shading
+  color
+   -->
+  <% form.hidden :month %>
+  <% form.hidden :day %>
+  <% form.hidden :manuscript %>
+
+  <%= form.submit %>
+  </div>
+<% end %>
+
