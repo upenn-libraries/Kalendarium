@@ -4,6 +4,15 @@ class Feast < ApplicationRecord
 
   serialize :saint_attributes
 
+  ############
+  before_save :consolidate_saint_attributes
+  after_find  :populate_saint_attributes
+
+  attr_accessor :st_attr1
+  attr_accessor :st_attr2
+  # ...
+  ############
+
   SAINT_NAMES = %w(
     Matthew
     Mark
@@ -18,6 +27,13 @@ class Feast < ApplicationRecord
 
 
   def to_s
-    "Feast of St. #{saint_name} (#{month_number}/#{day_number}): #{transcription.to_s[0..80]}"
+    "Feast of St. #{saint_name}: \"#{transcription.to_s[0..80]}\""
   end
+
+  private
+    def populate_saint_attributes
+    end
+
+    def consolidate_saint_attributes
+    end
 end

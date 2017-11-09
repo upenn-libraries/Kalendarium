@@ -86,6 +86,7 @@ class FeastsController < ApplicationController
         :transcription,
         :saint_name,
         :saint_attributes,
+        :saint_location,
         :modifier,
         :shading,
         :color,
