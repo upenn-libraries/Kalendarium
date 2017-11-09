@@ -7,45 +7,50 @@ cd `dirname $0`/..
 
 generator_options="--no-helper --no-view-specs --no-helper-specs --no-assets --no-stylesheets"
 
-rails g scaffold manuscript \
-        shelfmark:string \
-        name:string \
-        calendar_integral:boolean \
-        numbering_method:string \
-        book_type:string  \
-        manuscript_or_print:string \
-        language:string \
-        origin:string \
-        origin_note:text \
-        destination:string \
-        destination_note:text \
-        script:string \
-        text_height:integer \
-        text_width:integer \
-        text_depth:integer \
-        writing_surface_height:integer \
-        writing_surface_width:integer \
-        start_date:integer \
-        end_date:integer \
-        date_note:text \
-        extent:string \
-        provenance:string \
-        state_of_completion:string \
-        resource:string \
-        columns:text \
-        start_folio:string \
-        end_folio:string \
-        color_weighting:text \
-        has_shading:boolean \
-        $generator_options
+rails g controller feasts
 
-rails g model feast \
-        transcription:text
-        saint_name:string \
-        saint_attributes:text \
-        modifier:string \
-        shading:text \
-        color:string
+# rails g scaffold manuscript \
+#         shelfmark:string \
+#         name:string \
+#         calendar_integral:boolean \
+#         numbering_method:string \
+#         book_type:string  \
+#         manuscript_or_print:string \
+#         language:string \
+#         origin:string \
+#         origin_note:text \
+#         destination:string \
+#         destination_note:text \
+#         script:string \
+#         text_height:integer \
+#         text_width:integer \
+#         text_depth:integer \
+#         writing_surface_height:integer \
+#         writing_surface_width:integer \
+#         start_date:integer \
+#         end_date:integer \
+#         date_note:text \
+#         extent:string \
+#         provenance:string \
+#         state_of_completion:string \
+#         resource:string \
+#         columns:text \
+#         start_folio:string \
+#         end_folio:string \
+#         color_weighting:text \
+#         has_shading:boolean \
+#         $generator_options
+
+# rails g model feast \
+#         month:string \
+#         day:integer \
+#         transcription:text \
+#         saint_name:string \
+#         saint_attributes:text \
+#         modifier:string \
+#         shading:text \
+#         color:string \
+#         manuscript:references
 
 # rails g model calendar \
 #         columns:text \

@@ -21,3 +21,5 @@
 tmp
 log
 vendor
+
+bin/scratch
