@@ -1,7 +1,12 @@
 class CalendarPage < ApplicationRecord
   belongs_to :manuscript
+  has_many   :feasts
 
-  MONTHS = %w(
+  serialize :days
+  before_save :generate_days
+
+
+  MONTH_NAMES = %w(
     January
     February
     March
@@ -15,4 +20,73 @@ class CalendarPage < ApplicationRecord
     November
     December
   )
+
+  MONTH_SELECT = [ # rename
+    ['January',   1],
+    ['February',  2],
+    ['March',     3],
+    ['April',     4],
+    ['May',       5],
+    ['June',      6],
+    ['July',      7],
+    ['August',    8],
+    ['September', 9],
+    ['October',  10],
+    ['November', 11],
+    ['December', 12]
+  ]
+
+  ################################################################### temporary way of doing this
+  class Month
+    attr_reader :name
+    attr_reader :number
+    attr_reader :length
+
+    def initialize params = {}
+      @name   = params[:name]
+      @number = params[:number]
+      @length = params[:length]
+    end
+
+    def to_s
+      name
+    end
+  end
+
+  MONTHS = [
+    Month.new(name: 'January',   number:  1, length: 31),
+    Month.new(name: 'February',  number:  2, length: 29),
+    Month.new(name: 'March',     number:  3, length: 31),
+    Month.new(name: 'April',     number:  4, length: 30),
+    Month.new(name: 'May',       number:  5, length: 31),
+    Month.new(name: 'June',      number:  6, length: 30),
+    Month.new(name: 'July',      number:  7, length: 31),
+    Month.new(name: 'August',    number:  8, length: 31),
+    Month.new(name: 'September', number:  9, length: 30),
+    Month.new(name: 'October',   number: 10, length: 31),
+    Month.new(name: 'November',  number: 11, length: 30),
+    Month.new(name: 'December',  number: 12, length: 31)
+  ]
+
+
+
+  private
+    def generate_days
+      self.days =
+      begin
+        start_m = MONTHS.find{ |m| m.name == start_month }
+        end_m   = MONTHS.find{ |m| m.name == end_month   }
+        days = []
+        (start_m.number..end_m.number).each do |month_num|
+          start_d = month_num == start_m.number ? start_day : 1
+          end_d   = month_num == end_m.number   ? end_day : MONTHS.find{ |m| m.number == month_num }.length
+          (start_d..end_d).each{ |day_num| days << [month_num, day_num] }
+        end
+        days
+      end
+    end
+ ##################################################################################################
 end
+
+
+

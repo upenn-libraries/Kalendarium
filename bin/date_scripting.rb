@@ -64,20 +64,32 @@ class Month
     @number = params[:number]
     @length = params[:length]
   end
+
+  def days
+    (1..length).to_a.map{ |d| [number, d] }
+  end
+end
+
+def transparent_ordinal date
+  (date.first) * 100 + date.last
+end
+
+def transparent_ordinal_to_date_string transpo
+  transpo.to_s.insert(-3, '/')
 end
 
 MONTHS = [
-  Month.new(name: 'January',   number:  1, length: 31)
-  Month.new(name: 'February',  number:  2, length: 29)
-  Month.new(name: 'March',     number:  3, length: 31)
-  Month.new(name: 'April',     number:  4, length: 30)
-  Month.new(name: 'May',       number:  5, length: 31)
-  Month.new(name: 'June',      number:  6, length: 30)
-  Month.new(name: 'July',      number:  7, length: 31)
-  Month.new(name: 'August',    number:  8, length: 31)
-  Month.new(name: 'September', number:  9, length: 30)
-  Month.new(name: 'October',   number: 10, length: 31)
-  Month.new(name: 'November',  number: 11, length: 30)
+  Month.new(name: 'January',   number:  1, length: 31),
+  Month.new(name: 'February',  number:  2, length: 29),
+  Month.new(name: 'March',     number:  3, length: 31),
+  Month.new(name: 'April',     number:  4, length: 30),
+  Month.new(name: 'May',       number:  5, length: 31),
+  Month.new(name: 'June',      number:  6, length: 30),
+  Month.new(name: 'July',      number:  7, length: 31),
+  Month.new(name: 'August',    number:  8, length: 31),
+  Month.new(name: 'September', number:  9, length: 30),
+  Month.new(name: 'October',   number: 10, length: 31),
+  Month.new(name: 'November',  number: 11, length: 30),
   Month.new(name: 'December',  number: 12, length: 31)
 ]
 

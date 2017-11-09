@@ -13,52 +13,20 @@
 
   <div class="field">
     <%= form.label :folio %>
-    <%#= form.text_field :folio, id: :calendar_page_folio %>
-    <%#= form.select :folio, @manuscript.calendar_folios, id: :calendar_page_folio %>
-    <%= form.select :folio, @manuscript.calendar_folios, id: :calendar_page_folio %>
+    <%#= form.select :folio, @manuscript.calendar_folios, id: :calendar_page_folio %> <!-- rewrite to work with new routing -->
   </div>
 
-  <h3>Start</h3>
-<!--   <table>
-    <td>
-      <div class="field">
-        <%= form.label :start_month, 'Month' %>
-        <%= form.select :start_month, CalendarPage::MONTHS, id: :calendar_page_start_month %>
-      </div>
-    </td>
-
-    <td>
-      <div class="field">
-        <%= form.label :start_day, 'Day' %>
-        <%= form.select :start_day, (1..31), id: :calendar_page_start_day %>
-      </div>
-    </td>
-  </table> -->
-
+  Start
   <div class="field">
-    <%= form.select :start_month, CalendarPage::MONTHS, id: :calendar_page_start_month %>
+
+    <%= form.select :start_month, CalendarPage::MONTH_SELECT, id: :calendar_page_start_month %>
     <%= form.select :start_day, (1..31), id: :calendar_page_start_day %>
   </div>
 
-  <h3>End</h3>
- <!--  <table>
-    <td>
-      <div class="field">
-        <%= form.label :end_month, 'Month' %>
-        <%= form.select :end_month, CalendarPage::MONTHS, id: :calendar_page_end_month %>
-      </div>
-    </td>
-
-    <td>
-      <div class="field">
-        <%= form.label :end_day, 'Day' %>
-        <%= form.select :end_day, (1..31), id: :calendar_page_end_day %>
-      </div>
-    </td>
-  </table> -->
-
+  End
   <div class="field">
-    <%= form.select :end_month, CalendarPage::MONTHS, id: :calendar_page_end_month  %>
+
+    <%= form.select :end_month, CalendarPage::MONTH_SELECT, id: :calendar_page_end_month  %>
     <%= form.select :end_day, (1..31), id: :calendar_page_end_day %>
   </div>
 

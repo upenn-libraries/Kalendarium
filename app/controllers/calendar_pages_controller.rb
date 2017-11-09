@@ -1,6 +1,6 @@
 class CalendarPagesController < ApplicationController
   before_action :set_calendar_page, only: [:show, :edit, :update, :destroy]
-  before_action :set_manuscript
+  before_action :set_manuscript, only: [:create, :new, :destory]
 
   # GET /calendar_pages
   # GET /calendar_pages.json

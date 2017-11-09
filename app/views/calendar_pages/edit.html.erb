@@ -3,4 +3,4 @@
 <%= render 'form', calendar_page: @calendar_page %>
 
 <%= link_to 'Show', [@manuscript, @calendar_page] %> |
-<%= link_to 'Back', manuscript_path(@manuscript) %>
+<%= link_to 'Back', manuscript_path(@calendar_page.manuscript) %>

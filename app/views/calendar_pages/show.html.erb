@@ -15,7 +15,36 @@
   <%= "#{@calendar_page.end_month} #{@calendar_page.end_day}" %>
 </p>
 
+<% @calendar_page.manuscript.feasts.each do |f| %>
+<%= f.to_s %><br> <%#= link_to 'Destroy', [@manuscript, f], method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 
-<%= link_to 'Edit', edit_manuscript_calendar_page_path(@manuscript, @calendar_page) %> |
-<%= link_to 'Back', manuscript_path(@manuscript) %>
 
+<% @calendar_page.days.each do |date| %>
+  <p>
+    <%= "#{CalendarPage::MONTHS.find{ |m| m.number == date.first }} #{date.second}" %>
+    <% feast = @calendar_page.manuscript.feasts.find{ |f| date.first == f.month_number && date.last == f.day_number } %>
+    <% feast = nil %>
+    <% unless feast.nil? %>
+     <%= feast %>
+    <% else %>
+      <%#= link_to 'Add feast', new_manuscript_feast_path(feast_date_params(date)) %>
+      <%= link_to 'Add feast', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %>
+    <% end %>
+
+
+
+
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_calendar_page_path %> |
+<%= link_to 'Back', manuscript_path(@calendar_page.manuscript) %>
+
+
+      <%#= render '/feasts/form', feast: @manuscript.feasts.build %>
+
+      <%# new_feast = @manuscript.feasts.build(month_number: d.first, day_number: d.last, calendar_page_id: @calendar_page.id, saint_name: 'Yoda') %>
+      <%#= render 'feast_form', feast: new_feast %>
+
+<!-- ,manuscript_id: @calendar_page.manuscript_id) -->

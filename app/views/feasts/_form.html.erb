@@ -1,5 +1,4 @@
-<%#= form_for [@manuscript, Feast.new] do |form| %>
-<%= form_for [@manuscript, @feast] do |form| %>
+<%= form_for [@calendar_page, @feast] do |form| %>
   <div>
     <%= form.select :saint_name, %w(Matthew Mark Luke John), include_blank: true %>
   <!--
@@ -10,9 +9,9 @@
   shading
   color
    -->
-  <% form.hidden :month %>
-  <% form.hidden :day %>
-  <% form.hidden :manuscript %>
+    <%= form.hidden_field :month_number %>
+    <%= form.hidden_field :day_number %>
+    <%= form.hidden_field :manuscript_id %>
 
   <%= form.submit %>
   </div>

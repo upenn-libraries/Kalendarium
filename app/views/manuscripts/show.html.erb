@@ -161,11 +161,10 @@
   <%= yes_no(@manuscript.has_shading) %>
 </p>
 
+<br>
 
-<%= link_to 'Edit', edit_manuscript_path(@manuscript) %> |
-<%= link_to 'Back', manuscripts_path %>
-
-<h2>Calendar Pages</h2>
+<strong>Calendar Pages</strong>
+<%= link_to 'New', new_manuscript_calendar_page_path(manuscript_id: @manuscript.id) %> <!-- old attempt, update? -->
 
 <p id="notice"><%= notice %></p>
 
@@ -187,15 +186,16 @@
         <td><%= calendar_page.folio %></td>
         <td><%= "#{calendar_page.start_month} #{calendar_page.start_day}" %></td>
         <td><%= "#{calendar_page.end_month} #{calendar_page.end_day}" %></td>
-        <td><%= link_to 'Show', [@manuscript, calendar_page] %></td>
-        <td><%= link_to 'Edit', edit_manuscript_calendar_page_path(@manuscript, calendar_page) %></td>
+        <td><%= link_to 'Show', calendar_page %></td>
+        <td><%= link_to 'Edit', edit_calendar_page_path(calendar_page) %></td>
         <td><%= link_to 'Destroy', [@manuscript, calendar_page], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%#= link_to 'New Calendar Page', new_calendar_page_path %>
-<%= link_to 'New Calendar Page', new_manuscript_calendar_page_path(manuscript_id: @manuscript.id) %>
+<br><br>
+
+<%= link_to 'Edit', edit_manuscript_path(@manuscript) %> |
+<%= link_to 'Back', manuscripts_path %>

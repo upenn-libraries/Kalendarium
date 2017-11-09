@@ -1,7 +1,7 @@
 class FeastsController < ApplicationController
  before_action :set_feast, only: [:show, :edit, :update, :destroy]
  before_action :set_manuscript
- before_action :set_calendar_page
+ before_action :set_calendar_page, only: [:new, :create, :destroy]
 
   # GET /feasts
   # GET /feasts.json
@@ -16,10 +16,8 @@ class FeastsController < ApplicationController
 
   # GET /feasts/new
   def new
-    @feast = Feast.new(feast_params)
-    # @feast.month_number = rand(1..12)
-    # @feast.day_number   = rand(1..31)
-    # @feast.calendar_page_id = @calendar_page.id
+    @feast = @calendar_page.feasts.build(feast_params)
+    @feast.manuscript = @calendar_page.manuscript
   end
 
   # GET /feasts/1/edit
@@ -29,21 +27,19 @@ class FeastsController < ApplicationController
   # POST /feasts
   # POST /feasts.json
   def create
-    @feast = Feast.new(feast_params)
-    # @feast.manuscript_id = @manuscript.id
-    # @feast.month_number = rand(0..12)
-    # @feast.day_number   = rand(0..31)
+    @feast = @calendar_page.feasts.build(feast_params)
 
     respond_to do |format|
       if @feast.save
-        format.html { redirect_to [@manuscript, @calendar_page], notice: 'Feast was successfully created.' }
+        format.html { redirect_to @calendar_page, notice: 'Feast was successfully created.' }
         format.json { render :show, status: :created, location: @feast }
       else
-        format.html { redirect_to [@manuscript, @calendar_page], notice: @feast.errors.inspect }#'uhh' }
+        format.html { redirect_to @calendar_page, notice: @feast.errors.full_messages.to_a }#'uhh' }
         format.json { render json: @feast.errors, status: :unprocessable_entity }
       end
     end
   end
+
 
   # PATCH/PUT /feasts/1
   # PATCH/PUT /feasts/1.json
@@ -76,13 +72,11 @@ class FeastsController < ApplicationController
     end
 
     def set_manuscript
-      @manuscript = Manuscript.find(params[:manuscript_id])
+      # @manuscript = Manuscript.find(params[:manuscript_id])
     end
 
     def set_calendar_page
-      # testing....
-      # @calendar_page = CalendarPage.find{ |cp| cp.id == 8 }#(params[:calendar_page_id])
-      @calendar_page = @manuscript.calendar_pages.sample
+      @calendar_page = CalendarPage.find(params[:calendar_page_id])
     end
 
 
@@ -97,7 +91,8 @@ class FeastsController < ApplicationController
         :color,
         :month_number,
         :day_number,
-        :calendar_page_id #...
+        :calendar_page_id,
+        :manuscript_id
       )
     end
 end

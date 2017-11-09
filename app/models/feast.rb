@@ -1,5 +1,6 @@
 class Feast < ApplicationRecord
   belongs_to :manuscript
+  belongs_to :calendar_page
 
   serialize :saint_attributes
 

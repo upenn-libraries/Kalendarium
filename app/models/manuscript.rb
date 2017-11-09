@@ -1,12 +1,22 @@
 class Manuscript < ApplicationRecord
   has_many :calendar_pages, dependent: :destroy
-  # has_many :feasts
-  accepts_nested_attributes_for :calendar_pages
-  # accepts_nested_attributes_for :feasts
+  has_many :feasts
+  accepts_nested_attributes_for :calendar_pages # need these? #
+  accepts_nested_attributes_for :feasts         # # # # # # # #
 
   validates_presence_of :name
   serialize :columns
   serialize :color_weighting
+  serialize :calendar_folios
+
+  before_save :consolidate_columns
+  before_save :consolidate_color_weighting
+  before_save :combine_folio_information
+  before_save :generate_calendar_folios
+
+  after_find  :populate_columns
+  after_find  :populate_color_weighting
+  after_find  :split_folio_information
 
   attr_accessor :column1
   attr_accessor :column2
@@ -27,19 +37,6 @@ class Manuscript < ApplicationRecord
   attr_accessor :end_folio_number
   attr_accessor :end_folio_side
 
-
-  before_save :consolidate_columns
-  before_save :consolidate_color_weighting
-  before_save :combine_folio_information
-  after_find  :populate_columns
-  after_find  :populate_color_weighting
-  after_find  :split_folio_information
-
-
-
-  # attr_reader :calendar_folios
-  serialize :calendar_folios # database attribute
-  before_save :generate_calendar_folios
 
   NUMBERING_METHODS = %w(Foliated Paginated)
 
@@ -112,7 +109,7 @@ class Manuscript < ApplicationRecord
 
     def combine_folio_information
       self.start_folio = start_folio_number + start_folio_side
-      self.end_folio = end_folio_number + end_folio_side
+      self.end_folio   = end_folio_number + end_folio_side
     end
 
     def split_folio_information
