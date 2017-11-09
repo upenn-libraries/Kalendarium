@@ -15,26 +15,17 @@
   <%= "#{@calendar_page.end_month} #{@calendar_page.end_day}" %>
 </p>
 
-<% @calendar_page.manuscript.feasts.each do |f| %>
-<%= f.to_s %><br> <%#= link_to 'Destroy', [@manuscript, f], method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-
 
 <% @calendar_page.dates.each do |date| %>
   <p>
     <%= "#{CalendarPage::MONTHS.find{ |m| m.number == date.first }} #{date.second}" %>
     <% feast = @calendar_page.manuscript.feasts.find{ |f| date.first == f.month_number && date.last == f.day_number } %>
-    <% feast = nil %>
     <% unless feast.nil? %>
-     <%= feast %>
+      <%= link_to 'edit', edit_feast_path(feast) %>
+      <%= feast %>
     <% else %>
-      <%#= link_to 'Add feast', new_manuscript_feast_path(feast_date_params(date)) %>
       <%= link_to 'Add feast', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %>
     <% end %>
-
-
-
-
   </p>
 <% end %>
 

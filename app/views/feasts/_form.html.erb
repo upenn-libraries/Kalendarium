@@ -1,19 +1,45 @@
 <%= form_for [@calendar_page, @feast] do |form| %>
-  <div>
-    <%= form.select :saint_name, %w(Matthew Mark Luke John), include_blank: true %>
-  <!--
-  transcription
-  saint_name
-  saint_attributes
-  modifier
-  shading
-  color
-   -->
-    <%= form.hidden_field :month_number %>
-    <%= form.hidden_field :day_number %>
-    <%= form.hidden_field :manuscript_id %>
 
-  <%= form.submit %>
+  <div>
+    <%= form.label :transcription %>
+    <%= form.text_area :transcription %>
+  </div>
+
+  <div>
+    <%= form.label :saint_name %>
+    <%= form.select :saint_name, Feast::SAINT_NAMES, include_blank: true %>
+  </div>
+
+  <div>
+    <%= form.label :saint_attributes %>
+    <%#= form %>...
+  </div>
+
+  <div>
+    <%= form.label :modifier %>
+    <%= form.text_field :modifier %>
+  </div>
+
+
+  <div>
+    <%= form.label :shading %>
+    <%= form.text_field :shading %>
+  </div>
+
+
+  <div>
+    <%= form.label :color%>
+    <%= form.select :color, Manuscript::COLORS %>
+  </div>
+
+  <br>
+
+  <%= form.hidden_field :month_number %>
+  <%= form.hidden_field :day_number %>
+  <%= form.hidden_field :manuscript_id %>
+
+  <div>
+    <%= form.submit %>
   </div>
 <% end %>
 

@@ -44,6 +44,8 @@ class Manuscript < ApplicationRecord
 
   COLUMN_TYPES = ['Day', 'Golden Number', 'Dominical Letter', 'Roman Day', 'Text']
 
+  COLORS = %w(Black Blue Green Pink Red Purple Gold)
+
   # COLOR_CODES = {
   #   black:  [  0,   0,   0],
   #   blue:   [  0,   0, 255],
