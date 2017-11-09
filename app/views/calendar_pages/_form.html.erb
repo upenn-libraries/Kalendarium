@@ -1,4 +1,4 @@
-<%= form_for [@manuscript, @calendar_page] do |form| %>
+<%= form_for @calendar_page do |form| %>
   <% if calendar_page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(calendar_page.errors.count, "error") %> prohibited this calendar_page from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :folio %>
-    <%#= form.select :folio, @manuscript.calendar_folios, id: :calendar_page_folio %> <!-- rewrite to work with new routing -->
+    <%= form.select :folio, @calendar_page.manuscript.calendar_folios, id: :calendar_page_folio %> <!-- rewrite to work with new routing -->
   </div>
 
   Start
