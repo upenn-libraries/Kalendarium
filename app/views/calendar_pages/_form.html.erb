@@ -19,14 +19,14 @@
   Start
   <div class="field">
 
-    <%= form.select :start_month, CalendarPage::MONTH_SELECT, id: :calendar_page_start_month %>
+    <%= form.select :start_month, CalendarPage::MONTHS, id: :calendar_page_start_month %><!-- CalendarPage::MONTH_SELECT -->
     <%= form.select :start_day, (1..31), id: :calendar_page_start_day %>
   </div>
 
   End
   <div class="field">
 
-    <%= form.select :end_month, CalendarPage::MONTH_SELECT, id: :calendar_page_end_month  %>
+    <%= form.select :end_month, CalendarPage::MONTHS, id: :calendar_page_end_month  %><!-- CalendarPage::MONTH_SELECT -->
     <%= form.select :end_day, (1..31), id: :calendar_page_end_day %>
   </div>
 

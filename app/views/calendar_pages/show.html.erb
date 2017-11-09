@@ -20,7 +20,7 @@
 <% end %>
 
 
-<% @calendar_page.days.each do |date| %>
+<% @calendar_page.dates.each do |date| %>
   <p>
     <%= "#{CalendarPage::MONTHS.find{ |m| m.number == date.first }} #{date.second}" %>
     <% feast = @calendar_page.manuscript.feasts.find{ |f| date.first == f.month_number && date.last == f.day_number } %>

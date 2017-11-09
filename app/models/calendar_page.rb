@@ -2,8 +2,8 @@ class CalendarPage < ApplicationRecord
   belongs_to :manuscript
   has_many   :feasts
 
-  serialize :days
-  before_save :generate_days
+  serialize :dates
+  before_save :generate_dates
 
 
   MONTH_NAMES = %w(
@@ -71,18 +71,18 @@ class CalendarPage < ApplicationRecord
 
 
   private
-    def generate_days
-      self.days =
+    def generate_dates
+      self.dates =
       begin
         start_m = MONTHS.find{ |m| m.name == start_month }
         end_m   = MONTHS.find{ |m| m.name == end_month   }
-        days = []
+        dates = []
         (start_m.number..end_m.number).each do |month_num|
           start_d = month_num == start_m.number ? start_day : 1
           end_d   = month_num == end_m.number   ? end_day : MONTHS.find{ |m| m.number == month_num }.length
-          (start_d..end_d).each{ |day_num| days << [month_num, day_num] }
+          (start_d..end_d).each{ |day_num| dates << [month_num, day_num] }
         end
-        days
+        dates
       end
     end
  ##################################################################################################

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103202915) do
+ActiveRecord::Schema.define(version: 20171109163620) do
 
   create_table "calendar_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "folio", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20171103202915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "manuscript_id"
-    t.text "days"
+    t.text "dates"
     t.index ["manuscript_id"], name: "index_calendar_pages_on_manuscript_id"
   end
 
