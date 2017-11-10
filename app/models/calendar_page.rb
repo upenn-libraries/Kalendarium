@@ -36,6 +36,14 @@ class CalendarPage < ApplicationRecord
     ['December', 12]
   ]
 
+
+  def folio_ordinal
+    return folio.to_i unless %(r v).include? folio[-1]
+    folio_number = folio[0..-2].to_i
+    side_number  = folio[-1] == 'r' ? 0 : 1
+    (folio_number * 10) + side_number
+  end
+
   ################################################################### temporary way of doing this
   class Month
     attr_reader :name
@@ -54,8 +62,9 @@ class CalendarPage < ApplicationRecord
   end
 
   MONTHS = [
+    Month.new(name: '',          number:  0, length:  0),
     Month.new(name: 'January',   number:  1, length: 31),
-    Month.new(name: 'February',  number:  2, length: 29),
+    Month.new(name: 'February',  number:  2, length: 28),
     Month.new(name: 'March',     number:  3, length: 31),
     Month.new(name: 'April',     number:  4, length: 30),
     Month.new(name: 'May',       number:  5, length: 31),

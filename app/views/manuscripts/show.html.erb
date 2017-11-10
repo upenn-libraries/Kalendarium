@@ -181,7 +181,7 @@
 
   <tbody>
     <%# CalendarPage.all.each do |calendar_page| %>
-    <% @manuscript.calendar_pages.each do |calendar_page| %>
+    <% @manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |calendar_page| %>
       <tr>
         <td><%= calendar_page.folio %></td>
         <td><%= "#{calendar_page.start_month} #{calendar_page.start_day}" %></td>
