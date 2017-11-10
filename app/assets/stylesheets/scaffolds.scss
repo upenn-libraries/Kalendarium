@@ -1,6 +1,6 @@
 body {
-  background-color: #889/*#fff*/;
-  color: #333;
+  background-color: #916434/*#fff*/;
+  color: #000/*#333*/;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 20px/*13px;*/;
@@ -20,14 +20,14 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #1e1b14/*#000*/;
 
   &:visited {
-    color: #060660/*#666*/;
+    color: #4c3500/*#666*/;
   }
 
   &:hover {
-    color: #fff;
+    color: #f2d580/*#fff*/;
     background-color: #000;
   }
 }
@@ -50,13 +50,44 @@ div {
 input, select {
   font-size: 15px;
   background-color: #000;
-  color: #d9d6ff/*#ff8*/;
+  color: #f2d580/*#d9d6ff #ff8*/;
+}
+
+#calendar_table{
+  background-color: #fdb;
 }
 
 #golden_number {
   color: #D4AF37;
 }
 
+#red_feast {
+  color: red;
+}
+
+#black_feast {
+  color: black;
+}
+
+#blue_feast{
+  color: blue;
+}
+
+#green_feast{
+  color: green;
+}
+
+#purple_feast{
+  color: purple;
+}
+
+#pink_feast {
+  color: #a47;
+}
+
+#gold_feast {
+  color: #D4AF37;
+}
 /* ....................... */
 
 #notice {
