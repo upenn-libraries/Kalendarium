@@ -17,26 +17,15 @@
 
 <br>
 
-<!--
-<% @calendar_page.dates.each do |date| %>
-  <p>
-    <strong><%= "#{CalendarPage::MONTHS.find{ |m| m.number == date.first }} #{date.second}" %></strong>
-    <% feast = @calendar_page.manuscript.feasts.find{ |f| date.first == f.month_number && date.last == f.day_number } %>
-    <% unless feast.nil? %>
-      <%= link_to 'edit', edit_feast_path(feast) %>
-      <%= feast %>
-      <td><%= link_to 'delete', feast, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% else %>
-      <%= link_to 'add', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %>
-    <% end %>
-  </p>
-<% end %>
--->
-<table>
+<table id= calendar_table >
 <% @calendar_page.dates.each do |date| %>
   <tr>
     <td>
-      <strong><%= "#{CalendarPage::MONTHS.find{ |m| m.number == date.first }} #{date.second}" %></strong>
+      <strong><%= "#{CalendarPage::MONTHS.find{ |m| m.number == date.first }}" %></strong>
+    </td>
+
+    <td>
+      <strong><%= date.second %></strong>
     </td>
 
     <td id="golden_number">
@@ -50,9 +39,9 @@
     <td>
       <% feast = @calendar_page.manuscript.feasts.find{ |f| date.first == f.month_number && date.last == f.day_number } %>
       <% unless feast.nil? %>
-        <%= link_to 'edit', edit_feast_path(feast) %>
-        <%= feast %>
-        <td><%= link_to 'delete', feast, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to 'edit', edit_feast_path(feast) %> |
+        <%= link_to 'delete', [@calendar_page, feast], method: :delete, data: { confirm: 'Are you sure?' } %> <!-- bad path -->
+        <span id=<%="#{feast.color.to_s.downcase}_feast"%>><%= feast %></span>
       <% else %>
         <%= link_to 'add', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %>
       <% end %>
@@ -64,8 +53,8 @@
 <br>
 
 <%= link_to 'Edit', edit_calendar_page_path %> |
-<%= link_to 'Back', manuscript_path(@calendar_page.manuscript) %>
-
+<%#= link_to 'Back', manuscript_path(@calendar_page.manuscript) %>
+<%= link_to 'Back', "/manuscripts/#{@calendar_page.manuscript.id}#calendar_pages" %>
 
       <%#= render '/feasts/form', feast: @manuscript.feasts.build %>
 

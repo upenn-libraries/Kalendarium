@@ -16,7 +16,8 @@ class CalendarPagesController < ApplicationController
 
   # GET /calendar_pages/new
   def new
-    @calendar_page = CalendarPage.new
+    # @calendar_page = CalendarPage.new
+    @calendar_page = @manuscript.calendar_pages.build #calendar_page_params
   end
 
   # GET /calendar_pages/1/edit
@@ -26,13 +27,11 @@ class CalendarPagesController < ApplicationController
   # POST /calendar_pages
   # POST /calendar_pages.json
   def create
-  # @evidence = @book.evidence.build evidence_params
     @calendar_page = @manuscript.calendar_pages.build calendar_page_params
-  # @calendar_page = CalendarPage.new(calendar_page_params)
 
     respond_to do |format|
       if @calendar_page.save
-        format.html { redirect_to [@manuscript, @calendar_page], notice: 'Calendar page was successfully created.' }
+        format.html { redirect_to @calendar_page.manuscript, notice: 'Calendar page was successfully created.' }
         format.json { render :show, status: :created, location: @calendar_page }
       else
         format.html { render :new }
@@ -60,7 +59,7 @@ class CalendarPagesController < ApplicationController
   def destroy
     @calendar_page.destroy
     respond_to do |format|
-      format.html { redirect_to calendar_pages_url, notice: 'Calendar page was successfully destroyed.' }
+      format.html { redirect_to @calendar_page.manuscript, notice: 'Calendar page was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

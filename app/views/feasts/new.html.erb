@@ -1,6 +1,5 @@
-<h1>Add feast</h1>
 
-<%= @feast.month_number %> / <%= @feast.day_number %>
+<h1><%= "#{CalendarPage::MONTHS.find{ |m| m.number == @feast.month_number }} #{@feast.day_number}" %></h1>
 
 <%= render 'form', feast: @feast %>
 

@@ -50,11 +50,9 @@
   <%= @manuscript.destination_note %>
 </p>
 
+<h3>Text block</h3>
 
-
-  <h3>Text block</h3>
-
- <p>
+<p>
   <strong>Height:</strong>
   <%= @manuscript.text_height %>
 </p>
@@ -128,13 +126,8 @@
 </p>
 
 <p>
-  <strong>Calendar starts on folio:</strong>
-  <%= @manuscript.start_folio %>
-</p>
-
-<p>
-  <strong>Calendar ends on folio:</strong>
-  <%= @manuscript.end_folio %>
+  <strong>Calendar range:</strong>
+  <%= "#{@manuscript.start_folio}-#{@manuscript.end_folio}" %>
 </p>
 
 <h4> Columns </h4>
@@ -163,7 +156,7 @@
 
 <br>
 
-<strong>Calendar Pages</strong>
+<strong id="calendar_pages">Calendar Pages</strong>
 <%= link_to 'New', new_manuscript_calendar_page_path(manuscript_id: @manuscript.id) %> <!-- old attempt, update? -->
 
 <p id="notice"><%= notice %></p>

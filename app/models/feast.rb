@@ -25,9 +25,31 @@ class Feast < ApplicationRecord
     Obi-Wan
   )
 
+  SAINT_ATTRIBUTES = %w(
+    abb.
+    aep.
+    card.
+    cf.
+    diac.
+    ep.
+    erem.
+    m.
+    mon.
+    pb.
+    pp.
+    protom.
+    s.
+    v.
+    vid.
+  )
 
   def to_s
-    "Feast of St. #{saint_name}: \"#{transcription.to_s[0..80]}\""
+    s = "Feast of St. #{saint_name}: "
+    return s if transcription.blank?
+
+    lim = 40
+    elip = transcription.to_s.length > lim ? '...' : ''
+    s << "\"#{transcription[0...lim]}#{elip}\""
   end
 
   private
@@ -420,4 +442,9 @@ class Feast < ApplicationRecord
     [12, 30] => {ordinal: 364, golden_number: nil},
     [12, 31] => {ordinal: 365, golden_number: 'xiii'},
   }
+
+  # # #
+  DATE_TABLE.default = {ordinal: 0, golden_number: 'ERROR'}
+  # # #
 end
+

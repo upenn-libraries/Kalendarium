@@ -17,7 +17,7 @@ class FeastsController < ApplicationController
   # GET /feasts/new
   def new
     @feast = @calendar_page.feasts.build(feast_params)
-    @feast.manuscript = @calendar_page.manuscript
+    @feast.manuscript = @calendar_page.manuscript # still needed?
   end
 
   # GET /feasts/1/edit
@@ -46,7 +46,7 @@ class FeastsController < ApplicationController
   def update
     respond_to do |format|
       if @feast.update(feast_params)
-        format.html { redirect_to @feast, notice: 'Feast was successfully updated.' }
+        format.html { redirect_to @feast.calendar_page, notice: 'Feast was successfully updated.' }
         format.json { render :show, status: :ok, location: @feast }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class FeastsController < ApplicationController
   def destroy
     @feast.destroy
     respond_to do |format|
-      format.html { redirect_to [@manuscript, @calendar_page], notice: 'Feast was successfully destroyed.' }
+      format.html { redirect_to @feast.calendar_page, notice: 'This feast has ceased' }
       format.json { head :no_content }
     end
   end
