@@ -1,8 +1,8 @@
 class Manuscript < ApplicationRecord
   has_many :calendar_pages, dependent: :destroy
   has_many :feasts
-  accepts_nested_attributes_for :calendar_pages # need these? #
-  accepts_nested_attributes_for :feasts         # # # # # # # #
+  # accepts_nested_attributes_for :calendar_pages # need these? #
+  # accepts_nested_attributes_for :feasts         # # # # # # # #
 
   validates_presence_of :name
   serialize :columns

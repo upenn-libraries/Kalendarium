@@ -8,9 +8,21 @@ class Feast < ApplicationRecord
   before_save :consolidate_saint_attributes
   after_find  :populate_saint_attributes
 
-  attr_accessor :st_attr1
-  attr_accessor :st_attr2
-  # ...
+  attr_accessor :st_attr_abb
+  attr_accessor :st_attr_aep
+  attr_accessor :st_attr_card
+  attr_accessor :st_attr_cf
+  attr_accessor :st_attr_diac
+  attr_accessor :st_attr_ep
+  attr_accessor :st_attr_erem
+  attr_accessor :st_attr_m
+  attr_accessor :st_attr_mon
+  attr_accessor :st_attr_pb
+  attr_accessor :st_attr_pp
+  attr_accessor :st_attr_protom
+  attr_accessor :st_attr_s
+  attr_accessor :st_attr_v
+  attr_accessor :st_attr_vid
   ############
 
   SAINT_NAMES = %w(
@@ -45,18 +57,51 @@ class Feast < ApplicationRecord
 
   def to_s
     s = "Feast of St. #{saint_name}: "
+    s << "(btw he's a cardinal)" if st_attr_card == '1'
+
     return s if transcription.blank?
 
-    lim = 40
-    elip = transcription.to_s.length > lim ? '...' : ''
-    s << "\"#{transcription[0...lim]}#{elip}\""
+    limit = 40
+    elip = transcription.to_s.length > limit ? '...' : ''
+    s << "\"#{transcription[0...limit]}#{elip}\""
   end
 
   private
     def populate_saint_attributes
+      self.st_attr_abb    = '1' if saint_attributes[:st_attr_abb] == '1'
+      self.st_attr_aep    = '1' if saint_attributes[:st_attr_aep] == '1'
+      self.st_attr_card   = '1' if saint_attributes[:st_attr_card] == '1'
+      self.st_attr_cf     = '1' if saint_attributes[:st_attr_cf] == '1'
+      self.st_attr_diac   = '1' if saint_attributes[:st_attr_diac] == '1'
+      self.st_attr_ep     = '1' if saint_attributes[:st_attr_ep] == '1'
+      self.st_attr_erem   = '1' if saint_attributes[:st_attr_erem] == '1'
+      self.st_attr_m      = '1' if saint_attributes[:st_attr_m] == '1'
+      self.st_attr_mon    = '1' if saint_attributes[:st_attr_mon] == '1'
+      self.st_attr_pb     = '1' if saint_attributes[:st_attr_pb] == '1'
+      self.st_attr_pp     = '1' if saint_attributes[:st_attr_pp] == '1'
+      self.st_attr_protom = '1' if saint_attributes[:st_attr_protom] == '1'
+      self.st_attr_s      = '1' if saint_attributes[:st_attr_s] == '1'
+      self.st_attr_v      = '1' if saint_attributes[:st_attr_v] == '1'
+      self.st_attr_vid    = '1' if saint_attributes[:st_attr_vid] == '1'
     end
 
     def consolidate_saint_attributes
+      self.saint_attributes = {}
+      self.saint_attributes[:st_attr_abb]    = '1' if st_attr_abb == '1'
+      self.saint_attributes[:st_attr_aep]    = '1' if st_attr_aep == '1'
+      self.saint_attributes[:st_attr_card]   = '1' if st_attr_card == '1'
+      self.saint_attributes[:st_attr_cf]     = '1' if st_attr_cf == '1'
+      self.saint_attributes[:st_attr_diac]   = '1' if st_attr_diac == '1'
+      self.saint_attributes[:st_attr_ep]     = '1' if st_attr_ep == '1'
+      self.saint_attributes[:st_attr_erem]   = '1' if st_attr_erem == '1'
+      self.saint_attributes[:st_attr_m]      = '1' if st_attr_m == '1'
+      self.saint_attributes[:st_attr_mon]    = '1' if st_attr_mon == '1'
+      self.saint_attributes[:st_attr_pb]     = '1' if st_attr_pb == '1'
+      self.saint_attributes[:st_attr_pp]     = '1' if st_attr_pp == '1'
+      self.saint_attributes[:st_attr_protom] = '1' if st_attr_protom == '1'
+      self.saint_attributes[:st_attr_s]      = '1' if st_attr_s == '1'
+      self.saint_attributes[:st_attr_v]      = '1' if st_attr_v == '1'
+      self.saint_attributes[:st_attr_vid]    = '1' if st_attr_vid == '1'
     end
 end
 

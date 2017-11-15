@@ -93,7 +93,24 @@ class FeastsController < ApplicationController
         :month_number,
         :day_number,
         :calendar_page_id,
-        :manuscript_id
+        :manuscript_id,
+
+        :st_attr_abb,
+        :st_attr_aep,
+        :st_attr_card,
+        :st_attr_cf,
+        :st_attr_diac,
+        :st_attr_ep,
+        :st_attr_erem,
+        :st_attr_m,
+        :st_attr_mon,
+        :st_attr_pb,
+        :st_attr_pp,
+        :st_attr_protom,
+        :st_attr_s,
+        :st_attr_v,
+        :st_attr_vid
+
       )
     end
 end
