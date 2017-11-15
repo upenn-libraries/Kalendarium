@@ -40,7 +40,8 @@
       <% feast = @calendar_page.manuscript.feasts.find{ |f| date.first == f.month_number && date.last == f.day_number } %>
       <% unless feast.nil? %>
         <%= link_to 'edit', edit_feast_path(feast) %> |
-        <%= link_to 'delete', [@calendar_page, feast], method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'delete', [@calendar_page, feast], method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <%= link_to 'details', feast_path(feast) %>
         <span id=<%="#{feast.color.to_s.downcase}_feast"%>><%= feast %></span>
       <% else %>
         <%= link_to 'add', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %>
