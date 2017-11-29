@@ -1,11 +1,6 @@
 <%= form_for [@calendar_page, @feast] do |form| %>
 
   <div class="field">
-    <%= form.label :transcription %>
-    <%= form.text_area :transcription %>
-  </div>
-
-  <div class="field">
     <%= form.label :saint_name %>
     <%= form.select :saint_name, Feast::SAINT_NAMES, include_blank: true %>
   </div>
@@ -41,9 +36,20 @@
   </div>
 
 
-  <div class="field">
+  <div class="field colors">
     <%= form.label :color%>
     <%= form.select :color, Manuscript::COLORS %>
+  </div>
+
+  <select>
+    <% Manuscript::COLORS.each do |color| %>
+      <option style=<%="color:#{color.downcase};"%> value=<%= color %> id=<%= 'color_' + color.downcase %>><%= color %></option>
+    <%  end %>
+  </select>
+
+  <div class="field">
+    <%= form.label :transcription %>
+    <%= form.text_area :transcription %>
   </div>
 
   <br>
@@ -56,4 +62,3 @@
     <%= form.submit %>
   </div>
 <% end %>
-

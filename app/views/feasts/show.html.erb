@@ -1,3 +1,7 @@
 <h1>Feast of St. <%= @feast.saint_name %></h1>
 
 <p>Sancte <%= @feast.saint_name %> ora pro nobis</p>
+
+<% @feast.saint_attributes.keys.each do |s_a| %>
+  <p>was a <%= Feast::FULL_ST_ATTR[s_a] %></p>
+<% end %>

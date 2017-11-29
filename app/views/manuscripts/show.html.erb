@@ -140,7 +140,7 @@
 
 <% unless @manuscript.color_weighting.blank? %>
   <h4> Color Weight </h4>
-  <% @manuscript.color_weighting.keys.each do |color| %>
+  <% @manuscript.color_weighting.keys.sort_by{ |c| @manuscript.color_weighting[c] }.each do |color| %> <!-- uhh... -->
     <p>
       <strong><%= "#{color.to_s.capitalize}:" %></strong>
       <%= @manuscript.color_weighting[color] %>

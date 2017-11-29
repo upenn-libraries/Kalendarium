@@ -1,5 +1,5 @@
 body {
-  background-color: #916434/*#fff*/;
+  background-color: #a74/*#fff*/;
   color: #000/*#333*/;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -53,40 +53,39 @@ input, select {
   color: #f2d580/*#d9d6ff #ff8*/;
 }
 
-
-#calendar_table{
+#calendar_table, #calendar_table2, {
   background-color: #fdb;
 }
 
-#golden_number {
+.golden_number {
   color: #D4AF37;
 }
 
-#red_feast {
+.red_feast {
   color: red;
 }
 
-#black_feast {
+.black_feast {
   color: black;
 }
 
-#blue_feast {
+.blue_feast {
   color: blue;
 }
 
-#green_feast {
+.green_feast {
   color: green;
 }
 
-#purple_feast {
+.purple_feast {
   color: purple;
 }
 
-#pink_feast {
+.pink_feast {
   color: #a47;
 }
 
-#gold_feast {
+.gold_feast {
   color: #D4AF37;
 }
 
