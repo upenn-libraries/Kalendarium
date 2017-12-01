@@ -1,5 +1,7 @@
-<h1><%= "#{CalendarPage::MONTHS.find{ |m| m.number == @feast.month_number }} #{@feast.day_number}" %></h1>
+<h1><%= "#{Kal::Months::MONTH_TABLE.find{ |m| m.number == @feast.month_number }.name} #{@feast.day_number}" %></h1>
 
-<%= render 'form', feast: @feast %>
+<%= form_for @feast do |form| %>
+  <%= render 'form', form: form %>
+<% end %>
 
 <%= link_to 'Back', calendar_page_path(@feast.calendar_page) %>

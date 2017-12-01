@@ -13,9 +13,12 @@ module ApplicationHelper
     ABCDEFG[(ordinal % 7) - 1]
   end
 
-
   def feast_color_class color
     color.to_s.downcase + '_feast'
+  end
+
+  def colors_for_manuscript ms
+    Manuscript::COLORS.select{ |color| ms.color_weighting[color.downcase.to_sym] }
   end
 
   # -------------------------
@@ -32,14 +35,11 @@ module ApplicationHelper
       display_dominical_letter (day)
     when 'Text'
        display_feast           (day)
-    else
-      'kni'
     end
   end
 
   def display_date day
-    # binding.pry
-    content_tag(:strong){ "#{CalendarPage::MONTHS.find{ |m| m.number == day[:month_number] }} #{day[:day_number]} " }
+    content_tag(:strong){ "#{Kal::Months::MONTH_TABLE.find{ |m| m.number == day[:month_number] }.name} #{day[:day_number]} " }
   end
 
   def display_kni day
@@ -59,8 +59,9 @@ module ApplicationHelper
   end
 
   def display_feast day
-    feast = @calendar_page.manuscript.feasts.find{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number }
-    return '' if feast.blank?
+    feasts = @calendar_page.manuscript.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number }
+    return '' if feasts.blank?
+    feast = feasts.first
     content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s }
   end
 

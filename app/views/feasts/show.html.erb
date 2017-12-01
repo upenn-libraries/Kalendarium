@@ -2,6 +2,13 @@
 
 <p>Sancte <%= @feast.saint_name %> ora pro nobis</p>
 
-<% @feast.saint_attributes.keys.each do |s_a| %>
-  <p>was a <%= Feast::FULL_ST_ATTR[s_a] %></p>
-<% end %>
+<ul>
+  <% @feast.saint_attributes.keys.each do |s_a| %>
+    <% if s_a == @feast.saint_attributes.keys.last && s_a != @feast.saint_attributes.keys.first %>
+      <li>and a great <%= Feast::FULL_ST_ATTR[s_a] %></li>
+    <% break; end %>
+    <li>a great <%= Feast::FULL_ST_ATTR[s_a] %></li><br>
+  <% end %>
+</ul>
+
+<%= link_to 'back', calendar_page_path(@feast.calendar_page) %>

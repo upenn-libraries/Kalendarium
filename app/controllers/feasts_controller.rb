@@ -22,6 +22,7 @@ class FeastsController < ApplicationController
 
   # GET /feasts/1/edit
   def edit
+    @calendar_page = @feast.calendar_page
   end
 
   # POST /feasts

@@ -2,9 +2,7 @@ class Feast < ApplicationRecord
   belongs_to :manuscript
   belongs_to :calendar_page
 
-  serialize :saint_attributes
-
-  ############
+  serialize   :saint_attributes
   before_save :consolidate_saint_attributes
   after_find  :populate_saint_attributes
 
@@ -23,7 +21,6 @@ class Feast < ApplicationRecord
   attr_accessor :st_attr_s
   attr_accessor :st_attr_v
   attr_accessor :st_attr_vid
-  ############
 
   SAINT_NAMES = %w(
     Matthew
@@ -54,6 +51,21 @@ class Feast < ApplicationRecord
     vid.
   )# missing( subdiac. non. solit. reclus. proph. ap. )
 
+  MODIFIERS = %w(
+    octavo
+
+    vigil
+
+    ordinatio
+
+    inventio
+    depositio
+    elevatio
+    translatio
+
+    mors
+  )
+  # "invention of the body", "reception of his[JtB] appearance"
 
   # temporary
   FULL_ST_ATTR = {
@@ -86,14 +98,12 @@ class Feast < ApplicationRecord
 
   def to_s
     s = "Feast of St. #{saint_name} "
-    # s << "(btw he's a cardinal) " if st_attr_card == '1'
+    s << "of #{saint_location} "                                           unless saint_location.blank?
     s << "(#{saint_attributes.keys.map{ |a| FULL_ST_ATTR[a] }.join('/')})" unless saint_attributes.blank?
-    return s if transcription.blank?
-
-    s << ': '
-    limit = 40
-    elip = transcription.to_s.length > limit ? '...' : ''
-    s << "\"#{transcription[0...limit]}#{elip}\""
+    s << (': "' + transcription + '"')                                     unless transcription.blank?
+    limit = 60
+    elip = s.length > limit ? '...' : ''
+    "#{s[0...limit]}#{elip}"
   end
 
   private
