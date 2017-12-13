@@ -1,6 +1,6 @@
 class FeastsController < ApplicationController
  before_action :set_feast, only: [:show, :edit, :update, :destroy]
- before_action :set_manuscript
+ before_action :set_manuscript #
  before_action :set_calendar_page, only: [:new, :create, :destroy]
 
   # GET /feasts
@@ -13,11 +13,12 @@ class FeastsController < ApplicationController
   # GET /feasts/1.json
   def show
   end
-
-  # GET /feasts/new
+new
+  # GET /feasts/
   def new
     @feast = @calendar_page.feasts.build(feast_params)
     @feast.manuscript = @calendar_page.manuscript # still needed?
+    3.times{ @feast.feast_names.build }# ?
   end
 
   # GET /feasts/1/edit
@@ -30,12 +31,14 @@ class FeastsController < ApplicationController
   def create
     @feast = @calendar_page.feasts.build(feast_params)
 
+  #  @feast_name = @feast.feast_names.build(feast_params[:feast_name_attributes])
+
     respond_to do |format|
       if @feast.save
         format.html { redirect_to @calendar_page, notice: 'Feast was successfully created.' }
         format.json { render :show, status: :created, location: @feast }
       else
-        format.html { redirect_to @calendar_page, notice: @feast.errors.full_messages.to_a }#'uhh' }
+        format.html { render :new }
         format.json { render json: @feast.errors, status: :unprocessable_entity }
       end
     end
@@ -80,7 +83,6 @@ class FeastsController < ApplicationController
       @calendar_page = CalendarPage.find(params[:calendar_page_id])
     end
 
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def feast_params
       params.require(:feast).permit(
@@ -95,23 +97,7 @@ class FeastsController < ApplicationController
         :day_number,
         :calendar_page_id,
         :manuscript_id,
-
-        :st_attr_abb,
-        :st_attr_aep,
-        :st_attr_card,
-        :st_attr_cf,
-        :st_attr_diac,
-        :st_attr_ep,
-        :st_attr_erem,
-        :st_attr_m,
-        :st_attr_mon,
-        :st_attr_pb,
-        :st_attr_pp,
-        :st_attr_protom,
-        :st_attr_s,
-        :st_attr_v,
-        :st_attr_vid
-
+        feast_names_attributes: [:name_id, :saint_location, saint_attributes: [] ]#, feast_name: [:saint_name, :saint_location, saint_attributes: [] ]
       )
     end
 end

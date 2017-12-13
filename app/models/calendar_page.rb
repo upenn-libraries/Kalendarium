@@ -21,7 +21,7 @@ class CalendarPage < ApplicationRecord
     December
   )
 
-  MONTH_SELECT = [ # rename
+  MONTH_SELECT = [ # rename?
     ['January',   1],
     ['February',  2],
     ['March',     3],
@@ -44,39 +44,6 @@ class CalendarPage < ApplicationRecord
     (folio_number * 10) + side_number
   end
 
-  ################################################################### temporary way of doing this
-  # class Month
-  #   attr_reader :name
-  #   attr_reader :number
-  #   attr_reader :length
-
-  #   def initialize params = {}
-  #     @name   = params[:name]
-  #     @number = params[:number]
-  #     @length = params[:length]
-  #   end
-
-  #   def to_s
-  #     name
-  #   end
-  # end
-
-  # MONTHS = [
-  #   Month.new(name: '',          number:  0, length:  0),
-  #   Month.new(name: 'January',   number:  1, length: 31),
-  #   Month.new(name: 'February',  number:  2, length: 28),
-  #   Month.new(name: 'March',     number:  3, length: 31),
-  #   Month.new(name: 'April',     number:  4, length: 30),
-  #   Month.new(name: 'May',       number:  5, length: 31),
-  #   Month.new(name: 'June',      number:  6, length: 30),
-  #   Month.new(name: 'July',      number:  7, length: 31),
-  #   Month.new(name: 'August',    number:  8, length: 31),
-  #   Month.new(name: 'September', number:  9, length: 30),
-  #   Month.new(name: 'October',   number: 10, length: 31),
-  #   Month.new(name: 'November',  number: 11, length: 30),
-  #   Month.new(name: 'December',  number: 12, length: 31)
-  # ]
-
 
 
   private
@@ -95,7 +62,7 @@ class CalendarPage < ApplicationRecord
         dates
       end
     end
- ##################################################################################################
+
 end
 
 

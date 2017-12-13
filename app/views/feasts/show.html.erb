@@ -1,14 +1,14 @@
-<h1>Feast of St. <%= @feast.saint_name %></h1>
+<h1>Feast of St. <%#= @feast.saint_name %></h1>
 
-<p>Sancte <%= @feast.saint_name %> ora pro nobis</p>
+<p>Sancte <%#= @feast.saint_name %> ora pro nobis</p>
 
 <ul>
-  <% @feast.saint_attributes.keys.each do |s_a| %>
-    <% if s_a == @feast.saint_attributes.keys.last && s_a != @feast.saint_attributes.keys.first %>
-      <li>and a great <%= Feast::FULL_ST_ATTR[s_a] %></li>
-    <% break; end %>
-    <li>a great <%= Feast::FULL_ST_ATTR[s_a] %></li><br>
-  <% end %>
+  <%# @feast.feast_name.saint_attributes.each do |s_a| %>
+    <%# if s_a == @feast.feast_name.saint_attributes.last && s_a != @feast.feast_name.saint_attributes.first %>
+      <li>and a great <%#= s_a %></li>
+    <%# break; end %>
+    <li>a great <%#= s_a %></li><br>
+  <%# end %>
 </ul>
 
 <%= link_to 'back', calendar_page_path(@feast.calendar_page) %>
