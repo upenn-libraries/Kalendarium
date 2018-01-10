@@ -39,10 +39,12 @@ module ApplicationHelper
   end
 
   def display_date day
-    content_tag(:strong){ "#{Kal::Months::MONTH_TABLE.find{ |m| m.number == day[:month_number] }.name} #{day[:day_number]} " }
+    # content_tag(:strong){ "#{Kal::Months::MONTH_TABLE.find{ |m| m.number == day[:month_number] }.name} #{day[:day_number]} " }
+      content_tag(:strong){ "#{Kal::Months::MONTH_TABLE[day[:month_number] - 1].name} #{day[:day_number]} " }
   end
 
   def display_kni day
+    return content_tag(:b, class: 'big_KNI'){ day[:kni][0].upcase } unless day[:kni_number]
     day[:kni]
   end
 
@@ -62,7 +64,8 @@ module ApplicationHelper
     feasts = @calendar_page.manuscript.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number }
     return '' if feasts.blank?
     feast = feasts.first
-    content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s }
+    content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s } #+
+    # content_tag(:td){ feast.transcription }
   end
 
   # -------------------------

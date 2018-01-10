@@ -1,6 +1,6 @@
 class FeastsController < ApplicationController
  before_action :set_feast, only: [:show, :edit, :update, :destroy]
- before_action :set_manuscript #
+ # before_action :set_manuscript
  before_action :set_calendar_page, only: [:new, :create, :destroy]
 
   # GET /feasts
@@ -12,13 +12,17 @@ class FeastsController < ApplicationController
   # GET /feasts/1
   # GET /feasts/1.json
   def show
+    @calendar_page = params[:origin_calendar_page] if params[:origin_calendar_page]
   end
-new
+
   # GET /feasts/
   def new
     @feast = @calendar_page.feasts.build(feast_params)
     @feast.manuscript = @calendar_page.manuscript # still needed?
-    3.times{ @feast.feast_names.build }# ?
+
+    people = params['feast_people']
+    person_number = people ? people.to_i : 1
+    person_number.times{ @feast.feast_names.build }
   end
 
   # GET /feasts/1/edit
@@ -30,8 +34,6 @@ new
   # POST /feasts.json
   def create
     @feast = @calendar_page.feasts.build(feast_params)
-
-  #  @feast_name = @feast.feast_names.build(feast_params[:feast_name_attributes])
 
     respond_to do |format|
       if @feast.save
@@ -75,9 +77,9 @@ new
       @feast = Feast.find(params[:id])
     end
 
-    def set_manuscript
-      # @manuscript = Manuscript.find(params[:manuscript_id])
-    end
+  # def set_manuscript
+    # @manuscript = Manuscript.find(params[:manuscript_id])
+  # end
 
     def set_calendar_page
       @calendar_page = CalendarPage.find(params[:calendar_page_id])
@@ -86,6 +88,11 @@ new
     # Never trust parameters from the scary internet, only allow the white list through.
     def feast_params
       params.require(:feast).permit(
+
+        :feast_people,
+
+        :origin_calendar_page,
+
         :transcription,
         :saint_name,
         :saint_attributes,
@@ -97,9 +104,11 @@ new
         :day_number,
         :calendar_page_id,
         :manuscript_id,
-        feast_names_attributes: [:name_id, :saint_location, saint_attributes: [] ]#, feast_name: [:saint_name, :saint_location, saint_attributes: [] ]
+        feast_names_attributes: [:id, :name_id, :other_name, :saint_location, saint_attributes: [] ]
       )
     end
 end
+
+
 
 

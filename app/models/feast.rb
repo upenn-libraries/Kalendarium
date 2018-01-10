@@ -2,21 +2,11 @@ class Feast < ApplicationRecord
   belongs_to :manuscript
   belongs_to :calendar_page
 
-  has_many :feast_names
+  has_many :feast_names, dependent: :destroy
   has_many :names, through: :feast_names
   accepts_nested_attributes_for :feast_names, reject_if: :all_blank
 
-  # SAINT_NAMES = %w(
-  #   Matthew
-  #   Mark
-  #   Luke
-  #   John
-  #   Paul
-  #   George
-  #   Ringo
-  #   Yoda
-  #   Obi-Wan
-  # )
+ # before_save :handle_other_name
 
 
   MODIFIERS = %w(
@@ -36,15 +26,39 @@ class Feast < ApplicationRecord
 
 
   def to_s
-    s = 'festivitas'
-  # s = "Feast of St. #{saint_name} "
-  # s << "of #{saint_location} "                                           unless saint_location.blank?
-  # s << "(#{saint_attributes.keys.map{ |a| FULL_ST_ATTR[a] }.join('/')})" unless saint_attributes.blank?
-    s << (': "' + transcription + '"')                                     unless transcription.blank?
-    limit = 50
+    s = 'fest.'
+
+    feast_names.each do |fn|
+      n = fn.name.to_s
+      a = ''
+      fn.saint_attributes.each{ |s_a| a << "#{FeastName::ABBREVIATE[s_a]}. " }
+      com = fn.saint_attributes.blank? ? "#{n}" : "#{n}(#{a.chop})"
+      s << " #{com},"
+    end
+
+    s.chop! unless feast_names.blank?
+
+    s << " [#{modifier}]"              unless modifier.blank?
+    s << (': "' + transcription + '"') unless transcription.blank?
+    limit = 60
     elip = s.length > limit ? '...' : ''
     "#{s[0...limit]}#{elip}"
   end
+
+
+  private
+    def handle_other_name
+      feast_names.each do |fn|
+        o_n = fn.other_name
+        unless o_n.blank?
+          new_name = Name.new(name: o_n)
+          new_name.save
+          fn.name = new_name
+       # else
+         # true
+        end
+      end
+    end
 
 end
 

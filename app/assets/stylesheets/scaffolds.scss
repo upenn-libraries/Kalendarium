@@ -1,5 +1,5 @@
 body {
-  background-color: #b85/*#fff*/;
+  background-color:#b85/*#fff*/;
   color: #000/*#333*/;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -53,8 +53,13 @@ input, select {
   color: #f2d580/*#d9d6ff #ff8*/;
 }
 
-#calendar_table, #calendar_table2, {
+#calendar_table, #calendar_table2, .feast_details {
   background-color: #fec;
+}
+
+.big_KNI {
+  color: #ba1503;
+  background-color: #ffef77;
 }
 
 .golden_number {
@@ -89,10 +94,14 @@ input, select {
   color: #D4AF37;
 }
 
+
+.hidden {
+  display: none;
+}
+
 /* ....................... */
 
 #notice {
- /* color: green;*/
   color: #f2d580;
 }
 

@@ -2,7 +2,13 @@ class FeastName < ApplicationRecord
   belongs_to :feast
   belongs_to :name
 
+  attr_accessor :other_name
+  before_validation :handle_other_name
+
   serialize   :saint_attributes
+
+  before_save :handle_empty_attributes
+
   # before_save :consolidate_saint_attributes
   # after_find  :populate_saint_attributes
 
@@ -32,9 +38,47 @@ class FeastName < ApplicationRecord
     subdeacon
     virgin
     widow
-  ).sort.freeze
+  )#.sort.freeze
+
+
+  ABBREVIATIONS = %w(
+    abb
+    ap
+    aep
+    ep
+    bd
+    card
+    cf
+    diac
+    erem
+    m
+    mon
+    non
+    pp
+    pb
+    proph
+    protom
+    reclus
+    solit
+    subdiac
+    v
+    vid
+  )
+
+  ABBREVIATE = SAINT_ATTRIBUTES.zip(ABBREVIATIONS).to_h
 
   private
+    def handle_other_name
+      return true if self.other_name.blank?
+      new_name = Name.new(name: self.other_name)
+      new_name.save
+      self.name = new_name
+    end
+
+    def handle_empty_attributes
+      saint_attributes ||= []
+    end
+
     # def populate_saint_attributes
 
     #   Kal::SAINT_ATTRIBUTES.each do |s_a|
@@ -43,22 +87,6 @@ class FeastName < ApplicationRecord
     #     self.send(sym2, '1') if saint_attributes[sym1] == '1'
     #   end
 
-    #   # self.st_attr_abb    = '1' if saint_attributes[:st_attr_abb]    == '1'
-    #   # self.st_attr_aep    = '1' if saint_attributes[:st_attr_aep]    == '1'
-    #   # self.st_attr_card   = '1' if saint_attributes[:st_attr_card]   == '1'
-    #   # self.st_attr_cf     = '1' if saint_attributes[:st_attr_cf]     == '1'
-    #   # self.st_attr_diac   = '1' if saint_attributes[:st_attr_diac]   == '1'
-    #   # self.st_attr_ep     = '1' if saint_attributes[:st_attr_ep]     == '1'
-    #   # self.st_attr_erem   = '1' if saint_attributes[:st_attr_erem]   == '1'
-    #   # self.st_attr_m      = '1' if saint_attributes[:st_attr_m]      == '1'
-    #   # self.st_attr_mon    = '1' if saint_attributes[:st_attr_mon]    == '1'
-    #   # self.st_attr_pb     = '1' if saint_attributes[:st_attr_pb]     == '1'
-    #   # self.st_attr_pp     = '1' if saint_attributes[:st_attr_pp]     == '1'
-    #   # self.st_attr_protom = '1' if saint_attributes[:st_attr_protom] == '1'
-    #   # self.st_attr_v      = '1' if saint_attributes[:st_attr_v]      == '1'
-    #   # self.st_attr_vid    = '1' if saint_attributes[:st_attr_vid]    == '1'
-    # end
-
     # def consolidate_saint_attributes
     #   self.saint_attributes = {}
 
@@ -66,21 +94,4 @@ class FeastName < ApplicationRecord
     #     sym = (s_a.english_word).to_sym
     #     self.saint_attributes[sym1] == 1 if send(sym) == '1'
     #   end
-
-    #   # self.saint_attributes = {}
-    #   # self.saint_attributes[:st_attr_abb]    = '1' if st_attr_abb    == '1'
-    #   # self.saint_attributes[:st_attr_aep]    = '1' if st_attr_aep    == '1'
-    #   # self.saint_attributes[:st_attr_card]   = '1' if st_attr_card   == '1'
-    #   # self.saint_attributes[:st_attr_cf]     = '1' if st_attr_cf     == '1'
-    #   # self.saint_attributes[:st_attr_diac]   = '1' if st_attr_diac   == '1'
-    #   # self.saint_attributes[:st_attr_ep]     = '1' if st_attr_ep     == '1'
-    #   # self.saint_attributes[:st_attr_erem]   = '1' if st_attr_erem   == '1'
-    #   # self.saint_attributes[:st_attr_m]      = '1' if st_attr_m      == '1'
-    #   # self.saint_attributes[:st_attr_mon]    = '1' if st_attr_mon    == '1'
-    #   # self.saint_attributes[:st_attr_pb]     = '1' if st_attr_pb     == '1'
-    #   # self.saint_attributes[:st_attr_pp]     = '1' if st_attr_pp     == '1'
-    #   # self.saint_attributes[:st_attr_protom] = '1' if st_attr_protom == '1'
-    #   # self.saint_attributes[:st_attr_v]      = '1' if st_attr_v      == '1'
-    #   # self.saint_attributes[:st_attr_vid]    = '1' if st_attr_vid    == '1'
-    # end
 end

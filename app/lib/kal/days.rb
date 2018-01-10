@@ -3300,4 +3300,29 @@ module Kal
       }
     ]
   end
+
+
+  EGYPTIAN_DAYS = {
+    'January'   => [ 1, 25],
+    'February'  => [ 4, 26],
+    'March'     => [ 1, 28],
+    'April'     => [10, 20],
+    'May'       => [ 3, 25],
+    'June'      => [10, 16],
+    'July'      => [13, 22],
+    'August'    => [ 1, 30],
+    'September' => [ 3, 21],
+    'October'   => [ 3, 22],
+    'November'  => [ 5, 28],
+    'December'  => [ 7, 22]
+  }
+
+  # DAY_TABLE2.default = {
+  #   month_number: 0,
+  #   day_number:   0,
+  #   golden_number: nil,
+  #   dominical_letter: 'q',
+  #   kni:            'error',
+  #   kni_number:     'xxxvvviii'
+  # }
 end

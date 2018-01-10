@@ -1,14 +1,28 @@
-<h1>Feast of St. <%#= @feast.saint_name %></h1>
 
-<p>Sancte <%#= @feast.saint_name %> ora pro nobis</p>
+<h3><%= "#{@feast.month_number}/#{@feast.day_number}" %></h3>
 
-<ul>
-  <%# @feast.feast_name.saint_attributes.each do |s_a| %>
-    <%# if s_a == @feast.feast_name.saint_attributes.last && s_a != @feast.feast_name.saint_attributes.first %>
-      <li>and a great <%#= s_a %></li>
-    <%# break; end %>
-    <li>a great <%#= s_a %></li><br>
-  <%# end %>
-</ul>
+<% @feast.feast_names.each do |fn| %>
 
+  <h1>St. <%= fn.name %></h1>
+
+  <p>Sancte <%= fn.name %> ora pro nobis</p>
+
+  <% unless fn.saint_attributes.blank? %><ul>
+    <% fn.saint_attributes.each do |s_a| %>
+      <li>a great <%= s_a %></li><br>
+    <% end %>
+  </ul><% end %>
+
+<% end %>
+
+<% unless @feast.transcription.blank? %>
+  <h4>Transcription:</h4>
+  <p class="<%= feast_color_class(@feast.color) %> feast_details">
+    <%= @feast.transcription %>
+  </p>
+<% end %>
+
+<br>
+<!--
+unless @calendar_page -->
 <%= link_to 'back', calendar_page_path(@feast.calendar_page) %>

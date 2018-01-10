@@ -1,17 +1,50 @@
 
-<%#= form.fields_for :feast_name_attributes do |fnf| %>
+
+<% if @feast.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@feast.errors.count, "error") %> prohibited this feast from being saved:</h2>
+
+    <ul>
+    <% @feast.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <%= form.fields_for :feast_names do |fnf| %>
+
+  <h3>A person</h3>
 
   <div class="field">
     <%= fnf.label :name_id, 'Name' %>
-    <%= fnf.collection_select :name_id, Name.all, :id, :name, include_blank: true %>
+    <%= fnf.collection_select :name_id, Name.all.to_a << Name.new(name: 'other'), :id, :name, include_blank: true %>
     <%#= fnf.select :name_id, Name.all.collect {|p| [ p.name, p.id ] } %>
+  </div>
+
+  <div class="field hidden" id="name_field" name="name_field">
+    <%= fnf.text_field :other_name %>
   </div>
 
   <div class="field">
     <%= fnf.label :saint_attributes %>
-    <%= fnf.collection_check_boxes :saint_attributes, FeastName::SAINT_ATTRIBUTES, :to_s, :to_s %>
-    <!-- , :first, :last -->
+    <table>
+    <% counter = 0 %>
+      <tr>
+      <%= fnf.collection_check_boxes :saint_attributes, FeastName::SAINT_ATTRIBUTES, :to_s, :to_s, include_hidden: false do |b| %>
+        <% counter += 1 %>
+        <td>
+          <%= b.label %>
+          <%= b.check_box %>
+        </td>
+        <% if counter == FeastName::SAINT_ATTRIBUTES.length / 3 %>
+          </tr><tr>
+          <% counter = 0 %>
+        <% end %>
+      <% end %>
+      </tr>
+    </table>
   </div>
 
   <div class="field">
@@ -19,7 +52,11 @@
     <%= fnf.text_field :saint_location %>
   </div>
 
+  <br>
+
 <% end %>
+
+<h3>General feast stuff</h3>
 
 <div class="field">
   <%= form.label :modifier %>
@@ -40,10 +77,13 @@
 
 <!--
 <select>
-  <% Manuscript::COLORS.each do |color| %>
-    <option style=<%="color:#{color.downcase};"%> value=<%= color %> id=<%= 'color_' + color.downcase %><%= color %></option>
-  <%  end %>
+  <% colors_for_manuscript(@calendar_page.manuscript).each do |color| %>
+    <option style=<%="background:#{color.downcase}"%> value=<%= color %> id=<%= 'color_' + color.downcase %>>
+      <%= color %>
+    </option>
+  <% end %>
 </select> -->
+
 
 <div class="field">
   <%= form.label :transcription %>

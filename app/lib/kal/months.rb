@@ -3,6 +3,7 @@ module Kal
     Month = Struct.new(:name, :number, :length)
 
     MONTH_TABLE = [
+     # Month.new('ERROR',      0, nil), ###
       Month.new('January',    1, 31),
       Month.new('February',   2, 28),
       Month.new('March',      3, 31),
