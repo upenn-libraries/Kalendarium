@@ -173,7 +173,6 @@
   </thead>
 
   <tbody>
-    <%# CalendarPage.all.each do |calendar_page| %>
     <% @manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |calendar_page| %>
       <tr>
         <td><%= calendar_page.folio %></td>

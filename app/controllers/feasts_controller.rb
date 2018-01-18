@@ -1,6 +1,5 @@
 class FeastsController < ApplicationController
  before_action :set_feast, only: [:show, :edit, :update, :destroy]
- # before_action :set_manuscript
  before_action :set_calendar_page, only: [:new, :create, :destroy]
 
   # GET /feasts
@@ -18,7 +17,7 @@ class FeastsController < ApplicationController
   # GET /feasts/
   def new
     @feast = @calendar_page.feasts.build(feast_params)
-    @feast.manuscript = @calendar_page.manuscript # still needed?
+    @feast.manuscript = @calendar_page.manuscript
 
     people = params['feast_people']
     person_number = people ? people.to_i : 1
@@ -90,8 +89,6 @@ class FeastsController < ApplicationController
       params.require(:feast).permit(
 
         :feast_people,
-
-        :origin_calendar_page,
 
         :transcription,
         :saint_name,

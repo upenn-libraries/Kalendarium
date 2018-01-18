@@ -20,7 +20,6 @@
   <div class="field">
     <%= form.select :start_month, Kal::Months::MONTH_TABLE.map(&:name), id: :calendar_page_start_month %>
     <!-- Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] } -->
-    <!-- CalendarPage::MONTH_SELECT -->
     <%= form.select :start_day, (1..31), id: :calendar_page_start_day %>
   </div>
 

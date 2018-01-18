@@ -1,4 +1,3 @@
-
 <h3><%= "#{@feast.month_number}/#{@feast.day_number}" %></h3>
 
 <% @feast.feast_names.each do |fn| %>
@@ -23,6 +22,5 @@
 <% end %>
 
 <br>
-<!--
-unless @calendar_page -->
+
 <%= link_to 'back', calendar_page_path(@feast.calendar_page) %>

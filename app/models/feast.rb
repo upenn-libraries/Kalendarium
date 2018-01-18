@@ -6,7 +6,7 @@ class Feast < ApplicationRecord
   has_many :names, through: :feast_names
   accepts_nested_attributes_for :feast_names, reject_if: :all_blank
 
- # before_save :handle_other_name
+ # before_save :handle_other_name # being handled in FeastName instead
 
 
   MODIFIERS = %w(
@@ -26,18 +26,8 @@ class Feast < ApplicationRecord
 
 
   def to_s
-    s = 'fest.'
-
-    feast_names.each do |fn|
-      n = fn.name.to_s
-      a = ''
-      fn.saint_attributes.each{ |s_a| a << "#{FeastName::ABBREVIATE[s_a]}. " }
-      com = fn.saint_attributes.blank? ? "#{n}" : "#{n}(#{a.chop})"
-      s << " #{com},"
-    end
-
-    s.chop! unless feast_names.blank?
-
+    s = 'fest. '
+    s << feast_names.join(', ')        unless feast_names.blank?
     s << " [#{modifier}]"              unless modifier.blank?
     s << (': "' + transcription + '"') unless transcription.blank?
     limit = 60

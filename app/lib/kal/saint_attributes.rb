@@ -1,20 +1,53 @@
 module Kal
-  SaintAttribute = Struct.new(:english_word, :abbreviations, :category)
+  module SaintAttributes
 
+    SaintAttribute = Struct.new(:code, :name, :abbreviation)
 
-  SAINT_ATTRIBUTES = [
-    SaintAttribute.new('abbot/abbess', ['abb'],    :title),
-    SaintAttribute.new('apostle',      ['ap'],     :title),
-    SaintAttribute.new('archbishop',   ['archep'], :title),
+    SAINT_ATTRIBUTES = [
+      SaintAttribute.new('abbot', 'abbot', 'abb'),
+      SaintAttribute.new('abbess', 'abbess', 'abb'),
+      SaintAttribute.new('apostle', 'apostle', 'ap'),
+      SaintAttribute.new('archbishop', 'archbishop', 'aep'),
+      SaintAttribute.new('bishop', 'bishop', 'ep'),
+      SaintAttribute.new('blessed', 'blessed', 'bd'),
+      SaintAttribute.new('cardinal', 'cardinal', 'card'),
+      SaintAttribute.new('confessor', 'confessor', 'cf'),
+      SaintAttribute.new('deacon', 'deacon', 'diac'),
+      SaintAttribute.new('hermit', 'hermit', 'erem'),
+      SaintAttribute.new('martyr', 'martyr', 'm'),
+      SaintAttribute.new('monk', 'monk', 'mon'),
+      SaintAttribute.new('nun', 'nun', 'non'),
+      SaintAttribute.new('pope', 'pope', 'pp'),
+      SaintAttribute.new('presbyter', 'presbyter', 'pb'),
+      SaintAttribute.new('prophet', 'prophet', 'proph'),
+      SaintAttribute.new('protomartyr', 'protomartyr', 'protom'),
+      SaintAttribute.new('recluse', 'recluse', 'reclus'),
+      SaintAttribute.new('solitary', 'solitary', 'solit'),
+      SaintAttribute.new('subdeacon', 'subdeacon', 'subdiac'),
+      SaintAttribute.new('virgin', 'virgin', 'v'),
+      SaintAttribute.new('widow', 'widow', 'vid')
+    ]
 
-    SaintAttribute.new('martyr',       ['m'],      :qualifier),
-
-    SaintAttribute.new('virgin',       ['v'],      :qualifier),
-    SaintAttribute.new('widow',        ['vid'],    :qualifier)
-  ]
-
-  SAINT_ATTRIBUTE_SYMBOLS = SAINT_ATTRIBUTES.map(&:english_word).map(&:to_sym)
+  end
 end
+
+
+
+  # SaintAttribute = Struct.new(:english_word, :abbreviations, :category)
+
+
+  # SAINT_ATTRIBUTES = [
+  #   SaintAttribute.new('abbot/abbess', ['abb'],    :title),
+  #   SaintAttribute.new('apostle',      ['ap'],     :title),
+  #   SaintAttribute.new('archbishop',   ['archep', 'aep'], :title),
+
+  #   SaintAttribute.new('martyr',       ['m'],      :qualifier),
+
+  #   SaintAttribute.new('virgin',       ['v'],      :qualifier),
+  #   SaintAttribute.new('widow',        ['vid'],    :qualifier)
+  # ]
+
+  # SAINT_ATTRIBUTE_SYMBOLS = SAINT_ATTRIBUTES.map(&:english_word).map(&:to_sym)
 
 
 

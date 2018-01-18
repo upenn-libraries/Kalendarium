@@ -33,17 +33,17 @@
     <% end %>
 
     <td>
-      <% feasts = @calendar_page.manuscript.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number } %>
-      <% unless feasts.blank? %>
+    <% feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number } %>
+    <% unless feasts.blank? %>
         <% first_feast = feasts.first %>
         <%= link_to 'edit', edit_feast_path(first_feast) %> |
         <%= link_to 'delete', [@calendar_page, first_feast], method: :delete, data: { confirm: 'Are you sure?' } %> |
         <%= link_to 'details', feast_path(first_feast) %> |
         <%= link_to 'add another feast', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %>
-      <% else %>
+    <% else %>
         <%= link_to 'add', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %> |
         <%= link_to 'add with 3 people', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last, feast_people: 3) %>
-      <% end %>
+    <% end %>
     </td>
   </tr>
 
@@ -76,12 +76,10 @@
 <%= link_to 'Edit', edit_calendar_page_path %> |
 
 <%= link_to 'Back', "/manuscripts/#{@calendar_page.manuscript.id}#calendar_pages" %>
-
 <%#= link_to 'Back', manuscript_path(@calendar_page.manuscript) %>
 
-      <%#= render '/feasts/form', feast: @manuscript.feasts.build %>
 
-      <%# new_feast = @manuscript.feasts.build(month_number: d.first, day_number: d.last, calendar_page_id: @calendar_page.id, saint_name: 'Yoda') %>
-      <%#= render 'feast_form', feast: new_feast %>
+<%#= render '/feasts/form', feast: @manuscript.feasts.build %>
+<%# new_feast = @manuscript.feasts.build(month_number: d.first, day_number: d.last, calendar_page_id: @calendar_page.id, saint_name: 'Yoda') %>
+<%#= render 'feast_form', feast: new_feast %>
 
-      <!-- ,manuscript_id: @calendar_page.manuscript_id) -->

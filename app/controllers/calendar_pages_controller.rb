@@ -17,7 +17,7 @@ class CalendarPagesController < ApplicationController
   # GET /calendar_pages/new
   def new
     # @calendar_page = CalendarPage.new
-    @calendar_page = @manuscript.calendar_pages.build #calendar_page_params
+    @calendar_page = @manuscript.calendar_pages.build
   end
 
   # GET /calendar_pages/1/edit
