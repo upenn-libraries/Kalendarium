@@ -26,15 +26,15 @@ module ApplicationHelper
   def display_column col, day # for now
     case col
     when 'KNI'
-      display_kni              (day)
+      display_kni(day)
     when 'Roman Day'
-      display_roman_day        (day)
+      display_roman_day(day)
     when 'Golden Number'
-      display_golden_number    (day)
+      display_golden_number(day)
     when 'Dominical Letter'
-      display_dominical_letter (day)
+      display_dominical_letter(day)
     when 'Text'
-       display_feast           (day)
+       display_feast(day)
     end
   end
 
