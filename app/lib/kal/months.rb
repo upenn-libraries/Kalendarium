@@ -1,9 +1,13 @@
 module Kal
   module Months
-    Month = Struct.new(:name, :number, :length)
+
+    Month = Struct.new(:name, :number, :length) # do
+     #  def to_s
+     #    name
+     #  end
+     # end
 
     MONTH_TABLE = [
-     # Month.new('ERROR',      0, nil), ###
       Month.new('January',    1, 31),
       Month.new('February',   2, 28),
       Month.new('March',      3, 31),

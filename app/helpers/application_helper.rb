@@ -40,7 +40,7 @@ module ApplicationHelper
 
   def display_date day
 
-    if Kal::Days::EGYPTIAN_DAYS[Kal::Months::MONTH_TABLE[day[:month_number] - 1].name].include? day[:day_number]
+    if Kal::Days::EGYPTIAN_DAYS[Kal::Months::MONTH_TABLE[day[:month_number] - 1].name].include?(day[:day_number])
       e_d = content_tag(:em, class: 'egyptian_day'){ 'D' }
     end
 
@@ -70,4 +70,11 @@ module ApplicationHelper
     feast = feasts.first
     content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s }
   end
+end
+
+
+# ----------------------------
+
+def month_name(month_number)
+  Kal::Months::MONTH_TABLE[month_number - 1].name
 end

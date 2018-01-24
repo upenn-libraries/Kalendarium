@@ -1,3 +1,5 @@
+<!-- change to 'form_with' ? (also for other resources) -->
+
 <%= form_for [@manuscript, @calendar_page] do |form| %>
   <% if calendar_page.errors.any? %>
     <div id="error_explanation">
@@ -18,14 +20,14 @@
 
   Start
   <div class="field">
-    <%= form.select :start_month, Kal::Months::MONTH_TABLE.map(&:name), id: :calendar_page_start_month %>
-    <!-- Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] } -->
+    <%#= form.select :start_month, Kal::Months::MONTH_TABLE.map(&:name), id: :calendar_page_start_month %>
+    <%= form.select :start_month, Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] }, id: :calendar_page_start_month %>
     <%= form.select :start_day, (1..31), id: :calendar_page_start_day %>
   </div>
 
   End
   <div class="field">
-    <%= form.select :end_month, Kal::Months::MONTH_TABLE.map(&:name), id: :calendar_page_end_month  %><!-- CalendarPage::MONTH_SELECT -->
+    <%= form.select :end_month, Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] }, id: :calendar_page_end_month %>
     <%= form.select :end_day, (1..31), id: :calendar_page_end_day %>
   </div>
 

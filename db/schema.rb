@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206204153) do
+ActiveRecord::Schema.define(version: 20180119205848) do
 
   create_table "calendar_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "folio", null: false
-    t.string "start_month", null: false
-    t.string "end_month", null: false
+    t.integer "start_month", null: false
+    t.integer "end_month", null: false
     t.integer "start_day", null: false
     t.integer "end_day", null: false
     t.datetime "created_at", null: false
