@@ -16,10 +16,7 @@ class CalendarPage < ApplicationRecord
 
   private
     def check_chronology
-      months = Kal::Months::MONTH_TABLE ####
-      start_m = months.find{ |m| m.name == start_month } ####
-      end_m   = months.find{ |m| m.name == end_month   } ####
-      start_m.number < end_m.number || (start_m == end_m && start_day < end_day)
+      # start_month < end_month || (start_month == end_month && start_day < end_day)
     end
 
     def generate_dates
