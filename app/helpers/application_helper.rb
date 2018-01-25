@@ -38,41 +38,81 @@ module ApplicationHelper
     end
   end
 
+
   def display_date day
-    if Kal::Days::EGYPTIAN_DAYS[ month_name(day[:month_number]) ].include?(day[:day_number])
-      e_d = content_tag(:em, class: 'egyptian_day'){ 'D' }
+    if Kal::Days::EGYPTIAN_DAYS[month_name(day.month_number)].include?(day.day_number)
+      e_d = content_tag(:em, class: 'egyptian_day'){ ' D' }
     end
-    content_tag(:strong){ "#{month_name day[:month_number]} #{day[:day_number]} " } + e_d.to_s
+    content_tag(:strong){ "#{month_name day.month_number} #{day.day_number}" } + e_d.to_s
   end
 
+  ##########
   def display_kni day
+    return '*'
+
     return content_tag(:b, class: 'big_KNI'){ day[:kni][0].upcase } unless day[:kni_number]
     day[:kni][0].upcase ###
   end
 
   def display_roman_day day
+    return '-'
+
     day[:kni_number]
   end
+  ###########
 
   def display_golden_number day
-    content_tag(:span, class: 'golden_number'){ day[:golden_number] }
+    content_tag(:span, class: 'golden_number'){ day.golden_number }
   end
 
   def display_dominical_letter day
-    day[:dominical_letter]
+    dominical_letter day.ordinal
   end
 
   def display_feast day
-    feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number }
+    feasts = @calendar_page.feasts.select{ |f| day.month_number == f.month_number && day.day_number == f.day_number } # not ideal to do this both in calendar_page/show, and here
     return '' if feasts.blank?
     feast = feasts.first
     content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s }
   end
-end
 
 
-# ----------------------------
+  # def display_date day
+  #   if Kal::Days::EGYPTIAN_DAYS[ month_name(day[:month_number]) ].include?(day[:day_number])
+  #     e_d = content_tag(:em, class: 'egyptian_day'){ 'D' }
+  #   end
+  #   content_tag(:strong){ "#{month_name day[:month_number]} #{day[:day_number]} " } + e_d.to_s
+  # end
 
-def month_name(month_number)
-  Kal::Months::MONTH_TABLE[month_number - 1].name
+  # def display_kni day
+  #   return content_tag(:b, class: 'big_KNI'){ day[:kni][0].upcase } unless day[:kni_number]
+  #   day[:kni][0].upcase ###
+  # end
+
+  # def display_roman_day day
+  #   day[:kni_number]
+  # end
+
+  # def display_golden_number day
+  #   content_tag(:span, class: 'golden_number'){ day[:golden_number] }
+  # end
+
+  # def display_dominical_letter day
+  #   day[:dominical_letter]
+  # end
+
+  # def display_feast day
+  #   feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number }
+  #   return '' if feasts.blank?
+  #   feast = feasts.first
+  #   content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s }
+  # end
+
+
+
+  # ----------------------------
+
+  def month_name(month_number)
+    Kal::Months::MONTH_TABLE[month_number - 1].name
+  end
 end

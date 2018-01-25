@@ -19,35 +19,38 @@
 
 <table id="calendar_table2">
 <% @calendar_page.dates.each do |date| %>
-  <% day = Kal::Days::DAY_TABLE2.find{ |day| day[:month_number] == date.first && day[:day_number] == date.last } %>
+  <%# day = Kal::Days::DAY_TABLE2.find{ |day| day[:month_number] == date.first && day[:day_number] == date.last } %>
     <!-- right now, it's finding the day in the table of hashes, rather than structs.
          if it's revised to use structs, day and month numbers are available,
          here, and in application_helper, with methods rather than hash keys
          (would need to be changed)                                         -->
+
+
+  <% day = Kal::Days::DAY_TABLE.find{ |day| day.month_number == date.first && day.day_number == date.last } %>
 
   <tr>
     <td>
       <%= display_date(day) %>
     </td>
 
-    <%@calendar_page.manuscript.columns.each do |column| %>
+    <% @calendar_page.manuscript.columns.each do |column| %>
     <td>
       <%= display_column(column, day) %>
     </td>
     <% end %>
 
     <td>
-    <% feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number } %>
-    <% unless feasts.blank? %>
+      <% feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number } %>
+      <% unless feasts.blank? %>
         <% first_feast = feasts.first %>
         <%= link_to 'edit', edit_feast_path(first_feast) %> |
         <%= link_to 'delete', [@calendar_page, first_feast], method: :delete, data: { confirm: 'Are you sure?' } %> |
         <%= link_to 'details', feast_path(first_feast) %> |
         <%= link_to 'add another feast', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %>
-    <% else %>
+      <% else %>
         <%= link_to 'add', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %> |
         <%= link_to 'add with 3 people', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last, feast_people: 3) %>
-    <% end %>
+      <% end %>
     </td>
   </tr>
 
