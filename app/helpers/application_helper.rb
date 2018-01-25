@@ -46,20 +46,14 @@ module ApplicationHelper
     content_tag(:strong){ "#{month_name day.month_number} #{day.day_number}" } + e_d.to_s
   end
 
-  ##########
   def display_kni day
-    return '*'
-
-    return content_tag(:b, class: 'big_KNI'){ day[:kni][0].upcase } unless day[:kni_number]
-    day[:kni][0].upcase ###
+    return content_tag(:b, class: 'big_KNI'){ day.kni[0].upcase } if not day.kni_number
+    day.kni[0].upcase ###
   end
 
   def display_roman_day day
-    return '-'
-
-    day[:kni_number]
+    day.kni_number
   end
-  ###########
 
   def display_golden_number day
     content_tag(:span, class: 'golden_number'){ day.golden_number }
@@ -75,39 +69,6 @@ module ApplicationHelper
     feast = feasts.first
     content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s }
   end
-
-
-  # def display_date day
-  #   if Kal::Days::EGYPTIAN_DAYS[ month_name(day[:month_number]) ].include?(day[:day_number])
-  #     e_d = content_tag(:em, class: 'egyptian_day'){ 'D' }
-  #   end
-  #   content_tag(:strong){ "#{month_name day[:month_number]} #{day[:day_number]} " } + e_d.to_s
-  # end
-
-  # def display_kni day
-  #   return content_tag(:b, class: 'big_KNI'){ day[:kni][0].upcase } unless day[:kni_number]
-  #   day[:kni][0].upcase ###
-  # end
-
-  # def display_roman_day day
-  #   day[:kni_number]
-  # end
-
-  # def display_golden_number day
-  #   content_tag(:span, class: 'golden_number'){ day[:golden_number] }
-  # end
-
-  # def display_dominical_letter day
-  #   day[:dominical_letter]
-  # end
-
-  # def display_feast day
-  #   feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number }
-  #   return '' if feasts.blank?
-  #   feast = feasts.first
-  #   content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s }
-  # end
-
 
 
   # ----------------------------
