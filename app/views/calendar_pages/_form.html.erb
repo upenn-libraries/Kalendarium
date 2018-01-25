@@ -15,12 +15,11 @@
 
   <div class="field">
     <%= form.label :folio %>
-    <%= form.select :folio, @calendar_page.manuscript.calendar_folios, id: :calendar_page_folio %> <!-- rewrite to work with new routing -->
+    <%= form.select :folio, @calendar_page.manuscript.calendar_folios, id: :calendar_page_folio %> <!-- rewrite to work with new routing (?) -->
   </div>
 
   Start
   <div class="field">
-    <%#= form.select :start_month, Kal::Months::MONTH_TABLE.map(&:name), id: :calendar_page_start_month %>
     <%= form.select :start_month, Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] }, id: :calendar_page_start_month %>
     <%= form.select :start_day, (1..31), id: :calendar_page_start_day %>
   </div>

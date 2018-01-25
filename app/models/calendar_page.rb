@@ -25,12 +25,13 @@ class CalendarPage < ApplicationRecord
     def generate_dates
       self.dates = []
 
-      start_m = Kal::Months::MONTH_TABLE[start_month - 1]
-      end_m   = Kal::Months::MONTH_TABLE[end_month - 1]
+      months  = Kal::Months::MONTH_TABLE
+      start_m = months[start_month - 1]
+      end_m   = months[end_month - 1]
 
       (start_month..end_month).each do |month_num|
         start_d = month_num == start_month ? start_day : 1
-        end_d   = month_num == end_month   ? end_day   : Kal::Months::MONTH_TABLE[month_num - 1].length
+        end_d   = month_num == end_month   ? end_day   : months[month_num - 1].length
         (start_d..end_d).each{ |day_num| self.dates << [month_num, day_num] }
       end
       true

@@ -1,4 +1,4 @@
-<h1><%= "#{Kal::Months::MONTH_TABLE[@feast.month_number - 1].name} #{@feast.day_number}" %></h1>
+<h1><%= "#{month_name(@feast.month_number)} #{@feast.day_number}" %></h1>
 
 <%= form_for @feast do |form| %>
   <%= render 'form', form: form %>
