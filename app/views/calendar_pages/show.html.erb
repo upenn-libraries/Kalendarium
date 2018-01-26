@@ -19,12 +19,6 @@
 
 <table id="calendar_table2">
 <% @calendar_page.dates.each do |date| %>
-  <%# day = Kal::Days::DAY_TABLE2.find{ |day| day[:month_number] == date.first && day[:day_number] == date.last } %>
-    <!-- right now, it's finding the day in the table of hashes, rather than structs.
-         if it's revised to use structs, day and month numbers are available,
-         here, and in application_helper, with methods rather than hash keys
-         (would need to be changed)                                         -->
-
 
   <% day = Kal::Days::DAY_TABLE.find{ |day| day.month_number == date.first && day.day_number == date.last } %>
 
