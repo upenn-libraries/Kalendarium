@@ -11,11 +11,7 @@
 <% end %>
 
 
-
-
 <%= form.fields_for :feast_names do |fnf| %>
-
-  <h3>A person</h3>
 
   <div class="field">
     <%= fnf.label :name_id, 'Name' %>
@@ -55,12 +51,10 @@
 
   <br>
 
+  <hr>
 <% end %>
 
 
-
-
-<h3>General feast stuff</h3>
 
 <div class="field">
   <%= form.label :modifier %>
