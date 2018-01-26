@@ -1,6 +1,6 @@
 class CalendarPage < ApplicationRecord
   belongs_to :manuscript
-  has_many   :feasts
+  has_many   :feasts, dependent: :destroy
 
   serialize :dates
   before_save :generate_dates
