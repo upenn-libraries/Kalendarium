@@ -26,7 +26,7 @@ class Feast < ApplicationRecord
 
 
   def to_s
-    s = 'fest. '
+    s = ''
     s << feast_names.join(', ')        unless feast_names.blank?
     s << " [#{modifier}]"              unless modifier.blank?
     s << (': "' + transcription + '"') unless transcription.blank?
