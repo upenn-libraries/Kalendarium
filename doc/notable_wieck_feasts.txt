@@ -1,12 +1,20 @@
 JAN 5
-  Scī Symeonis in columpna
+  Scī Symeonis in columpna -- QUESTION: is this "Simeon the Stylite"? or "Simeon", as it happens "on the column"
+  - Simeon the Stylite (name), saint (attribute)
 
 JAN 10
   Guillermi bitturicensis archiepī Semidup'
+  HERE we say: William (name), Bourges (place), archbishop (attribute), Semiduplum (shading)
 
 JAN 28
   Agnetis secundo
+  The is the second celebration of Agnes, not an octave, so 'second' has same semantics as octave or vigil
 
+JAN 28
+  Obit(9) Ysabellis regine franc(g)
+  Two ways of handling this:
+    1) Obit (qualifier), Ysabellis [rest in transcription]
+    2) Obit (qualifier), Ysabellis, France (place), queen (attribute)
 
 
 APRIL 6
@@ -14,113 +22,169 @@ APRIL 6
 
 APRIL 22
   Invencio scō[r,] Dyonisij socio[r,][q3] eius
+  1) Discovery (mod) { Denis (name), Saint (attribute); companions (name), Saint (attribute) }
 
 APRIL 25
-  Marci euuangliste | Ultimu pascha
+  Marci euuangliste
+  - Mark (name), evangelist (attribute);
+
+APRIL 25
+  Ultimu pascha
+  - Ultimate day of easter (stand-alone temporal marker)
 
 APRIL 26
   Dedicatio capelle regi parisensis
+  - 'Chapel of the Parisian King' (name), Dedication (qualifier)
 
 
 
 MAY 3
   Invencio scē crucis
+  - 'Holy Cross' (name), Discovery (qualifier)
+  - or 'The Cross' (name), Discovery (qualifier)
 
 MAY 5
   Johannis ante portam latinam
+  - ??? 'John before the Latin Gate' (name)
+  - 'John' (name), 'before the Latin Gate' (manifestation)
 
 MAY 9
   Translatio bī Nicholay Semidupl'
+  - Nicholas (name), beatified (attribute), Translation (modifier)
 
 
 
-JULY 15
-  Inclite memorie regis Phylippi
+JULY 14
+  Anniversarium. Hic incipiunt dies caniculares.
+  Inclite memorie regis Phylippi.
+  - 'Anniversary of the illustrius memory of King Philip.'
+    - Philip (name), King (attribute), Anniversary (qualifier)
+
+  - 'Here begin the dog days.'
+    - 'Beginning of the dog days' (temporal marker)
+
 
 JULY 27
   Transfiguratio Dni
+  - 'The Transfiguration of the Lord' (name)
 
 JULY 31
   Germani epī antissiodo[r,]
+  - Germanus (name), Auxerre (place), bishop (attribute)
 
 
 
 AUGUST 1
   Scī Petri advincula
+  - Peter, saint (attribute), 'in chains' (manifestation)
 
 AUGUST 3
   Inventio scī Stepi pthom[^a]ris soco[r,][q3] e[i9] Semid'
+  - { Stephen (name), protomartyr (attribute); Companions (name) }, Discovery (qualifier)
 
 AUGUST 11
   Susceptio scē corone Domini Duplum
+  - 'Crown of Thorns' (name), Reception (qualifier)
+  - 'Reception of the Crown of Thorns' (name)
 
 AUGUST 15
   Asumpcio beate Marie virginis
+  - 'The Assumption of Mary' (name) [Note: we don't note 'blessed' or 'virgin']
 
 AUGUST 22
   Oct' bē Marie virgīs Dup
+  - 'The Assumption of Mary' (name), Octave (temporal modifier)
+  - actually: The Virgin, beatified (attribute), octave (temporal modifier)
 
 AUGUST 25
   Bernardi abb'is clarevallensis Semid'
+  - Bernard, Clairvaux (place), abbot (attribute), Semiduplum (shading)
 
 
 
 SEPTEMBER 8
   Nativitas bē Marie Duplū
+  - 'Birth of Mary' (name), beatified (attribute), duplum (shading)
+  - Mary, birth (qualifier), beatified (attribute), duplum (shading)
 
 SEPTEMBER 14
   Exaltatio scē crucis Semid'
+  - The Cross (name), Exaltation (qualifier)
 
 SEPTEMBER 19
   Obijt Ludovic rex pijissimus
+  - Louis, king (attribute), ??? most pious(attribute ???), obituary (qualifier)
 
 SEPTEMBER 29
   Michaelis archangli Semid'
+  - Michael, archangel (attribute)
+  - Archangel Michael [like St. Mark the Evangelist?]
 
 
 
 OCTOBER 19
   Saviniani, Potenciani, altirij m[^a][r,], soio[r,][q3] eius
+  - { Sabinianus, martyr (attribute); Potentianus, martyr (attribute); companions, martyr (attribute) }
+  - ??? Not sure how to read 'altirij' or 'eius'
 
 OCTOBER 21
   Undecī miliū virginū
+  - 'The Eleven Thousand Virgins' (name)
 
 OCTOBER 23
   Severini coloniensis epī
+  - Severin, Cologne (place), bishop (attribute)
 
 
 
 NOVEMBER 1
-  Commemorato animarum
+  Festivitas Omnium sco[r,] dupl
+  - 'All Saints Day', dupl (shading)
+
+
+NOVEMBER 2
+  Commemoratio animarum
+  - 'All Souls', commemoration (qualifier) ??
 
 NOVEMBER 6
   Scī Leonardi Memoria
+  - Leonard, saint (attribute), memoria (shading)
+
 
 NOVEMBER 8
   Quatuor coronato[r,]Me[^a]
+  - 'The Four Crowned' (name), memoria (shading)
 
 NOVEMBER 19
   Scē Elyzabeth matrone
+  - Elizabeth, saint (attribute), matron (attribute)
 
 NOVEMBER 30
   Andree apostoli  Duplum
+  - Andrew, apostle (attribute), Duplum (shading)
 
 
 
 DECEMBER 4
   Inventio reliquia[r,] Duplū in eccl'ia par'
+  - 'The Paris Relics', discovery (qualifier)
+  - 'The Relics', discovery (qualifier), Duplum in the Parisian ecclesia (shading)
 
 DECMEBER 7
   Oct' scī Andree & fit memoria ad missam tatū
+  - Andrew, saint (attribute), octave (qualifier), 'and only remember (him) at mass' (shading)
 
 DECEMBER 8
   Conceptio scē Marie virgis Dupl'
+  - 'The conception of the Virgin' (name), saint (attribute), Duplum (shading)
 
 DECEMBER 14
   Scī Nichasij socio[r,][q3] eius
+  - { Nicasius (name), saint (attribute); companions (name) }
 
 DECEMBER 27
   Iohannis apl'i & euuagliste Duplum
+  - John, apostle (attribute), evangelist (attribute), Duplum (shading)
 
 
 
