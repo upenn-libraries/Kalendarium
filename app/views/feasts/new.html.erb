@@ -1,6 +1,6 @@
 <h1><%= "#{month_name(@feast.month_number)} #{@feast.day_number}" %></h1>
 
-<%= form_for [@calendar_page, @feast] do |form| %>
+<%= form_for [@calendar_page, @feast], class: "form-inline" do |form| %>
   <%= render 'form', form: form %>
 <% end %>
 

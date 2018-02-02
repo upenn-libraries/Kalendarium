@@ -17,7 +17,7 @@
 
 <br>
 
-<table id="calendar_table2">
+<table class="table" id="calendar_table2">
 <% @calendar_page.dates.each do |date| %>
 
   <% day = Kal::Days::DAY_TABLE.find{ |day| day.month_number == date.first && day.day_number == date.last } %>

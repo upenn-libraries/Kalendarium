@@ -13,7 +13,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+# gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -35,7 +35,8 @@ gem 'jquery-rails'
 # gem 'capistrano-rails', group: :development
 
 # ===== DE: Add bootstrap =====
-gem 'bootstrap-sass', '~> 3.3.7'
+#gem 'bootstrap-sass', '~> 4.3.7'
+gem 'bootstrap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
