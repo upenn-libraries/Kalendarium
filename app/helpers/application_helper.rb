@@ -43,7 +43,8 @@ module ApplicationHelper
     if Kal::Days::EGYPTIAN_DAYS[month_name(day.month_number)].include?(day.day_number)
       e_d = content_tag(:em, class: 'egyptian_day'){ ' D' }
     end
-    content_tag(:strong){ "#{month_name day.month_number} #{day.day_number}" } + e_d.to_s
+  # content_tag(:strong){ "#{month_name(day.month_number)} #{day.day_number}" } + e_d.to_s
+    content_tag(:strong){ "#{month_name(day.month_number)[0..2]} #{day.day_number}" } + e_d.to_s
   end
 
   def display_kni day

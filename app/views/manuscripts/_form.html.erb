@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :shelfmark %>
     <%= form.text_field :shelfmark, id: :manuscript_shelfmark %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name, "*Name" %>
     <%= form.text_field :name, id: :manuscript_name %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :book_type %>
     <%= form.text_field :book_type, id: :manuscript_book_type %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :manuscript_or_print, 'Manuscript or print book?' %>
     <table>
       <td>
@@ -44,12 +44,12 @@
     </table>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :language %>
     <%= form.select :language, Manuscript::LANGUAGES, include_blank: true, id: :manuscript_language %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :script %>
     <%= form.text_field :script, id: :manuscript_script %>
   </div>
@@ -57,24 +57,24 @@
 
   <h3>Provenance?</h3>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :origin %>
     <%= form.text_field :origin, id: :manuscript_origin %>
   </div>
 
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :origin_note %>
     <%= form.text_field :origin_note, id: :manuscript_origin_note %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :destination %>
     <%= form.text_field :destination, id: :manuscript_destination %>
   </div>
 
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :destination_note %>
     <%= form.text_field :destination_note, id: :manuscript_destination_note %>
   </div>
@@ -82,17 +82,17 @@
 
   <h3>Text block</h3>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :text_height, 'Height (mm)' %>
     <%= form.number_field :text_height, min: 0, id: :manuscript_text_height %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :text_width, 'Width (mm)' %>
     <%= form.number_field :text_width, min: 0, id: :manuscript_text_width %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :text_depth, 'Depth (mm)' %>
     <%= form.number_field :text_depth, min: 0, id: :manuscript_text_depth %>
   </div>
@@ -100,12 +100,12 @@
 
   <h3>Writing surface</h3>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :writing_surface_height, 'Height (mm)' %>
     <%= form.number_field :writing_surface_height, min: 0, id: :manuscript_writing_surface_height %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :writing_surface_width, 'Width (mm)' %>
     <%= form.number_field :writing_surface_width, min: 0, id: :manuscript_writing_surface_width %>
   </div>
@@ -114,52 +114,52 @@
   <h3>Date Range</h3>
   <table>
   <td>
-   <div class="field">
+   <div class="form-group">
       <%= form.label :start_year, 'Start' %>
       <%= form.number_field :start_year, min: 0, max: 9999, id: :manuscript_start_year %>
    </div>
   </td>
   <td>
-    <div class="field">
+    <div class="form-group">
       <%= form.label :end_year, 'End' %>
       <%= form.number_field :end_year, min: 0, max: 9999, id: :manuscript_end_year %>
     </div>
   </td>
   </table>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :date_note %>
     <%= form.text_field :date_note, id: :manuscript_date_note %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :extent %>
     <%= form.text_field :extent, id: :manuscript_extent %>
   </div>
 
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :provenance %>
     <%= form.text_field :provenance, id: :manuscript_provenance %>
   </div>
 
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :state_of_completion %>
     <%= form.text_field :state_of_completion, id: :manuscript_state_of_completion %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :resource %>
     <%= form.text_field :resource, id: :manuscript_resource %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :numbering_method %>
     <%= form.select :numbering_method, Manuscript::NUMBERING_METHODS, id: :manuscript_numbering_method %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :calendar_integral, 'Is the calendar integral to the manuscript?' %>
     <%= form.check_box :calendar_integral, id: :manuscript_calendar_integral %>
   </div>
@@ -167,27 +167,27 @@
   <h2>Calendar Details</h2>
 
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :column1, "Column 1" %>
     <%= form.select :column1, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :column2, "Column 2" %>
     <%= form.select :column2, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :column3, "Column 3" %>
     <%= form.select :column3, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :column4, "Column 4" %>
     <%= form.select :column4, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :column5, "Column 5" %>
     <%= form.select :column5, Manuscript::COLUMN_TYPES, include_blank: true %>
   </div>
@@ -197,49 +197,49 @@
 
   <table>
     <td>
-      <div class="field">
+      <div class="form-group">
         <%= form.label :color_weighting_black, 'Black' %>
         <%= form.number_field :color_weighting_black, min: 0, max: 7, id: :manuscript_color_weighting_black %>
       </div>
     </td>
 
     <td>
-      <div class="field">
+      <div class="form-group">
         <%= form.label :color_weighting_blue, 'Blue' %>
         <%= form.number_field :color_weighting_blue, min: 0, max: 7, id: :manuscript_color_weighting_blue %>
       </div>
     </td>
 
     <td>
-      <div class="field">
+      <div class="form-group">
         <%= form.label :color_weighting_green, 'Green' %>
         <%= form.number_field :color_weighting_green, min: 0, max: 7, id: :manuscript_color_weighting_green %>
       </div>
     </td>
 
     <td>
-      <div class="field">
+      <div class="form-group">
         <%= form.label :color_weighting_pink, 'Pink' %>
         <%= form.number_field :color_weighting_pink, min: 0, max: 7, id: :manuscript_color_weighting_pink %>
       </div>
     </td>
 
     <td>
-      <div class="field">
+      <div class="form-group">
         <%= form.label :color_weighting_red, 'Red' %>
         <%= form.number_field :color_weighting_red, min: 0, max: 7, id: :manuscript_color_weighting_red %>
       </div>
     </td>
 
     <td>
-      <div class="field">
+      <div class="form-group">
         <%= form.label :color_weighting_purple, 'Purple' %>
         <%= form.number_field :color_weighting_purple, min: 0, max: 7, id: :manuscript_color_weighting_purple %>
       </div>
     </td>
 
     <td>
-      <div class="field">
+      <div class="form-group">
         <%= form.label :color_weighting_gold, 'Gold' %>
         <%= form.number_field :color_weighting_gold, min: 0, max: 7, id: :manuscript_color_weighting_gold %>
       </div>
@@ -247,7 +247,7 @@
   </table>
 
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :has_shading, 'Is there shading?' %>
     <%= form.check_box :has_shading, id: :manuscript_has_shading %>
   </div>
@@ -255,28 +255,16 @@
 
 
   Starts on folio:
-  <div class="field">
+  <div class="form-group">
     <%= form.number_field :start_folio_number, min: 1, max: 999, id: :manuscript_start_folio %>
     <%= form.select :start_folio_side, %w(r v), include_blank: true, id: :manuscript_start_folio %>
    </div>
 
   Ends on folio:
-  <div class="field">
+  <div class="form-group">
      <%= form.number_field :end_folio_number, min: 1, max: 999, id: :manuscript_end_folio %>
      <%= form.select :end_folio_side, %w(r v), include_blank: true, id: :manuscript_end_folio %>
   </div>
-
-<!--
-  <div class="field">
-    <%= form.label :start_folio, 'Starts on folio:' %>
-    <%= form.text_field :start_folio, id: :manuscript_start_folio %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_folio, 'Ends on folio:' %>
-    <%= form.text_field :end_folio, id: :manuscript_end_folio %>
-  </div>
- -->
 
 
   <div class="actions">

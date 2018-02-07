@@ -2,85 +2,81 @@
 
 <h1>Manuscripts</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Shelfmark</th>
-      <th>Name</th>
-    <!--
-      <th>Calendar integral</th>
-      <th>Numbering method</th>
-      <th>Book type</th>
-      <th>Manuscript or print</th>
-      <th>Language</th>
-      <th>Origin</th>
-      <th>Origin note</th>
-      <th>Destination</th>
-      <th>Destination note</th>
-      <th>Script</th>
-      <th>Text height</th>
-      <th>Text width</th>
-      <th>Text depth</th>
-      <th>Writing surface height</th>
-      <th>Writing surface width</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Date note</th>
-      <th>Extent</th>
-      <th>Provenance</th>
-      <th>State of completion</th>
-      <th>Resource</th>
-      <th>Columns</th>
-      <th>Start folio</th>
-      <th>End folio</th>
-      <th>Color weighting</th>
-      <th>Has shading</th>
-    -->
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
+  <div class="row">
+    <div class="col-4">Shelfmark</div>
+    <div class="col-5">Name</div>
+  <!--
+    <div class="col">Calendar integral</div>
+    <div class="col">Numbering method</div>
+    <div class="col">Book type</div>
+    <div class="col">Manuscript or print</div>
+    <div class="col">Language</div>
+    <div class="col">Origin</div>
+    <div class="col">Origin note</div>
+    <div class="col">Destination</div>
+    <div class="col">Destination note</div>
+    <div class="col">Script</div>
+    <div class="col">Text height</div>
+    <div class="col">Text width</div>
+    <div class="col">Text depth</div>
+    <div class="col">Writing surface height</div>
+    <div class="col">Writing surface width</div>
+    <div class="col">Start date</div>
+    <div class="col">End date</div>
+    <div class="col">Date note</div>
+    <div class="col">Extent</div>
+    <div class="col">Provenance</div>
+    <div class="col">State of completion</div>
+    <div class="col">Resource</div>
+    <div class="col">Columns</div>
+    <div class="col">Start folio</div>
+    <div class="col">End folio</div>
+    <div class="col">Color weighting</div>
+    <div class="col">Has shading</div>
+  -->
+    <div class="col-3" ></div>
+  </div>
 
-  <tbody>
-    <% @manuscripts.each do |manuscript| %>
-      <tr>
-        <td><%= manuscript.shelfmark %></td>
-        <td><%= manuscript.name %></td>
-       <!--
-        <td><%= manuscript.calendar_integral %></td>
-        <td><%= manuscript.numbering_method %></td>
-        <td><%= manuscript.book_type %></td>
-        <td><%= manuscript.manuscript_or_print %></td>
-        <td><%= manuscript.language %></td>
-        <td><%= manuscript.origin %></td>
-        <td><%= manuscript.origin_note %></td>
-        <td><%= manuscript.destination %></td>
-        <td><%= manuscript.destination_note %></td>
-        <td><%= manuscript.script %></td>
-        <td><%= manuscript.text_height %></td>
-        <td><%= manuscript.text_width %></td>
-        <td><%= manuscript.text_depth %></td>
-        <td><%= manuscript.writing_surface_height %></td>
-        <td><%= manuscript.writing_surface_width %></td>
-        <td><%= manuscript.start_year %></td>
-        <td><%= manuscript.end_year%></td>
-        <td><%= manuscript.date_note %></td>
-        <td><%= manuscript.extent %></td>
-        <td><%= manuscript.provenance %></td>
-        <td><%= manuscript.state_of_completion %></td>
-        <td><%= manuscript.resource %></td>
-        <td><%= manuscript.columns %></td>
-        <td><%= manuscript.start_folio %></td>
-        <td><%= manuscript.end_folio %></td>
-        <td><%= manuscript.color_weighting %></td>
-        <td><%= manuscript.has_shading %></td>
-        -->
-        <td><%= link_to 'Show', manuscript %></td>
-        <td><%= link_to 'Edit', edit_manuscript_path(manuscript) %></td>
-        <td><%= link_to 'Destroy', manuscript, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% @manuscripts.each do |manuscript| %>
+    <div class="row">
+      <div class="col-4"><%= manuscript.shelfmark %></div>
+      <div class="col-5"><%= manuscript.name %></div>
+     <!--
+      <div class="col"><%= manuscript.calendar_integral %></div>
+      <div class="col"><%= manuscript.numbering_method %></div>
+      <div class="col"><%= manuscript.book_type %></div>
+      <div class="col"><%= manuscript.manuscript_or_print %></div>
+      <div class="col"><%= manuscript.language %></div>
+      <div class="col"><%= manuscript.origin %></div>
+      <div class="col"><%= manuscript.origin_note %></div>
+      <div class="col"><%= manuscript.destination %></div>
+      <div class="col"><%= manuscript.destination_note %></div>
+      <div class="col"><%= manuscript.script %></div>
+      <div class="col"><%= manuscript.text_height %></div>
+      <div class="col"><%= manuscript.text_width %></div>
+      <div class="col"><%= manuscript.text_depth %></div>
+      <div class="col"><%= manuscript.writing_surface_height %></div>
+      <div class="col"><%= manuscript.writing_surface_width %></div>
+      <div class="col"><%= manuscript.start_year %></div>
+      <div class="col"><%= manuscript.end_year%></div>
+      <div class="col"><%= manuscript.date_note %></div>
+      <div class="col"><%= manuscript.extent %></div>
+      <div class="col"><%= manuscript.provenance %></div>
+      <div class="col"><%= manuscript.state_of_completion %></div>
+      <div class="col"><%= manuscript.resource %></div>
+      <div class="col"><%= manuscript.columns %></div>
+      <div class="col"><%= manuscript.start_folio %></div>
+      <div class="col"><%= manuscript.end_folio %></div>
+      <div class="col"><%= manuscript.color_weighting %></div>
+      <div class="col"><%= manuscript.has_shading %></div>
+      -->
+      <div class="col-1"><%= link_to 'Show', manuscript %></div>
+      <div class="col-1"><%= link_to 'Edit', edit_manuscript_path(manuscript) %></div>
+      <div class="col-1"><%= link_to 'Destroy', manuscript, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    </div>
+  <% end %>
+</div>
 
 <br>
 
