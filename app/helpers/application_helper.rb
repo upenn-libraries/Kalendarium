@@ -38,6 +38,18 @@ module ApplicationHelper
     end
   end
 
+  def display_small_col col, day
+    case col
+    when 'KNI'
+      display_kni(day)
+    when 'Roman Day'
+      display_roman_day(day)
+    when 'Golden Number'
+      display_golden_number(day)
+    when 'Dominical Letter'
+      display_dominical_letter(day)
+    end
+  end
 
   def display_date day
     if Kal::Days::EGYPTIAN_DAYS[month_name(day.month_number)].include?(day.day_number)

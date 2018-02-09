@@ -30,7 +30,7 @@ class Feast < ApplicationRecord
     s << feast_names.join(', ')        unless feast_names.blank?
     s << " [#{modifier}]"              unless modifier.blank?
     s << (': "' + transcription + '"') unless transcription.blank?
-    limit = 60
+    limit = 56
     elip = s.length > limit ? '...' : ''
     "#{s[0...limit]}#{elip}"
   end

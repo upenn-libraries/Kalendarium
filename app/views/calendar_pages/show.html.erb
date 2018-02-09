@@ -1,3 +1,10 @@
+<script>
+$(function(){
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -27,18 +34,34 @@
       <%= display_date(day) %>
     </div>
 
-    <% @calendar_page.manuscript.columns.each do |column| %>
-    <% col_length = column == 'Text' ? '4' : '1' %>
-    <div class=<%= "col-#{col_length}" %>>
-      <%= display_column(column, day) %>
-    </div>
-    <% end %>
+   <!--  <% @calendar_page.manuscript.columns.each do |column| %>
+      <% col_length = column == 'Text' ? '4' : '1' %>
+      <div class=<%= "col-#{col_length}" %>>
+        <%= display_column(column, day) %>
+      </div>
+    <% end %> -->
 
-    <div class="col-3">
+    <div class="col-2">
+      <div class = "row">
+        <% @calendar_page.manuscript.columns.each do |column| %>
+          <% next if column == 'Text' %>
+          <% size = ['Golden Number', 'Roman Day'].include?(column) ? 4 : 2 %>
+          <div class=<%="col-#{size}"%>>
+            <%= display_column(column, day) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-5">
+      <%= display_column('Text', day) %>
+    </div>
+
+    <div class="col-4">
       <% feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number } %>
       <% unless feasts.blank? %>
         <% first_feast = feasts.first %>
-        <%= link_to 'edit', edit_feast_path(first_feast) %> |
+        <%= link_to 'edit', edit_feast_path(first_feast), data: {toggle: 'tooltip'}, title: 'This link provides an easy way to edit a feast' %> |
         <%= link_to 'delete', [@calendar_page, first_feast], method: :delete, data: { confirm: 'Are you sure?' } %> |
         <%= link_to 'details', feast_path(first_feast) %> |
         <%= link_to 'add another feast', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last) %>
@@ -50,9 +73,9 @@
 
 
         <!-- Button trigger modal -->
-        <button type="button" data-toggle="modal" data-target=<%= "##{modal_id}" %>>
+      <!--   <button type="button" data-toggle="modal" data-target=<%= "##{modal_id}" %>>
           Add w/ modal
-        </button>
+        </button> -->
 
         <!-- Modal -->
         <div class="modal fade" id=<%= modal_id %> tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -97,7 +120,7 @@
     </div>
   </div>
 
-  <% if feasts.length > 1 %>
+<!--   <% if feasts.length > 1 %>
     <% feasts[1..-1].each do |feast| %>
       <div class="row">
         <div class="col-1"></div>
@@ -113,7 +136,7 @@
           <% end %>
 
         <% end %>
-        <div class="col">
+        <div class="col-3">
           <%= link_to 'edit', edit_feast_path(feast) %> |
           <%= link_to 'delete', [@calendar_page, feast], method: :delete, data: { confirm: 'Are you sure?' } %> |
           <%= link_to 'details', feast_path(feast) %>
@@ -121,6 +144,25 @@
       </div>
     <% end %>
   <% end %>
+ -->
+
+  <% if feasts.length > 1 %>
+    <% feasts[1..-1].each do |feast| %>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-5">
+          <span class=<%= feast_color_class(feast.color) %>><%= feast %></span>
+        </div>
+        <div class="col-4">
+          <%= link_to 'edit', edit_feast_path(feast) %> |
+          <%= link_to 'delete', [@calendar_page, feast], method: :delete, data: { confirm: 'Are you sure?' } %> |
+          <%= link_to 'details', feast_path(feast) %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
 
 <% end %>
 </div>
