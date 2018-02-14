@@ -188,15 +188,76 @@ DECEMBER 27
 
 
 
+SHADING
+%w(
+  #{i} Lectiones - Lessons
+  Duplum         - Double
+  Semiduplum     - Semi-Double (?)
+)
+
+
+TEMPORAL_MOD [CELEBRATION_MOD]
+%w(
+  Octave
+  Vigil
+  Second
+)
+
+
+EVENT_MOD
+%w(
+  Discovery [Inventio]
+  Translation
+  Dedication
+  Commemoration (?->TEMPORAL)
+  Death [Obit.]
+)
+
+
+ATTRRIBUTES
+  canonical status (pre-posed):
+    saint
+    blessed (beatė)
+  clerical title[localized]
+    cardinal(?)
+    bishop
+    archbishop
+    abbot | abbess
+  clerical title[unlocalized]
+    monk
+    nun
+    priest[presbyter]
+    deacon
+    subdeacon
+  ?hermetical...
+    hermit
+    solitary
+    recluse
+  secular title
+    king
+    queen
+  biblical distinction
+    prophet
+    apostle
+    protomartyr
+  role
+    confessor
+    martyr
+  uh..
+   virgin
+   widow
 
 
 
 
 
-
-
-
-
+CORE ENTITY
+  BIG DEAl:
+    Event  ()
+    Person (Jesus, Mary)
+  Ordinary event
+  Ordinary person name
+  Group of Persons
 
 
 

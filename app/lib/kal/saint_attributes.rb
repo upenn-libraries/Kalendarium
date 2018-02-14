@@ -27,7 +27,6 @@ module Kal
       SaintAttribute.new('virgin', 'virgin', 'v'),
       SaintAttribute.new('widow', 'widow', 'vid')
     ]
-
   end
 end
 
