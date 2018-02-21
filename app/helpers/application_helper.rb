@@ -21,6 +21,39 @@ module ApplicationHelper
     Manuscript::COLORS.select{ |color| ms.color_weighting[color.downcase.to_sym] }
   end
 
+
+  def display_field(object, attribute, options = {})
+    value = object.send(attribute)
+    if value.blank? && (value != false) # issues with 'false' value?
+      return unless options[:always_display]
+    end
+    content_tag(:div, class: 'row') do
+      content_tag(:div, "#{attribute.to_s.humanize}:", class: 'col-2') +
+      content_tag(:div, "#{value}", class: 'col-2')
+    end
+
+  end
+  # field_name/field_value CSS classes
+
+  def display_field_group(object, heading, attributes)
+    head = content_tag(:h3, heading, class: 'field-group-heading')
+    values = attributes.map{ |a| object.send(a) }
+    return head + 'no information' if values.all?(&:blank?)
+
+    attributes.inject(head) do |list, attribute|
+      print "\n"
+      value = object.send(attribute)
+      next(list) if value.blank? && (value != false)
+
+      list +
+        content_tag(:div, class: 'row') do
+          content_tag(:div, "#{attribute.to_s.humanize}:", class: 'col-2') +
+          content_tag(:div, "#{value}", class: 'col-2')
+        end
+
+    end
+  end
+
   # -------------------------
 
   def display_column col, day # for now

@@ -1,162 +1,216 @@
-<h1><%= @manuscript.name %></h1>
+ <div class="container">
+  <h1><%= @manuscript.name %></h1>
 
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Shelfmark:</strong>
-  <%= @manuscript.shelfmark %>
-</p>
+  <% %i(shelfmark book_type manuscript_or_print language script).each do |atr| %>
+    <%= display_field(@manuscript, atr, always_display: true)  %>
+  <%  end %>
 
-<p>
-  <strong>Book type:</strong>
-  <%= @manuscript.book_type %>
-</p>
-
-<p>
-  <strong>Manuscript or print:</strong>
-  <%= @manuscript.manuscript_or_print %>
-</p>
-
-<p>
-  <strong>Language:</strong>
-  <%= @manuscript.language %>
-</p>
-
-<p>
-  <strong>Script:</strong>
-  <%= @manuscript.script %>
-</p>
-
-<h3>Provenance?</h3>
-
-<p>
-  <strong>Origin:</strong>
-  <%= @manuscript.origin %>
-</p>
-
-<p>
-  <strong>Origin note:</strong>
-  <%= @manuscript.origin_note %>
-</p>
-
-<p>
-  <strong>Destination:</strong>
-  <%= @manuscript.destination %>
-</p>
-
-<p>
-  <strong>Destination note:</strong>
-  <%= @manuscript.destination_note %>
-</p>
-
-<h3>Text block</h3>
-
-<p>
-  <strong>Height:</strong>
-  <%= @manuscript.text_height %>
-</p>
-
-<p>
-  <strong>Width:</strong>
-  <%= @manuscript.text_width %>
-</p>
-
-<p>
-  <strong>Depth:</strong>
-  <%= @manuscript.text_depth %>
-</p>
-
-<h3>Writing Surface</h3>
-
-<p>
-  <strong>Height:</strong>
-  <%= @manuscript.writing_surface_height %>
-</p>
-
-<p>
-  <strong>Width:</strong>
-  <%= @manuscript.writing_surface_width %>
-</p>
-
-<p>
-  <strong>Start year:</strong>
-  <%= @manuscript.start_year %>
-</p>
-
-<p>
-  <strong>End year:</strong>
-  <%= @manuscript.end_year %>
-</p>
-
-<p>
-  <strong>Date note:</strong>
-  <%= @manuscript.date_note %>
-</p>
-
-<p>
-  <strong>Extent:</strong>
-  <%= @manuscript.extent %>
-</p>
-
-<p>
-  <strong>Provenance:</strong>
-  <%= @manuscript.provenance %>
-</p>
-
-<p>
-  <strong>State of completion:</strong>
-  <%= @manuscript.state_of_completion %>
-</p>
-
-<p>
-  <strong>Resource:</strong>
-  <%= @manuscript.resource %>
-</p>
-
-
-<p>
-  <strong>Numbering method:</strong>
-  <%= @manuscript.numbering_method %>
-</p>
-
-<p>
-  <strong>Calender integral?:</strong>
-  <%= yes_no(@manuscript.calendar_integral) %>
-</p>
-
-<p>
-  <strong>Calendar range:</strong>
-  <%= "#{@manuscript.start_folio}-#{@manuscript.end_folio}" %>
-</p>
-
-<h4> Columns </h4>
-<% @manuscript.columns.each_with_index do |column, index| %>
-  <p>
-    <strong><%= "#{index + 1}:" %></strong>
-    <%= column %>
+  <!-- <p>
+    <strong>Shelfmark:</strong>
+    <%= @manuscript.shelfmark %>
   </p>
-<% end %>
 
-<% unless @manuscript.color_weighting.blank? %>
-  <h4> Color Weight </h4>
-  <% @manuscript.color_weighting.keys.sort_by{ |c| @manuscript.color_weighting[c] }.each do |color| %> <!-- uhh... -->
-    <p>
-      <strong><%= "#{color.to_s.capitalize}:" %></strong>
-      <%= @manuscript.color_weighting[color] %>
-    </p>
+  <p>
+    <strong>Book type:</strong>
+    <%= @manuscript.book_type %>
+  </p>
+
+  <p>
+    <strong>Manuscript or print:</strong>
+    <%= @manuscript.manuscript_or_print %>
+  </p>
+
+  <p>
+    <strong>Language:</strong>
+    <%= @manuscript.language %>
+  </p>
+
+  <p>
+    <strong>Script:</strong>
+    <%= @manuscript.script %>
+  </p> -->
+
+
+  <%= display_field_group(@manuscript, 'Provenance?', %i|origin origin_note destination destination_note|) %>
+
+  <!-- <h3>Provenance?</h3>
+
+  <p>
+    <strong>Origin:</strong>
+    <%= @manuscript.origin %>
+  </p>
+
+
+  <p>
+    <strong>Origin note:</strong>
+    <%= @manuscript.origin_note %>
+  </p>
+
+
+  <p>
+    <strong>Destination:</strong>
+    <%= @manuscript.destination %>
+  </p>
+
+  <p>
+    <strong>Destination note:</strong>
+    <%= @manuscript.destination_note %>
+  </p> -->
+
+
+  <%= display_field_group(@manuscript, 'Text Block', %i|text_height text_width text_depth|) %>
+
+
+  <!-- <h3>Text block</h3>
+
+  <p>
+    <strong>Height:</strong>
+    <%= @manuscript.text_height %>
+  </p>
+
+  <p>
+    <strong>Width:</strong>
+    <%= @manuscript.text_width %>
+  </p>
+
+  <p>
+    <strong>Depth:</strong>
+    <%= @manuscript.text_depth %>
+  </p>
+   -->
+
+  <%= display_field_group(@manuscript, 'Writing Surface', %i|writing_surface_height writing_surface_width|) %>
+
+  <!-- <h3>Writing Surface</h3>
+
+  <p>
+    <strong>Height:</strong>
+    <%= @manuscript.writing_surface_height %>
+  </p>
+
+  <p>
+    <strong>Width:</strong>
+    <%= @manuscript.writing_surface_width %>
+  </p>
+   -->
+
+  <% %i(start_year end_year date_note extent provenance state_of_completion resource numbering_method).each do |atr| %>
+    <%= display_field(@manuscript, atr) %>
+  <%  end %>
+
+  <!-- <p>
+    <strong>Start year:</strong>
+    <%= @manuscript.start_year %>
+  </p>
+
+  <p>
+    <strong>End year:</strong>
+    <%= @manuscript.end_year %>
+  </p>
+
+  <p>
+    <strong>Date note:</strong>
+    <%= @manuscript.date_note %>
+  </p>
+
+  <p>
+    <strong>Extent:</strong>
+    <%= @manuscript.extent %>
+  </p>
+
+  <p>
+    <strong>Provenance:</strong>
+    <%= @manuscript.provenance %>
+  </p>
+
+  <p>
+    <strong>State of completion:</strong>
+    <%= @manuscript.state_of_completion %>
+  </p>
+
+  <p>
+    <strong>Resource:</strong>
+    <%= @manuscript.resource %>
+  </p>
+
+
+  <p>
+    <strong>Numbering method:</strong>
+    <%= @manuscript.numbering_method %>
+  </p> -->
+
+
+  <div class="row">
+    <div class="col-2"> Calender integral?: </div>
+    <div class="col-2"><%= yes_no(@manuscript.calendar_integral) %></div>
+  </div>
+
+
+  <div class="row" >
+    <div class="col-2">Calendar range:</div>
+    <div class="col-2"><%= "#{@manuscript.start_folio}-#{@manuscript.end_folio}" %></div>
+  </div>
+
+
+  <!-- <p>
+    <strong>Calender integral?:</strong>
+    <%= yes_no(@manuscript.calendar_integral) %>
+  </p> -->
+
+  <!-- <p>
+    <strong>Calendar range:</strong>
+    <%= "#{@manuscript.start_folio}-#{@manuscript.end_folio}" %>
+  </p> -->
+
+  <h4> Columns </h4>
+  <div class="row">
+  <% @manuscript.columns.each_with_index do |column, index| %>
+    <div class="col-1">
+      <strong><%= "#{index + 1}:" %></strong><br>
+      <%= column %>
+    </div>
   <% end %>
-<% end %>
+  </div>
 
 
-<p>
-  <strong>Calender has shading?:</strong>
-  <%= yes_no(@manuscript.has_shading) %>
-</p>
 
-<br>
 
-<strong id="calendar_pages">Calendar Pages</strong>
-<%= link_to 'New', new_manuscript_calendar_page_path(manuscript_id: @manuscript.id) %> <!-- old attempt, update? -->
+
+
+  <% unless @manuscript.color_weighting.blank? %>
+      <h4> Color Weight </h4>
+      <% @manuscript.color_weighting.keys.sort_by{ |c| @manuscript.color_weighting[c] }.each do |color| %> <!-- uhh... -->
+        <div>
+          <strong><%= "#{color.to_s.capitalize}:" %></strong>
+          <%= @manuscript.color_weighting[color] %>
+        </div>
+      <% end %>
+  <% end %>
+
+  <div class="row">
+    <div class="col-2"> Calender has shading?: </div>
+    <div class="col-2"><%= yes_no(@manuscript.has_shading) %></div>
+  </div>
+
+
+  <!--
+  <p>
+    <strong>Calender has shading?:</strong>
+    <%= yes_no(@manuscript.has_shading) %>
+  </p> -->
+
+  <br>
+
+  <div class="row" id="calendar_pages">Calendar Pages
+    <div class="col-4">
+    <%= link_to 'New', new_manuscript_calendar_page_path(manuscript_id: @manuscript.id) %> <!-- old attempt, update? -->
+    </div>
+  </div>
+
+
+</div>
 
 <p id="notice"><%= notice %></p>
 
@@ -184,5 +238,9 @@
 
 <br><br>
 
-<%= link_to 'Edit', edit_manuscript_path(@manuscript) %> |
-<%= link_to 'Back', manuscripts_path %>
+<div class="row">Calendar Pages
+  <div class="col-4">
+    <%= link_to 'Edit', edit_manuscript_path(@manuscript) %> |
+    <%= link_to 'Back', manuscripts_path %>
+  </div>
+</div>

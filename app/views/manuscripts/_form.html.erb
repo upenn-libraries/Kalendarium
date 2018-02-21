@@ -254,14 +254,16 @@
 
 
 
-  Starts on folio:
+
   <div class="form-group">
+      Starts on folio:
     <%= form.number_field :start_folio_number, min: 1, max: 999, id: :manuscript_start_folio %>
     <%= form.select :start_folio_side, %w(r v), include_blank: true, id: :manuscript_start_folio %>
    </div>
 
-  Ends on folio:
+
   <div class="form-group">
+     Ends on folio:
      <%= form.number_field :end_folio_number, min: 1, max: 999, id: :manuscript_end_folio %>
      <%= form.select :end_folio_side, %w(r v), include_blank: true, id: :manuscript_end_folio %>
   </div>
