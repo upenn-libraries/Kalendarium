@@ -11,6 +11,23 @@
 <%# end %>
  -->
 
+
+<div class="multiselect-testing">
+  <br>
+
+  <% aspi = %w(monk prophet confessor) %>
+  <% fanoth = %w(deacon cardinal recluse martyr) %>
+
+  <h4>Multiselect test</h4>
+  <select id="multiselect-test" multiple="multiple">
+    <option> eh </option>
+    <%= saint_attribute_optgroup('personal aspirations', aspi ) %>
+    <%= saint_attribute_optgroup('possibilites for another person', fanoth) %>
+  </select>
+
+  <br><br>
+</div>
+
 <%= form.fields_for :feast_names do |fnf| %>
 
   <div class="form-group row">
@@ -23,25 +40,33 @@
     <%= fnf.text_field :other_name %>
   </div>
 
-  <div class="form-group row">
-    <%= fnf.label :saint_attributes %>
-    <table>
+  <!-- <div class="form-group row"> -->
+  <div class="form-group">
+
+    <div class="row">
+      <%= fnf.label :saint_attributes %>
+    </div>
+
+
     <% counter = 0 %>
-      <tr>
+      <div class="row">
       <%#= fnf.collection_check_boxes :saint_attributes, FeastName::SAINT_ATTRIBUTES, :to_s, :to_s, include_hidden: false do |b| %>
-      <%= fnf.collection_check_boxes :saint_attributes, Kal::SaintAttributes::SAINT_ATTRIBUTES, :code, :name, include_hidden: false do |b| %>
-        <% counter += 1 %>
-        <td>
-          <%= b.label %>
-          <%= b.check_box %>
-        </td>
-        <% if counter == Kal::SaintAttributes::SAINT_ATTRIBUTES.length / 3 %>
-          </tr><tr>
-          <% counter = 0 %>
+        <%= fnf.collection_check_boxes :saint_attributes, Kal::SaintAttributes::SAINT_ATTRIBUTES, :code, :name, include_hidden: false do |b| %>
+          <% counter += 1 %>
+
+          <div class="col">
+            <%= b.label %>
+            <%= b.check_box %>
+          </div>
+
+          <% if counter == Kal::SaintAttributes::SAINT_ATTRIBUTES.length / 3 %>
+            </div><div class="row">
+            <% counter = 0 %>
+          <% end %>
+
         <% end %>
-      <% end %>
-      </tr>
-    </table>
+      </div>
+
   </div>
 
   <div class="form-group row">
@@ -88,4 +113,15 @@
 <div class="form-group row">
   <%= form.submit %>
 </div>
+
+
+
+<!-- <script type="text/javascript">
+  $(document).ready(function() {
+    $('#multiselect-test').multiselect();
+  });
+</script> -->
+<script type="text/javascript">
+    $('#multiselect-test').multiselect();
+</script>
 

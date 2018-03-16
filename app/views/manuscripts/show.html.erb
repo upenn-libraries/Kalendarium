@@ -32,7 +32,7 @@
     <%= @manuscript.script %>
   </p> -->
 
-
+  <br>
   <%= display_field_group(@manuscript, 'Provenance?', %i|origin origin_note destination destination_note|) %>
 
   <!-- <h3>Provenance?</h3>
@@ -59,7 +59,7 @@
     <%= @manuscript.destination_note %>
   </p> -->
 
-
+  <br>
   <%= display_field_group(@manuscript, 'Text Block', %i|text_height text_width text_depth|) %>
 
 
@@ -81,6 +81,7 @@
   </p>
    -->
 
+  <br>
   <%= display_field_group(@manuscript, 'Writing Surface', %i|writing_surface_height writing_surface_width|) %>
 
   <!-- <h3>Writing Surface</h3>
@@ -96,6 +97,7 @@
   </p>
    -->
 
+  <br>
   <% %i(start_year end_year date_note extent provenance state_of_completion resource numbering_method).each do |atr| %>
     <%= display_field(@manuscript, atr) %>
   <%  end %>

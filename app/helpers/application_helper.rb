@@ -38,7 +38,7 @@ module ApplicationHelper
   def display_field_group(object, heading, attributes)
     head = content_tag(:h3, heading, class: 'field-group-heading')
     values = attributes.map{ |a| object.send(a) }
-    return head + 'no information' if values.all?(&:blank?)
+    return head + '<no information>' if values.all?(&:blank?)
 
     attributes.inject(head) do |list, attribute|
       print "\n"
@@ -116,6 +116,14 @@ module ApplicationHelper
     content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s }
   end
 
+  # ----------------------------
+  def saint_attribute_optgroup(heading, attributes)
+    content_tag(:optgroup, label: heading) do
+      attributes.map do |attrib|
+        content_tag(:option, value: attrib){ attrib.humanize }
+      end.join.html_safe
+    end
+  end
 
   # ----------------------------
 

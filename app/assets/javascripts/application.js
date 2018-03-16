@@ -12,7 +12,11 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require popper
 //= require bootstrap
 //= require turbolinks
+//= require bootstrap-multiselect
 //= require_tree .
 
+
+// TODO: Figure out how to precompile vendor/assets

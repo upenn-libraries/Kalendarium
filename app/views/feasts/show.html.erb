@@ -1,26 +1,41 @@
-<h3><%= "#{@feast.month_number}/#{@feast.day_number}" %></h3>
+<div class="container">
+  <div class="row">
+    <h3><%= "#{@feast.month_number}/#{@feast.day_number}" %></h3>
+  </div>
+  <% @feast.feast_names.each do |fn| %>
 
-<% @feast.feast_names.each do |fn| %>
+    <div class="row">
+      <h1>St. <%= fn.name %></h1>
+    </div>
 
-  <h1>St. <%= fn.name %></h1>
+    <div class="row" >
+      <p>Sancte <%= fn.name %> ora pro nobis</p>
+    </div>
 
-  <p>Sancte <%= fn.name %> ora pro nobis</p>
+    <div>
+      <% unless fn.saint_attributes.blank? %>
+        <ul>
+          <% fn.saint_attributes.each do |s_a| %>
+            <li>a great <%= s_a %></li><br>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
 
-  <% unless fn.saint_attributes.blank? %><ul>
-    <% fn.saint_attributes.each do |s_a| %>
-      <li>a great <%= s_a %></li><br>
-    <% end %>
-  </ul><% end %>
+  <% end %>
 
-<% end %>
+  <% unless @feast.transcription.blank? %>
+    <div>
+      <h4>Transcription:</h4>
+      <p class="<%= feast_color_class(@feast.color) %> feast_details">
+        <%= @feast.transcription %>
+      </p>
+    </div>
+  <% end %>
 
-<% unless @feast.transcription.blank? %>
-  <h4>Transcription:</h4>
-  <p class="<%= feast_color_class(@feast.color) %> feast_details">
-    <%= @feast.transcription %>
-  </p>
-<% end %>
+  <div class="row">
+    <br>
 
-<br>
-
-<%= link_to 'back', calendar_page_path(@feast.calendar_page) %>
+    <%= link_to 'back', calendar_page_path(@feast.calendar_page) %>
+  </div>
+</div>
