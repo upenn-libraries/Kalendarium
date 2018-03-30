@@ -117,15 +117,39 @@ module ApplicationHelper
   end
 
   # ----------------------------
+  # def saint_attribute_optgroup(heading, attributes)
+  #   content_tag(:optgroup, label: heading) do
+  #     attributes.map do |attrib|
+  #       content_tag(:option, value: attrib){ attrib.humanize }
+  #     end.join.html_safe
+  #   end
+  # end
   def saint_attribute_optgroup(heading, attributes)
     content_tag(:optgroup, label: heading) do
       attributes.map do |attrib|
-        content_tag(:option, value: attrib){ attrib.humanize }
+        content_tag(:option, value: attrib.code){ attrib.name.humanize }
       end.join.html_safe
     end
   end
-
   # ----------------------------
+
+  # # #
+  def link_to_add_feast_name(name, f)
+    # new_object = f.object.send(association).klass.new
+    # id = new_object.object_id
+    # fields = f.fields_for(association, new_object, child_index: id) do |builder|
+    #   render(association.to_s.singularize + "_fields", f: builder)
+    # end
+    # link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+
+    new_fn = FeastName.new
+    id = new_fn.object_id
+    fields = f.fields_for(:feast_names, new_fn) do |builder|
+      render("feast_name_fields", fnf: builder) #f: builder
+    end
+    link_to(name, '#', class: "add_feast_name", data: {id: id, fields: fields.gsub("\n", "")})
+  end
+  # # #
 
   def month_name(month_number)
     Kal::Months::MONTH_TABLE[month_number - 1].name

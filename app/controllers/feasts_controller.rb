@@ -33,7 +33,6 @@ class FeastsController < ApplicationController
   # POST /feasts.json
   def create
     @feast = @calendar_page.feasts.build(feast_params)
-
     respond_to do |format|
       if @feast.save
         format.html { redirect_to @calendar_page, notice: 'Feast was successfully created.' }

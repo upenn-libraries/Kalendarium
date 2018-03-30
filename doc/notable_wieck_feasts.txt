@@ -30,7 +30,7 @@ APRIL 25
 
 APRIL 25
   Ultimu pascha
-  - Ultimate day of easter (stand-alone temporal marker)
+  - Ultimate(last possible?) day of easter (stand-alone temporal marker)
 
 APRIL 26
   Dedicatio capelle regi parisensis

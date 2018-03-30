@@ -12,23 +12,8 @@
  -->
 
 
-<div class="multiselect-testing">
-  <br>
-
-  <% aspi = %w(monk prophet confessor) %>
-  <% fanoth = %w(deacon cardinal recluse martyr) %>
-
-  <h4>Multiselect test</h4>
-  <select id="multiselect-test" multiple="multiple">
-    <option> eh </option>
-    <%= saint_attribute_optgroup('personal aspirations', aspi ) %>
-    <%= saint_attribute_optgroup('possibilites for another person', fanoth) %>
-  </select>
-
-  <br><br>
-</div>
-
-<%= form.fields_for :feast_names do |fnf| %>
+<%#= form.fields_for :feast_names do |fnf| %>
+<% form.fields_for :feast_names do |fnf| %>
 
   <div class="form-group row">
     <%= fnf.label :name_id, 'Name' %>
@@ -36,21 +21,20 @@
     <%#= fnf.select :name_id, Name.all.collect {|p| [ p.name, p.id ] } %>
   </div>
 
-  <div class="form-group row hidden" id="name_field" name="name_field">
+ <div class="form-group row hidden" id="name_field" name="name_field">
     <%= fnf.text_field :other_name %>
   </div>
 
-  <!-- <div class="form-group row"> -->
-  <div class="form-group">
 
+  <!-- sans multiselect -->
+  <!--
+  <div class="form-group">
     <div class="row">
       <%= fnf.label :saint_attributes %>
     </div>
 
-
     <% counter = 0 %>
       <div class="row">
-      <%#= fnf.collection_check_boxes :saint_attributes, FeastName::SAINT_ATTRIBUTES, :to_s, :to_s, include_hidden: false do |b| %>
         <%= fnf.collection_check_boxes :saint_attributes, Kal::SaintAttributes::SAINT_ATTRIBUTES, :code, :name, include_hidden: false do |b| %>
           <% counter += 1 %>
 
@@ -66,8 +50,42 @@
 
         <% end %>
       </div>
-
   </div>
+  -->
+
+  <!-- avec multiselect -->
+  <div class="form-group">
+    <div class="row">
+      <%= fnf.label :saint_attributes %>
+      <% st_attr = Kal::SaintAttributes %>
+
+
+
+<%#= grouped_options_for_select(sa_optgroups) %>
+
+        <%#= saint_attribute_optgroup('Clerical titles', st_attr::CLERICAL_TITLES) %>
+        <%#= saint_attribute_optgroup('Monastic titles', st_attr::MONASTIC_TITLES) %>
+        <%#= saint_attribute_optgroup('Biblical roles',  st_attr::BIBLICAL_ROLES) %>
+        <%#= saint_attribute_optgroup('Secular titles',  st_attr::SECULAR_TITLES) %>
+        <%#= saint_attribute_optgroup('Qualifiers',      st_attr::QUALIFIERS) %>
+
+
+      <% sa_optgroups = { %>
+        <% 'Clerical titles' => st_attr::CLERICAL_TITLES, %>
+        <% 'Monastic titles' => st_attr::MONASTIC_TITLES, %>
+        <% 'Biblical roles'  => st_attr::BIBLICAL_ROLES, %>
+        <%# 'Secular titles'  => st_attr::SECULAR_TITLES, %>
+        <% 'Qualifiers'      => st_attr::QUALIFIERS %>
+      <% } %>
+
+
+      <%= fnf.select :saint_attributes, grouped_options_for_select(sa_optgroups), {}, multiple: 'multiple' %>
+      <%#= fnf.select :saint_attributes, %w(longtemps je me suis couche' a` bonne heure), {}, multiple: 'multiple' %>
+
+    </div>
+  </div>
+
+
 
   <div class="form-group row">
     <%= fnf.label :saint_location %>
@@ -78,6 +96,19 @@
 
   <hr>
 <% end %>
+
+
+<%= form.fields_for :feast_names do |fnf| %>
+  <%= render 'feast_name_fields', fnf: fnf %>
+<% end %>
+<%= link_to_add_feast_name "Add another", form %>
+
+<hr>
+
+
+
+
+
 
 
 
@@ -115,13 +146,4 @@
 </div>
 
 
-
-<!-- <script type="text/javascript">
-  $(document).ready(function() {
-    $('#multiselect-test').multiselect();
-  });
-</script> -->
-<script type="text/javascript">
-    $('#multiselect-test').multiselect();
-</script>
 

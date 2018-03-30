@@ -18,7 +18,7 @@ module Kal
       SaintAttribute.new('monk', 'monk', 'mon'),
       SaintAttribute.new('nun', 'nun', 'non'),
       SaintAttribute.new('pope', 'pope', 'pp'),
-      SaintAttribute.new('presbyter', 'presbyter', 'pb'),
+      SaintAttribute.new('priest', 'priest', 'pb'),
       SaintAttribute.new('prophet', 'prophet', 'proph'),
       SaintAttribute.new('protomartyr', 'protomartyr', 'protom'),
       SaintAttribute.new('recluse', 'recluse', 'reclus'),
@@ -27,8 +27,49 @@ module Kal
       SaintAttribute.new('virgin', 'virgin', 'v'),
       SaintAttribute.new('widow', 'widow', 'vid')
     ]
+
+    # CLERICAL_TITLES = %w(subdeacon deacon priest bishop archbishop cardinal pope)
+    # MONASTIC_TITLES = %w(monk nun abbot abbess hermit recluse)
+    # BIBLICAL_ROLES  = %w(apostle evangelist prophet angel)
+    # SECULAR_TITLES  = %w(king queen duke duchess)
+    # QUALIFIERS      = %w(martyr protomartyr confessor widow)
+
+    # *** possibilities ***
+    # QUALIFIERS_ = %w(martyr protomartyr confessor widow).map do |a|
+    #   SAINT_ATTRIBUTES.find{ |s_a| s_a.code == a }
+    # end
+
+    # QUALIFIERS__ = SAINT_ATTRIBUTES.select do |s_a|
+    #   %w(martyr protomartyr confessor widow).include?(s_a.code)
+    # end
+
+    # QUALIFIERS___ = attribute_group(%w|martyr protomartyr confessor widow|)
+    # def self.attribute_group(attribute_codes)
+    #   SAINT_ATTRIBUTES.select{ |s_a| attribute_codes.include?(s_a.code) }
+    # end
+
+    # def self.attribute_group(attribute_codes)
+    #   SAINT_ATTRIBUTES.select{ |s_a| attribute_codes.include?(s_a.code) }.map{ |a| a.name.humanize }
+    # end
+    # def self.attribute_group(attribute_codes)
+    #   attribute_codes.map(&:humanize)
+    # end
+
+    def self.attribute_group(attribute_codes)
+      SAINT_ATTRIBUTES.select{ |s_a| attribute_codes.include?(s_a.code) }.map do |a|
+        #[a.name.humanize, a.code]
+        a.code
+      end
+    end
+
+    CLERICAL_TITLES = attribute_group(%w|subdeacon deacon priest bishop archbishop cardinal pope|)
+    MONASTIC_TITLES = attribute_group(%w|monk nun abbot abbess hermit recluse|)
+    BIBLICAL_ROLES  = attribute_group(%w|apostle evangelist prophet angel|)
+    SECULAR_TITLES  = attribute_group(%w|king queen duke duchess|)
+    QUALIFIERS      = attribute_group(%w|martyr protomartyr confessor virgin widow|)
   end
 end
+
 
 
 

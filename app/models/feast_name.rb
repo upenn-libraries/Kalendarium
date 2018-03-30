@@ -7,65 +7,13 @@ class FeastName < ApplicationRecord
 
   serialize   :saint_attributes
 
-  before_save :handle_empty_attributes
-
-
-  # SAINT_ATTRIBUTES = %w(
-  #   abbot/abbess
-  #   apostle
-  #   archbishop
-  #   bishop
-  #   blessed
-  #   cardinal
-  #   confessor
-  #   deacon
-  #   hermit
-  #   martyr
-  #   monk
-  #   nun
-  #   pope
-  #   presbyter
-  #   prophet
-  #   protomartyr
-  #   recluse
-  #   solitary
-  #   subdeacon
-  #   virgin
-  #   widow
-  # )#.freeze
-
-
-  # ABBREVIATIONS = %w(
-  #   abb
-  #   ap
-  #   aep
-  #   ep
-  #   bd
-  #   card
-  #   cf
-  #   diac
-  #   erem
-  #   m
-  #   mon
-  #   non
-  #   pp
-  #   pb
-  #   proph
-  #   protom
-  #   reclus
-  #   solit
-  #   subdiac
-  #   v
-  #   vid
-  # )
-
-  # ABBREVIATE = SAINT_ATTRIBUTES.zip(ABBREVIATIONS).to_h
-
+  before_save :handle_saint_attributes
 
   ABBREVIATIONS = {}
   Kal::SaintAttributes::SAINT_ATTRIBUTES.each do |sa|
     ABBREVIATIONS[sa.code] = sa.abbreviation + '.' ####
   end
+  ABBREVIATIONS.default = 'nil.' # temporary, related to hidden field issue
 
   def to_s
     sa_string = saint_attributes.map{ |sa| ABBREVIATIONS[sa] }.join(' ') unless saint_attributes.blank?
@@ -81,7 +29,11 @@ class FeastName < ApplicationRecord
       self.name = new_name
     end
 
-    def handle_empty_attributes
-      saint_attributes ||= []
+    def handle_saint_attributes
+      self.saint_attributes ||= []
+
+      # # get rid of hidden field?
+      self.saint_attributes.delete('')
+      true
     end
 end
