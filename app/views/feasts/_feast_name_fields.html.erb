@@ -1,41 +1,34 @@
 <fieldset>
-  <h5>Feast-Name</h5>
+    <hr>
 
-
-    <div class="form-group row">
+    <div class="form-group">
       <%= fnf.label :name_id, 'Name' %>
       <%= fnf.collection_select :name_id, Name.all.to_a << Name.new(name: 'other'), :id, :name, include_blank: true %>
-      <%#= fnf.select :name_id, Name.all.collect {|p| [ p.name, p.id ] } %>
     </div>
 
-   <div class="form-group row hidden" id="name_field" name="name_field">
-      <%= fnf.text_field :other_name %>
+   <div class="form-group hidden" id="name_field" name="name_field">
+      <%#= fnf.text_field :other_name %>
     </div>
 
 
   <div class="form-group">
-    <div class="row">
-      <%= fnf.label :saint_attributes %>
+    <div>
+      <%= fnf.label :saint_attributes, 'Attributes' %>
       <% st_attr = Kal::SaintAttributes %>
 
-      <% sa_optgroups = { %>
-        <% 'Clerical titles' => st_attr::CLERICAL_TITLES, %>
-        <% 'Monastic titles' => st_attr::MONASTIC_TITLES, %>
-        <% 'Biblical roles'  => st_attr::BIBLICAL_ROLES, %>
-        <% 'Qualifiers'      => st_attr::QUALIFIERS %>
-      <% } %>
-
-
-      <%= fnf.select :saint_attributes, grouped_options_for_select(sa_optgroups, fnf.object.saint_attributes), {} , multiple: 'multiple', class: 'multiselect' %>
+      <%= fnf.select :saint_attributes, grouped_options_for_select(Kal::SaintAttributes::OPTGROUPS, fnf.object.saint_attributes), {} , multiple: 'multiple', class: 'multiselect' %>
     </div>
   </div>
 
 
-  <div class="form-group row">
-    <%= fnf.label :saint_location %>
-    <%= fnf.text_field :saint_location, class: "form-control mx-sm-3" %>
+  <div class="form-group">
+    <%= fnf.label :saint_location, 'Location' %>
+    <%= fnf.text_field :saint_location, class: "form-control" %>
   </div>
 
+  <%= fnf.hidden_field :_destroy %>
 
-  <hr>
+  <%= link_to 'remove', '#', class: 'remove_feast_name btn btn-danger' if @flag %>
+  <% @flag = true %><!-- is this ok? -->
 </fieldset>
+

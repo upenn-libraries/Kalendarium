@@ -13,45 +13,45 @@
 
   <div class="form-group">
     <%= form.label :shelfmark %>
-    <%= form.text_field :shelfmark, id: :manuscript_shelfmark %>
+    <%= form.text_field :shelfmark, id: :manuscript_shelfmark, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :name, "*Name" %>
-    <%= form.text_field :name, id: :manuscript_name %>
+    <%= form.text_field :name, id: :manuscript_name, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :book_type %>
-    <%= form.text_field :book_type, id: :manuscript_book_type %>
+    <%= form.text_field :book_type, id: :manuscript_book_type, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :manuscript_or_print, 'Manuscript or print book?' %>
-    <table>
-      <td>
+    <div class="row">
+      <div class="col">
         <%= form.label :manuscript_or_print, 'manuscript', id: :manuscript_or_print %>
-        <%= form.radio_button :manuscript_or_print, 'manuscript' %>
-      </td>
-      <td>
+        <%= form.radio_button :manuscript_or_print, 'manuscript', class: "form-control" %>
+      </div>
+      <div class="col">
         <%= form.label :manuscript_or_print, 'print' %>
-        <%= form.radio_button :manuscript_or_print, 'print', id: :manuscript_or_print %>
-      </td>
-      <td>
+        <%= form.radio_button :manuscript_or_print, 'print', id: :manuscript_or_print, class: "form-control" %>
+      </div>
+      <div class="col">
         <%= form.label :manuscript_or_print, 'unknown' %>
-        <%= form.radio_button :manuscript_or_print, 'unknown', id: :manuscript_or_print %>
-      </td>
-    </table>
+        <%= form.radio_button :manuscript_or_print, 'unknown', id: :manuscript_or_print, class: "form-control" %>
+      </div>
+    </div>
   </div>
 
   <div class="form-group">
     <%= form.label :language %>
-    <%= form.select :language, Manuscript::LANGUAGES, include_blank: true, id: :manuscript_language %>
+    <%= form.select :language, Manuscript::LANGUAGES, include_blank: true, id: :manuscript_language, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :script %>
-    <%= form.text_field :script, id: :manuscript_script %>
+    <%= form.text_field :script, id: :manuscript_script, class: "form-control" %>
   </div>
 
 
@@ -59,24 +59,24 @@
 
   <div class="form-group">
     <%= form.label :origin %>
-    <%= form.text_field :origin, id: :manuscript_origin %>
+    <%= form.text_field :origin, id: :manuscript_origin, class: "form-control" %>
   </div>
 
 
   <div class="form-group">
     <%= form.label :origin_note %>
-    <%= form.text_field :origin_note, id: :manuscript_origin_note %>
+    <%= form.text_field :origin_note, id: :manuscript_origin_note, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :destination %>
-    <%= form.text_field :destination, id: :manuscript_destination %>
+    <%= form.text_field :destination, id: :manuscript_destination, class: "form-control" %>
   </div>
 
 
   <div class="form-group">
     <%= form.label :destination_note %>
-    <%= form.text_field :destination_note, id: :manuscript_destination_note %>
+    <%= form.text_field :destination_note, id: :manuscript_destination_note, class: "form-control" %>
   </div>
 
 
@@ -84,17 +84,17 @@
 
   <div class="form-group">
     <%= form.label :text_height, 'Height (mm)' %>
-    <%= form.number_field :text_height, min: 0, id: :manuscript_text_height %>
+    <%= form.number_field :text_height, min: 0, id: :manuscript_text_height, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :text_width, 'Width (mm)' %>
-    <%= form.number_field :text_width, min: 0, id: :manuscript_text_width %>
+    <%= form.number_field :text_width, min: 0, id: :manuscript_text_width, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :text_depth, 'Depth (mm)' %>
-    <%= form.number_field :text_depth, min: 0, id: :manuscript_text_depth %>
+    <%= form.number_field :text_depth, min: 0, id: :manuscript_text_depth, class: "form-control" %>
   </div>
 
 
@@ -102,174 +102,176 @@
 
   <div class="form-group">
     <%= form.label :writing_surface_height, 'Height (mm)' %>
-    <%= form.number_field :writing_surface_height, min: 0, id: :manuscript_writing_surface_height %>
+    <%= form.number_field :writing_surface_height, min: 0, id: :manuscript_writing_surface_height, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :writing_surface_width, 'Width (mm)' %>
-    <%= form.number_field :writing_surface_width, min: 0, id: :manuscript_writing_surface_width %>
+    <%= form.number_field :writing_surface_width, min: 0, id: :manuscript_writing_surface_width, class: "form-control" %>
   </div>
 
 
   <h3>Date Range</h3>
-  <table>
-  <td>
-   <div class="form-group">
-      <%= form.label :start_year, 'Start' %>
-      <%= form.number_field :start_year, min: 0, max: 9999, id: :manuscript_start_year %>
-   </div>
-  </td>
-  <td>
-    <div class="form-group">
-      <%= form.label :end_year, 'End' %>
-      <%= form.number_field :end_year, min: 0, max: 9999, id: :manuscript_end_year %>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :start_year, 'Start' %>
+        <%= form.number_field :start_year, min: 0, max: 9999, id: :manuscript_start_year, class: "form-control" %>
+      </div>
     </div>
-  </td>
-  </table>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :end_year, 'End' %>
+        <%= form.number_field :end_year, min: 0, max: 9999, id: :manuscript_end_year, class: "form-control" %>
+      </div>
+    </div>
+  </div>
 
   <div class="form-group">
     <%= form.label :date_note %>
-    <%= form.text_field :date_note, id: :manuscript_date_note %>
+    <%= form.text_field :date_note, id: :manuscript_date_note, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :extent %>
-    <%= form.text_field :extent, id: :manuscript_extent %>
+    <%= form.text_field :extent, id: :manuscript_extent, class: "form-control" %>
   </div>
 
 
   <div class="form-group">
     <%= form.label :provenance %>
-    <%= form.text_field :provenance, id: :manuscript_provenance %>
+    <%= form.text_field :provenance, id: :manuscript_provenance, class: "form-control" %>
   </div>
 
 
   <div class="form-group">
     <%= form.label :state_of_completion %>
-    <%= form.text_field :state_of_completion, id: :manuscript_state_of_completion %>
+    <%= form.text_field :state_of_completion, id: :manuscript_state_of_completion, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :resource %>
-    <%= form.text_field :resource, id: :manuscript_resource %>
+    <%= form.text_field :resource, id: :manuscript_resource, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :numbering_method %>
-    <%= form.select :numbering_method, Manuscript::NUMBERING_METHODS, id: :manuscript_numbering_method %>
+    <%= form.select :numbering_method, Manuscript::NUMBERING_METHODS, id: :manuscript_numbering_method, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :calendar_integral, 'Is the calendar integral to the manuscript?' %>
-    <%= form.check_box :calendar_integral, id: :manuscript_calendar_integral %>
+    <%= form.check_box :calendar_integral, id: :manuscript_calendar_integral, class: "form-control" %>
   </div>
 
   <h2>Calendar Details</h2>
 
+ <!--  needs revision to use only 4 columns -->
+  <div class="row">
+    <div class="form-group col">
+      <%= form.label :column1, "Column 1" %>
+      <%= form.select :column1, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :column1, "Column 1" %>
-    <%= form.select :column1, Manuscript::COLUMN_TYPES, include_blank: true %>
-  </div>
+    <div class="form-group col">
+      <%= form.label :column2, "Column 2" %>
+      <%= form.select :column2, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :column2, "Column 2" %>
-    <%= form.select :column2, Manuscript::COLUMN_TYPES, include_blank: true %>
-  </div>
+    <div class="form-group col">
+      <%= form.label :column3, "Column 3" %>
+      <%= form.select :column3, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :column3, "Column 3" %>
-    <%= form.select :column3, Manuscript::COLUMN_TYPES, include_blank: true %>
-  </div>
+    <div class="form-group col">
+      <%= form.label :column4, "Column 4" %>
+      <%= form.select :column4, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :column4, "Column 4" %>
-    <%= form.select :column4, Manuscript::COLUMN_TYPES, include_blank: true %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :column5, "Column 5" %>
-    <%= form.select :column5, Manuscript::COLUMN_TYPES, include_blank: true %>
+    <div class="form-group col">
+      <%= form.label :column5, "Column 5" %>
+      <%= form.select :column5, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
+    </div>
   </div>
 
   <br>
   Color Weight:
 
-  <table>
-    <td>
+  <div class="row">
+    <div class="col">
       <div class="form-group">
         <%= form.label :color_weighting_black, 'Black' %>
-        <%= form.number_field :color_weighting_black, min: 0, max: 7, id: :manuscript_color_weighting_black %>
+        <%= form.number_field :color_weighting_black, min: 0, max: 7, id: :manuscript_color_weighting_black, class: "form-control" %>
       </div>
-    </td>
+    </div>
 
-    <td>
+    <div class="col">
       <div class="form-group">
         <%= form.label :color_weighting_blue, 'Blue' %>
-        <%= form.number_field :color_weighting_blue, min: 0, max: 7, id: :manuscript_color_weighting_blue %>
+        <%= form.number_field :color_weighting_blue, min: 0, max: 7, id: :manuscript_color_weighting_blue, class: "form-control" %>
       </div>
-    </td>
+    </div>
 
-    <td>
+    <div class="col">
       <div class="form-group">
         <%= form.label :color_weighting_green, 'Green' %>
-        <%= form.number_field :color_weighting_green, min: 0, max: 7, id: :manuscript_color_weighting_green %>
+        <%= form.number_field :color_weighting_green, min: 0, max: 7, id: :manuscript_color_weighting_green, class: "form-control" %>
       </div>
-    </td>
+    </div>
 
-    <td>
+    <div class="col">
       <div class="form-group">
         <%= form.label :color_weighting_pink, 'Pink' %>
-        <%= form.number_field :color_weighting_pink, min: 0, max: 7, id: :manuscript_color_weighting_pink %>
+        <%= form.number_field :color_weighting_pink, min: 0, max: 7, id: :manuscript_color_weighting_pink, class: "form-control" %>
       </div>
-    </td>
+    </div>
 
-    <td>
+    <div class="col">
       <div class="form-group">
         <%= form.label :color_weighting_red, 'Red' %>
-        <%= form.number_field :color_weighting_red, min: 0, max: 7, id: :manuscript_color_weighting_red %>
+        <%= form.number_field :color_weighting_red, min: 0, max: 7, id: :manuscript_color_weighting_red, class: "form-control" %>
       </div>
-    </td>
+    </div>
 
-    <td>
+    <div class="col">
       <div class="form-group">
         <%= form.label :color_weighting_purple, 'Purple' %>
-        <%= form.number_field :color_weighting_purple, min: 0, max: 7, id: :manuscript_color_weighting_purple %>
+        <%= form.number_field :color_weighting_purple, min: 0, max: 7, id: :manuscript_color_weighting_purple, class: "form-control" %>
       </div>
-    </td>
+    </div>
 
-    <td>
+    <div class="col">
       <div class="form-group">
         <%= form.label :color_weighting_gold, 'Gold' %>
-        <%= form.number_field :color_weighting_gold, min: 0, max: 7, id: :manuscript_color_weighting_gold %>
+        <%= form.number_field :color_weighting_gold, min: 0, max: 7, id: :manuscript_color_weighting_gold, class: "form-control" %>
       </div>
-    </td>
-  </table>
+    </div>
+  </div>
 
 
   <div class="form-group">
     <%= form.label :has_shading, 'Is there shading?' %>
-    <%= form.check_box :has_shading, id: :manuscript_has_shading %>
+    <%= form.check_box :has_shading, id: :manuscript_has_shading, class: "form-control" %>
   </div>
-
-
 
 
   <div class="form-group">
       Starts on folio:
     <%= form.number_field :start_folio_number, min: 1, max: 999, id: :manuscript_start_folio %>
-    <%= form.select :start_folio_side, %w(r v), include_blank: true, id: :manuscript_start_folio %>
+    <%= form.select :start_folio_side, %w(r v), include_blank: true, id: :manuscript_start_folio, class: "form-control" %>
    </div>
 
 
   <div class="form-group">
      Ends on folio:
      <%= form.number_field :end_folio_number, min: 1, max: 999, id: :manuscript_end_folio %>
-     <%= form.select :end_folio_side, %w(r v), include_blank: true, id: :manuscript_end_folio %>
+     <%= form.select :end_folio_side, %w(r v), include_blank: true, id: :manuscript_end_folio, class: "form-control" %>
   </div>
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+

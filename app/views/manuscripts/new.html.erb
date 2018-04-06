@@ -1,5 +1,7 @@
-<h1>New Manuscript</h1>
+<div class="container">
+  <h1>New Manuscript</h1>
 
-<%= render 'form', manuscript: @manuscript %>
+  <%= render 'form', manuscript: @manuscript %>
 
-<%= link_to 'Back', manuscripts_path %>
+  <%= link_to 'back', manuscripts_path, class: "btn btn-secondary" %>
+</div>

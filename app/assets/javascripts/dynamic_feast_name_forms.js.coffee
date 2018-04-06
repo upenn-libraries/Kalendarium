@@ -1,7 +1,7 @@
 # $( document ).on 'turbolinks:load', ->
-$(document).on 'click', 'form .remove_fields', (event) ->
+$(document).on 'click', 'form .remove_feast_name', (event) ->
   $(this).prev('input[type=hidden]').val('1')
-  $(this).closest('.form-group').hide()
+  $(this).closest('fieldset').hide()
   event.preventDefault()
 
 $(document).on 'click', 'form .add_feast_name', (event) ->

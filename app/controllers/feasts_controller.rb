@@ -100,7 +100,7 @@ class FeastsController < ApplicationController
         :day_number,
         :calendar_page_id,
         :manuscript_id,
-        feast_names_attributes: [:id, :name_id, :other_name, :saint_location, saint_attributes: [] ]
+        feast_names_attributes: [:id, :name_id, :other_name, :saint_location, :_destroy, saint_attributes: [] ]
       )
     end
 end

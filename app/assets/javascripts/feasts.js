@@ -12,7 +12,7 @@ $( document ).on('turbolinks:load', function() {
 
  $('select.multiselect').multiselect({
     buttonText: function(options, select) {
-      return 'Choose any and all saint attributes that appeal to you';
+      return 'choose attributes';
     }
   });
 });

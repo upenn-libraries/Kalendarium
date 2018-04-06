@@ -1,25 +1,33 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Manuscripts</h1>
-
 <div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Manuscripts</h1>
+
   <div class="row">
-    <div class="col-4">Shelfmark</div>
-    <div class="col-5">Name</div>
+    <div class="col-3"><h5>Shelfmark</h5></div>
+    <div class="col-6"><h5>Name</h5></div>
     <div class="col-3" ></div>
   </div>
 
   <% @manuscripts.each do |manuscript| %>
-    <div class="row">
-      <div class="col-4"><%= manuscript.shelfmark %></div>
-      <div class="col-5"><%= manuscript.name %></div>
-      <div class="col-1"><%= link_to 'Show', manuscript %></div>
-      <div class="col-1"><%= link_to 'Edit', edit_manuscript_path(manuscript) %></div>
-      <div class="col-1"><%= link_to 'Destroy', manuscript, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    <div class="row table-row">
+      <div class="col-3"><%= manuscript.shelfmark %></div>
+      <div class="col-6"><%= manuscript.name %></div>
+      <div class="col-3 btn-group"> <!-- ok to put both classes in one div? -->
+        <%= link_to 'examine', manuscript, class: "btn btn-secondary" %>
+        <%= link_to 'edit', edit_manuscript_path(manuscript), class: "btn btn-secondary" %>
+        <%= link_to 'delete', manuscript, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      </div>
     </div>
   <% end %>
+
+
+  <br>
+
+  <%= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-primary" %>
 </div>
 
-<br>
 
-<%= link_to 'New Manuscript', new_manuscript_path %>
+<!--   <div class="col-1"><%#= link_to 'Show', manuscript %></div>
+  <div class="col-1"><%#= link_to 'Edit', edit_manuscript_path(manuscript) %></div>
+  <div class="col-1"><%#= link_to 'Destroy', manuscript, method: :delete, data: { confirm: 'Are you sure?' } %></div> -->

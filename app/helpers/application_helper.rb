@@ -134,7 +134,7 @@ module ApplicationHelper
   # ----------------------------
 
   # # #
-  def link_to_add_feast_name(name, f)
+  def link_to_add_feast_name(name, f, options={})
     # new_object = f.object.send(association).klass.new
     # id = new_object.object_id
     # fields = f.fields_for(association, new_object, child_index: id) do |builder|
@@ -147,9 +147,15 @@ module ApplicationHelper
     fields = f.fields_for(:feast_names, new_fn) do |builder|
       render("feast_name_fields", fnf: builder) #f: builder
     end
-    link_to(name, '#', class: "add_feast_name", data: {id: id, fields: fields.gsub("\n", "")})
+
+    options ||= {}
+    options[:class] ||= ""
+    options[:class] += " add_feast_name"
+
+    options.update({data: {id: id, fields: fields.gsub("\n", "")}})#.merge(options)
+
+    link_to(name, '#', options)
   end
-  # # #
 
   def month_name(month_number)
     Kal::Months::MONTH_TABLE[month_number - 1].name

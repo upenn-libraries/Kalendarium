@@ -28,6 +28,7 @@ module Kal
       SaintAttribute.new('widow', 'widow', 'vid')
     ]
 
+
     # CLERICAL_TITLES = %w(subdeacon deacon priest bishop archbishop cardinal pope)
     # MONASTIC_TITLES = %w(monk nun abbot abbess hermit recluse)
     # BIBLICAL_ROLES  = %w(apostle evangelist prophet angel)
@@ -40,7 +41,7 @@ module Kal
     # end
 
     # QUALIFIERS__ = SAINT_ATTRIBUTES.select do |s_a|
-    #   %w(martyr protomartyr confessor widow).include?(s_a.code)
+    #   w(martyr protomartyr confessor widow).include?(s_a.code)
     # end
 
     # QUALIFIERS___ = attribute_group(%w|martyr protomartyr confessor widow|)
@@ -67,6 +68,13 @@ module Kal
     BIBLICAL_ROLES  = attribute_group(%w|apostle evangelist prophet angel|)
     SECULAR_TITLES  = attribute_group(%w|king queen duke duchess|)
     QUALIFIERS      = attribute_group(%w|martyr protomartyr confessor virgin widow|)
+
+    OPTGROUPS = {
+     'Clerical titles' => CLERICAL_TITLES,
+     'Monastic titles' => MONASTIC_TITLES,
+     'Biblical roles'  => BIBLICAL_ROLES,
+     'Qualifiers'      => QUALIFIERS
+     }
   end
 end
 
@@ -235,8 +243,8 @@ end
 
 
 Wieck's examples--
-  title:     %w(pope archbishop bishop),
-  qualifier: %w(martyr virgin widow)
+  title:     w(pope archbishop bishop),
+  qualifier: w(martyr virgin widow)
 
 
 intra-line coloring p.8 and passim
@@ -321,7 +329,7 @@ FeastName
   # attr_accessor :st_attr_vid
 
 
- # SAINT_ATTRIBUTES = %w(
+ # SAINT_ATTRIBUTES = w(
  #    abb.
  #    aep.
  #    card.

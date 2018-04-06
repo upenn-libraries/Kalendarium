@@ -4,7 +4,7 @@ class Feast < ApplicationRecord
 
   has_many :feast_names, dependent: :destroy
   has_many :names, through: :feast_names
-  accepts_nested_attributes_for :feast_names, reject_if: :all_blank
+  accepts_nested_attributes_for :feast_names, allow_destroy: true, reject_if: :all_blank
 
  # before_save :handle_other_name # being handled in FeastName instead
 
