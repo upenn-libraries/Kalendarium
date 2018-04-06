@@ -263,6 +263,15 @@ CORE ENTITY
 
 
 
+Day
+  Feast(+)
+    FNS
+      FN(+)
+        s_a
+      Qualifier
+    (Modifier)
+    (Observances)
+
 
 
 
