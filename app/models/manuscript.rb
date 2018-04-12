@@ -20,7 +20,7 @@ class Manuscript < ApplicationRecord
   attr_accessor :column2
   attr_accessor :column3
   attr_accessor :column4
-  attr_accessor :column5
+# attr_accessor :column5
 
   attr_accessor :color_weighting_black
   attr_accessor :color_weighting_blue
@@ -43,7 +43,7 @@ class Manuscript < ApplicationRecord
 
   LANGUAGES = %w(English French Italian Spanish German Latin Klingon)
 
-  COLUMN_TYPES = ['Golden Number', 'Dominical Letter', 'KNI', 'Roman Day', 'Text']
+  COLUMN_TYPES = ['Golden Number', 'Dominical Letter', 'KNI', 'Roman Day']#, 'Text']
 
   COLORS = %w(Black Blue Green Pink Red Purple Gold)
 
@@ -77,7 +77,7 @@ class Manuscript < ApplicationRecord
       self.columns[1] = column2
       self.columns[2] = column3
       self.columns[3] = column4
-      self.columns[4] = column5
+    # self.columns[4] = column5
     end
 
     def populate_columns
@@ -85,7 +85,7 @@ class Manuscript < ApplicationRecord
       self.column2 = columns[1]
       self.column3 = columns[2]
       self.column4 = columns[3]
-      self.column5 = columns[4]
+    # self.column5 = columns[4]
     end
 
     def consolidate_color_weighting
