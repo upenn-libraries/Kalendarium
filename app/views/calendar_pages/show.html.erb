@@ -4,154 +4,152 @@ $(function(){
 })
 </script>
 
+<div class="container">
 
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Folio:</strong>
-  <%= @calendar_page.folio %>
-</p>
+  <p>
+    <strong>Folio:</strong>
+    <%= @calendar_page.folio %>
+  </p>
 
-<p>
-  <strong>Start:</strong>
-  <%= "#{month_name @calendar_page.start_month} #{@calendar_page.start_day}" %>
-</p>
+  <p>
+    <strong>Start:</strong>
+    <%= "#{month_name @calendar_page.start_month} #{@calendar_page.start_day}" %>
+  </p>
 
-<p>
-  <strong>End:</strong>
-  <%= "#{month_name @calendar_page.end_month} #{@calendar_page.end_day}" %>
-</p>
-
-<br>
+  <p>
+    <strong>End:</strong>
+    <%= "#{month_name @calendar_page.end_month} #{@calendar_page.end_day}" %>
+  </p>
+</div>
 
 <div class="container" id="calendar_table2">
-<% @calendar_page.dates.each do |date| %>
+  <% @calendar_page.dates.each do |date| %>
 
-  <% day = Kal::Days::DAY_TABLE.find{ |day| day.month_number == date.first && day.day_number == date.last } %>
+    <% day = Kal::Days::DAY_TABLE.find{ |day| day.month_number == date.first && day.day_number == date.last } %>
 
-  <div class="row table-row">
-    <div class="col-1">
-      <%= display_date(day) %>
-    </div>
-
-   <!--  <% @calendar_page.manuscript.columns.each do |column| %>
-      <% col_length = column == 'Text' ? '4' : '1' %>
-      <div class=<%= "col-#{col_length}" %>>
-        <%= display_column(column, day) %>
+    <div class="row table-row">
+      <div class="col-1">
+        <%= display_date(day) %>
       </div>
-    <% end %> -->
 
-    <div class="col-2">
-      <div class = "row">
-        <% @calendar_page.manuscript.columns.each do |column| %>
-          <% next if column == 'Text' %>
-          <% size = ['Golden Number', 'Roman Day'].include?(column) ? 4 : 2 %>
-          <div class=<%="col-#{size}"%>>
-            <%= display_column(column, day) %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-5">
-      <%= display_column('Text', day) %>
-    </div>
-
-    <div class="col-4">
-      <% feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number } %>
-      <% unless feasts.blank? %>
-        <% first_feast = feasts.first %>
-
-        <div class="btn-group btn-group-sm">
-          <%= link_to 'edit', edit_feast_path(first_feast), data: {toggle: 'tooltip'}, title: 'This link provides an easy way to edit a feast', class: "btn btn-secondary" %>
-          <%= link_to 'delete', [@calendar_page, first_feast], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary" %>
-          <%= link_to 'details', feast_path(first_feast), class: "btn btn-secondary" %>
+     <!--  <% @calendar_page.manuscript.columns.each do |column| %>
+        <% col_length = column == 'Text' ? '4' : '1' %>
+        <div class=<%= "col-#{col_length}" %>>
+          <%= display_column(column, day) %>
         </div>
+      <% end %> -->
 
+      <div class="col-2">
+        <div class = "row">
+          <% @calendar_page.manuscript.columns.each do |column| %>
+            <% next if column == 'Text' %>
+            <% size = ['Golden Number', 'Roman Day'].include?(column) ? 4 : 2 %>
+            <div class=<%="col-#{size}"%>>
+              <%= display_column(column, day) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-5">
+        <%= display_column('Text', day) %>
+      </div>
+
+      <div class="col-4">
+        <% feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number } %>
+        <% unless feasts.blank? %>
+          <% first_feast = feasts.first %>
+
+          <div class="btn-group btn-group-sm">
+            <%= link_to 'edit', edit_feast_path(first_feast), data: {toggle: 'tooltip'}, title: 'This link provides an easy way to edit a feast', class: "btn btn-secondary" %>
+            <%= link_to 'delete', [@calendar_page, first_feast], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary" %>
+            <%= link_to 'details', feast_path(first_feast), class: "btn btn-secondary" %>
+          </div>
+
+            <%= link_to 'add feast', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last), class: "btn btn-sm btn-primary" %>
+        <% else %>
           <%= link_to 'add feast', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last), class: "btn btn-sm btn-primary" %>
-      <% else %>
-        <%= link_to 'add feast', new_calendar_page_feast_path(@calendar_page, 'feast[month_number]': date.first, 'feast[day_number]': date.last), class: "btn btn-sm btn-primary" %>
-      <% end %>
+        <% end %>
 
 
 
 
-        <% modal_id = "newFeastModal#{10 * date.first.to_i}#{date.last}"%>
+          <% modal_id = "newFeastModal#{10 * date.first.to_i}#{date.last}"%>
 
-        <!-- Button trigger modal -->
-      <!--   <button type="button" data-toggle="modal" data-target=<%= "##{modal_id}" %>>
-          Add w/ modal
-        </button> -->
+          <!-- Button trigger modal -->
+           <button type="button" data-toggle="modal" data-target=<%= "##{modal_id}" %>>
+            Add w/ modal
+          </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id=<%= modal_id %> tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add your feast</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+          <!-- Modal -->
+          <div class="modal fade" id=<%= modal_id %> tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add your feast</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <h1><%= "#{month_name(date.first)} #{date.last}" %></h1>
+
+
+                  <% feast = @calendar_page.feasts.build(month_number: date.first, day_number: date.last) %>
+                  <% feast.manuscript = @calendar_page.manuscript %>
+                  <% 2.times{ feast.feast_names.build } %>
+
+                  <%= form_for calendar_page_feasts_path([@calendar_page, feast]), html: {class: "form"}  do |f| %>
+
+                    <%#= render 'feasts/form', form: f %>
+
+                  <% end %>
+
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
               </div>
-              <div class="modal-body">
+            </div>
+          </div>
 
-                <h1><%= "#{month_name(date.first)} #{date.last}" %></h1>
 
-                <!--
-                <% feast = @calendar_page.feasts.build(month_number: date.first, day_number: date.last) %>
-                <% feast.manuscript = @calendar_page.manuscript %>
-                <% 2.times{ feast.feast_names.build } %>
+      </div>
+    </div>
 
-                <%= form_for calendar_page_feasts_path([@calendar_page, feast]), html: {class: "form"}  do |f| %>
 
-                  <%#= render 'feasts/form', form: f %>
 
-                <% end %>
-                 -->
 
-              </div>
-              <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div> -->
+    <% if feasts.length > 1 %>
+      <% feasts[1..-1].each do |feast| %>
+        <div class="row table-row">
+          <div class="col-3"></div>
+          <div class="col-5">
+            <span class=<%= feast_color_class(feast.color) %>><%= feast %></span>
+          </div>
+          <div class="col-4">
+            <div class="btn-group btn-group-sm">
+              <%= link_to 'edit', edit_feast_path(feast), class: "btn btn-secondary" %>
+              <%= link_to 'delete', [@calendar_page, feast], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary"  %>
+              <%= link_to 'details', feast_path(feast), class: "btn btn-secondary"  %>
             </div>
           </div>
         </div>
-
-
-    </div>
-  </div>
-
-
-
-
-  <% if feasts.length > 1 %>
-    <% feasts[1..-1].each do |feast| %>
-      <div class="row table-row">
-        <div class="col-3"></div>
-        <div class="col-5">
-          <span class=<%= feast_color_class(feast.color) %>><%= feast %></span>
-        </div>
-        <div class="col-4">
-          <div class="btn-group btn-group-sm">
-            <%= link_to 'edit', edit_feast_path(feast), class: "btn btn-secondary" %>
-            <%= link_to 'delete', [@calendar_page, feast], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary"  %>
-            <%= link_to 'details', feast_path(feast), class: "btn btn-secondary"  %>
-          </div>
-        </div>
-      </div>
+      <% end %>
     <% end %>
+
+
+
   <% end %>
-
-
-
-<% end %>
 </div>
 
-<br>
+<div class="container">
+  <%= link_to 'edit', edit_calendar_page_path, class: "btn btn-secondary" %>
 
-
-<%= link_to 'edit', edit_calendar_page_path, class: "btn btn-secondary" %>
-
-<%= link_to 'back', "/manuscripts/#{@calendar_page.manuscript.id}#calendar_pages", class: "btn btn-secondary" %>
-<%#= link_to 'Back', manuscript_path(@calendar_page.manuscript) %>
+  <%= link_to 'back', "/manuscripts/#{@calendar_page.manuscript.id}#calendar_pages", class: "btn btn-secondary" %>
+  <%#= link_to 'Back', manuscript_path(@calendar_page.manuscript) %>
+</div>
