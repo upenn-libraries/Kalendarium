@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+name_list = %w(
+  Andrew
+  Agatha
+  James
+)
+
+names = name_list.map{ |n| {name: n} }
+
+Name.create(names)

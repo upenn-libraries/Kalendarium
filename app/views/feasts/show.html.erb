@@ -36,6 +36,6 @@
   <div class="row">
     <br>
 
-    <%= link_to 'back', calendar_page_path(@feast.calendar_page), class: "btn btn-secondary" %>
+    <%= (link_to 'back', calendar_page_path(@feast.calendar_page), class: "btn btn-secondary") if !request.xhr? %>
   </div>
 </div>

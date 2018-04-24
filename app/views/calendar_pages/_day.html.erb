@@ -1,0 +1,60 @@
+     <% day = Kal::Days::DAY_TABLE.find{ |day| day.month_number == date.first && day.day_number == date.last } %>
+     <div class="row table-row">
+        <div class="col-1">
+          <%= display_date(day) %>
+        </div>
+
+        <div class="col-2">
+          <div class = "row">
+            <% @calendar_page.manuscript.columns.each do |column| %>
+            <% size = ['Golden Number', 'Roman Day'].include?(column) ? 4 : 2 %>
+            <div class=<%="col-#{size}"%>>
+              <%= display_column(column, day) %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-5">
+          <%= display_column('Text', day) %>
+        </div>
+
+        <div class="col-4">
+          <% feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number } %>
+          <% unless feasts.blank? %>
+
+            <% first_feast = feasts.first %>
+
+            <div class="btn-group btn-group-sm">
+              <%= show_feast_link(first_feast) %>
+              <%= edit_feast_link(first_feast) %>
+              <%= delete_feast_link(first_feast) %>
+            </div>
+
+            <%= add_feast_link(date)  %>
+
+          <% else %>
+            <%= add_feast_link(date) %>
+          <% end %>
+
+        </div>
+     </div>
+
+      <% if feasts.length > 1 %>
+        <% feasts[1..-1].each do |feast| %>
+          <div class="row table-row">
+            <div class="col-3"></div>
+            <div class="col-5">
+              <span class=<%= feast_color_class(feast.color) %>><%= feast %></span>
+            </div>
+            <div class="col-4">
+              <div class="btn-group btn-group-sm">
+                <%= show_feast_link(feast)%>
+                <%= edit_feast_link(feast) %>
+                <%= delete_feast_link(feast) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+

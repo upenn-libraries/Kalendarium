@@ -15,6 +15,31 @@ $( document ).on('turbolinks:load', function() {
       return 'choose attributes';
     }
   });
+
+$(document.body).on('ajax:success', '.feast-modal-link', function(event) {
+  // $('.feast-modal-link').on("ajax:success", function(event) {
+      const [data, status, xhr] = Array.from(event.detail);
+      $('#feast-modal .modal-body').html(xhr.responseText);
+      $('#feast-modal .modal-header').html($(this).attr('data-header'));
+      $('#feast-modal').modal('show')
+    }).on("ajax:error", event => $('#feast-modal .modal-content').html("<p>ERROR</p>"));
+
+  $(document.body).on('ajax:success', '.edit-feast-modal-link', function(event) {
+ // $('.edit-feast-modal-link').on("ajax:success", function(event) {
+      const [data, status, xhr] = Array.from(event.detail);
+      $('#feast-modal .modal-body').html(xhr.responseText);
+      $('#feast-modal .modal-header').html($(this).attr('data-header'));
+      $('#feast-modal').modal('show')
+    }).on("ajax:error", event => $('#feast-modal .modal-content').html("<p>ERROR</p>"));
+
+
+  $(document.body).on('ajax:success', '.add-feast-modal-link', function(event) {
+      const [data, status, xhr] = Array.from(event.detail);
+      $('#feast-modal .modal-body').html(xhr.responseText);
+      $('#feast-modal .modal-header').html($(this).attr('data-header'));
+      $('#feast-modal').modal('show')
+    }).on("ajax:error", event => $('#feast-modal .modal-content').html("<p>ERROR</p>"))
+
 });
 
 

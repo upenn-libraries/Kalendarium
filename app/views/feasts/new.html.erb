@@ -1,9 +1,12 @@
+<div class="container">
+  <h1><%= "#{month_name(@feast.month_number)} #{@feast.day_number}" %></h1>
 
-<h1><%= "#{month_name(@feast.month_number)} #{@feast.day_number}" %></h1>
+  <% options = {html: {class: "form"}} %>
+  <% options.merge!({remote: true, format: :js}) if request.xhr? %>
 
-<%= form_for [@calendar_page, @feast], html: {class: "form"} do |form| %>
-  <%= render 'form', form: form %>
-<% end %>
+  <%= form_for [@calendar_page, @feast], options do |form| %>
+    <%= render 'form', form: form %>
+  <% end %>
 
-<%= link_to 'back', [@manuscript, @calendar_page], class: "btn btn-secondary" %>
-
+  <%= link_to 'back', [@manuscript, @calendar_page], class: "btn btn-secondary" unless request.xhr? %>
+</div>

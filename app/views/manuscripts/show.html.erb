@@ -184,7 +184,7 @@
     <h4> Color Weight </h4>
     <% @manuscript.color_weighting.keys.sort_by{ |c| @manuscript.color_weighting[c] }.each do |color| %> <!-- uhh... -->
       <div>
-        <strong><%= "#{color.to_s.capitalize}:" %></strong>
+        <%= content_tag(:strong, class: feast_color_class(color)){ "#{color.capitalize}" }  %>
         <%= @manuscript.color_weighting[color] %>
       </div>
     <% end %>

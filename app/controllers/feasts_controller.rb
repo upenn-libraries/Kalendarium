@@ -11,7 +11,11 @@ class FeastsController < ApplicationController
   # GET /feasts/1
   # GET /feasts/1.json
   def show
-    @calendar_page = params[:origin_calendar_page] if params[:origin_calendar_page]
+    @calendar_page = params[:origin_calendar_page] if params[:origin_calendar_page] # outdated?
+
+    respond_to do |format|
+      format.html { render layout: !request.xhr? }
+    end
   end
 
   # GET /feasts/
@@ -19,14 +23,23 @@ class FeastsController < ApplicationController
     @feast = @calendar_page.feasts.build(feast_params)
     @feast.manuscript = @calendar_page.manuscript
 
-    people = params['feast_people']
-    person_number = people ? people.to_i : 1
-    person_number.times{ @feast.feast_names.build }
+    # people = params['feast_people']
+    # person_number = people ? people.to_i : 1
+    # person_number.times{ @feast.feast_names.build }
+    @feast.feast_names.build
+
+    respond_to do |format|
+      format.html { render layout: !request.xhr? }
+    end
   end
 
   # GET /feasts/1/edit
   def edit
     @calendar_page = @feast.calendar_page
+
+    respond_to do |format|
+      format.html { render layout: !request.xhr? }
+    end
   end
 
   # POST /feasts
@@ -35,8 +48,10 @@ class FeastsController < ApplicationController
     @feast = @calendar_page.feasts.build(feast_params)
     respond_to do |format|
       if @feast.save
+      # @calendar_page = @feast.calendar_page
         format.html { redirect_to @calendar_page, notice: 'Feast was successfully created.' }
         format.json { render :show, status: :created, location: @feast }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @feast.errors, status: :unprocessable_entity }
@@ -50,8 +65,10 @@ class FeastsController < ApplicationController
   def update
     respond_to do |format|
       if @feast.update(feast_params)
+        @calendar_page = @feast.calendar_page
         format.html { redirect_to @feast.calendar_page, notice: 'Feast was successfully updated.' }
         format.json { render :show, status: :ok, location: @feast }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @feast.errors, status: :unprocessable_entity }

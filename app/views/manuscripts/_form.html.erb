@@ -167,7 +167,6 @@
 
   <h2>Calendar Details</h2>
 
- <!--  needs revision to use only 4 columns -->
   <div class="row">
     <div class="form-group col">
       <%= form.label :column1, "Column 1" %>
@@ -199,56 +198,15 @@
   Color Weight:
 
   <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <%= form.label :color_weighting_black, 'Black' %>
-        <%= form.number_field :color_weighting_black, min: 0, max: 7, id: :manuscript_color_weighting_black, class: "form-control" %>
+    <% Manuscript::COLORS.each do |color| %>
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :"color_weighting_#{color}", color.capitalize, class: feast_color_class(color) %>
+          <%= form.number_field :"color_weighting_#{color}", min: 0, max: Manuscript::COLORS.length, id: :"manuscript_color_weighting_#{color}", class: "form-control" %>
+        </div>
       </div>
-    </div>
-
-    <div class="col">
-      <div class="form-group">
-        <%= form.label :color_weighting_blue, 'Blue' %>
-        <%= form.number_field :color_weighting_blue, min: 0, max: 7, id: :manuscript_color_weighting_blue, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="form-group">
-        <%= form.label :color_weighting_green, 'Green' %>
-        <%= form.number_field :color_weighting_green, min: 0, max: 7, id: :manuscript_color_weighting_green, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="form-group">
-        <%= form.label :color_weighting_pink, 'Pink' %>
-        <%= form.number_field :color_weighting_pink, min: 0, max: 7, id: :manuscript_color_weighting_pink, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="form-group">
-        <%= form.label :color_weighting_red, 'Red' %>
-        <%= form.number_field :color_weighting_red, min: 0, max: 7, id: :manuscript_color_weighting_red, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="form-group">
-        <%= form.label :color_weighting_purple, 'Purple' %>
-        <%= form.number_field :color_weighting_purple, min: 0, max: 7, id: :manuscript_color_weighting_purple, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="form-group">
-        <%= form.label :color_weighting_gold, 'Gold' %>
-        <%= form.number_field :color_weighting_gold, min: 0, max: 7, id: :manuscript_color_weighting_gold, class: "form-control" %>
-      </div>
-    </div>
+    <% end %>
   </div>
-
 
   <div class="form-group">
     <%= form.label :has_shading, 'Is there shading?' %>

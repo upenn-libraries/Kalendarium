@@ -1,0 +1,2 @@
+$('#feast-modal').modal('hide');
+$('#<%= "#{@feast.month_number}-#{@feast.day_number}" %>').html("<%= escape_javascript render partial: 'calendar_pages/day', locals: { date: [@feast.month_number, @feast.day_number], manuscript: @feast.manuscript } %>");

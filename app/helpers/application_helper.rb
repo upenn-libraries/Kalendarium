@@ -54,6 +54,11 @@ module ApplicationHelper
     end
   end
 
+
+  def manuscript_color_form
+
+  end
+
   # -------------------------
 
   def display_column col, day # for now
@@ -116,6 +121,36 @@ module ApplicationHelper
     content_tag(:span, class: "#{feast_color_class(feast.color)}"){ feast.to_s }
   end
 
+  def modal_data(feast=nil)
+    data = {
+      toggle: 'modal',
+      target: 'feast-modal',
+      remote: 'true',
+    }
+    data.merge!(header: content_tag(:span, class: "#{feast.color}_feast"){ feast.to_s }) if feast
+    data
+  end
+
+  def show_feast_link(feast)
+    class_string = 'btn btn-secondary feast-modal-link'
+    link_to 'details', feast_path(feast), data: modal_data(feast), class: class_string
+  end
+
+  def edit_feast_link(feast)
+    class_string = 'btn btn-secondary edit-feast-modal-link'
+    link_to 'edit', edit_feast_path(feast), data: modal_data(feast), class: class_string
+  end
+
+  def add_feast_link(date)
+    date_params = {'feast[month_number]': date.first, 'feast[day_number]': date.last}
+    class_string = 'btn btn-sm btn-primary add-feast-modal-link'
+    link_to 'add feast', new_calendar_page_feast_path(@calendar_page, date_params), data: modal_data, class: class_string
+  end
+
+  def delete_feast_link(feast)
+    link_to 'delete', [@calendar_page, feast], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+  end
+
   # ----------------------------
   # def saint_attribute_optgroup(heading, attributes)
   #   content_tag(:optgroup, label: heading) do
@@ -135,17 +170,10 @@ module ApplicationHelper
 
   # # #
   def link_to_add_feast_name(name, f, options={})
-    # new_object = f.object.send(association).klass.new
-    # id = new_object.object_id
-    # fields = f.fields_for(association, new_object, child_index: id) do |builder|
-    #   render(association.to_s.singularize + "_fields", f: builder)
-    # end
-    # link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
-
     new_fn = FeastName.new
     id = new_fn.object_id
     fields = f.fields_for(:feast_names, new_fn) do |builder|
-      render("feast_name_fields", fnf: builder) #f: builder
+      render("feast_name_fields", fnf: builder)
     end
 
     options ||= {}

@@ -6,6 +6,8 @@
   padding: 2px;
 }
 
+// change underscores to dashes ( _ => - )
+
 .big_KNI {
   color: #ba1503;
   background-color: #ffef77;
@@ -47,3 +49,7 @@
   display: none;
 }
 
+.bordered-modal {
+  border: 12px solid #5e552a;
+  border-radius: 18px;
+}
