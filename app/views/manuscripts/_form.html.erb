@@ -201,7 +201,7 @@
     <% Manuscript::COLORS.each do |color| %>
       <div class="col">
         <div class="form-group">
-          <%= form.label :"color_weighting_#{color}", color.capitalize, class: feast_color_class(color) %>
+          <%= form.label :"color_weighting_#{color}", color.capitalize, class: color_class(color) %>
           <%= form.number_field :"color_weighting_#{color}", min: 0, max: Manuscript::COLORS.length, id: :"manuscript_color_weighting_#{color}", class: "form-control" %>
         </div>
       </div>
