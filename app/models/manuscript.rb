@@ -1,6 +1,6 @@
 class Manuscript < ApplicationRecord
   has_many :calendar_pages, dependent: :destroy
-  has_many :feasts
+  has_many :feasts # dependent destroy?
 
   validates_presence_of :name
   serialize :columns
@@ -21,6 +21,28 @@ class Manuscript < ApplicationRecord
   attr_accessor :column3
   attr_accessor :column4
 # attr_accessor :column5
+
+
+# --------------------------
+
+  # attr_accessor :color0
+  # attr_accessor :color1
+  # attr_accessor :color2
+  # attr_accessor :color3
+  # attr_accessor :color4
+  # attr_accessor :color5
+  # attr_accessor :color6
+
+  # attr_accessor :color_weight0
+  # attr_accessor :color_weight1
+  # attr_accessor :color_weight2
+  # attr_accessor :color_weight3
+  # attr_accessor :color_weight4
+  # attr_accessor :color_weight5
+  # attr_accessor :color_weight6
+
+# ---------------------------
+
 
   attr_accessor :color_weighting_black
   attr_accessor :color_weighting_blue
@@ -45,7 +67,7 @@ class Manuscript < ApplicationRecord
 
   COLUMN_TYPES = ['Golden Number', 'Dominical Letter', 'KNI', 'Roman Day']#, 'Text']
 
-  COLORS = %w(black blue green pink red purple gold)
+  COLORS = %w(black blue red green pink purple gold)
 
   # COLOR_CODES = {
   #   black:  [  0,   0,   0],
@@ -92,9 +114,9 @@ class Manuscript < ApplicationRecord
      self.color_weighting = Hash.new
      self.color_weighting[:black]  = color_weighting_black  unless color_weighting_black.blank?
      self.color_weighting[:blue]   = color_weighting_blue   unless color_weighting_blue.blank?
+     self.color_weighting[:red]    = color_weighting_red    unless color_weighting_red.blank?
      self.color_weighting[:green]  = color_weighting_green  unless color_weighting_green.blank?
      self.color_weighting[:pink]   = color_weighting_pink   unless color_weighting_pink.blank?
-     self.color_weighting[:red]    = color_weighting_red    unless color_weighting_red.blank?
      self.color_weighting[:purple] = color_weighting_purple unless color_weighting_purple.blank?
      self.color_weighting[:gold]   = color_weighting_gold   unless color_weighting_gold.blank?
     end
@@ -103,12 +125,33 @@ class Manuscript < ApplicationRecord
     def populate_color_weighting
       self.color_weighting_black  = color_weighting[:black]
       self.color_weighting_blue   = color_weighting[:blue]
-      self.color_weighting_green  = color_weighting[:green]
       self.color_weighting_pink   = color_weighting[:pink]
       self.color_weighting_red    = color_weighting[:red]
+      self.color_weighting_green  = color_weighting[:green]
       self.color_weighting_purple = color_weighting[:purple]
       self.color_weighting_gold   = color_weighting[:gold]
     end
+
+    ##########################
+    # def assign_color_weight
+    #   self.color_weight = Hash.new # database column
+    #   7.times do |num|
+    #     self.color_weight[send(:"color#{num}")] = send(:"color_weight#{num}") if send(:"color#{num}")
+    #   end
+
+    # # 7.times do |num|
+    # #   self.color_weight[:"color#{num}"] = [send(:"color#{num}", send(:"color_weight#{num}")] if send(:"color#{num}"
+    # # end
+
+    # end
+
+    def display_color_weight
+
+    end
+    ##########################
+
+
+
 
     def combine_folio_information
       self.start_folio = start_folio_number + start_folio_side
@@ -144,7 +187,7 @@ class Manuscript < ApplicationRecord
         intermediates = ((start_folio_number.to_i + 1)..(end_folio_number.to_i - 1)).to_a.map{ |n| ["#{n}r", "#{n}v"] }
         (initials + intermediates + finals).flatten
      # else
-     #   (start_f.to_i..end_folio.to_i).to_a.map{ |n| n.to_s }
+     #   (start_f.to_i..end_folio.to_i).to_a.map(&:to_s)
        end
     end
 end

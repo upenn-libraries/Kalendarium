@@ -1,5 +1,11 @@
  <div class="container">
-  <h1><%= @manuscript.name %></h1>
+  <div class="row">
+    <div class="col-6"><h1><%= @manuscript.name %></h1></div>
+    <div class="btn-group col-6">
+      <%= link_to 'edit this manuscript', edit_manuscript_path(@manuscript), class: "btn btn-secondary" %>
+      <%= link_to 'back to manuscripts', manuscripts_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
 
   <p id="notice"><%= notice %></p>
 
@@ -7,182 +13,51 @@
     <%= display_field(@manuscript, atr, always_display: true)  %>
   <%  end %>
 
-  <!-- <p>
-    <strong>Shelfmark:</strong>
-    <%= @manuscript.shelfmark %>
-  </p>
-
-  <p>
-    <strong>Book type:</strong>
-    <%= @manuscript.book_type %>
-  </p>
-
-  <p>
-    <strong>Manuscript or print:</strong>
-    <%= @manuscript.manuscript_or_print %>
-  </p>
-
-  <p>
-    <strong>Language:</strong>
-    <%= @manuscript.language %>
-  </p>
-
-  <p>
-    <strong>Script:</strong>
-    <%= @manuscript.script %>
-  </p> -->
 
   <br>
   <%= display_field_group(@manuscript, 'Provenance?', %i|origin origin_note destination destination_note|) %>
-
-  <!-- <h3>Provenance?</h3>
-
-  <p>
-    <strong>Origin:</strong>
-    <%= @manuscript.origin %>
-  </p>
-
-
-  <p>
-    <strong>Origin note:</strong>
-    <%= @manuscript.origin_note %>
-  </p>
-
-
-  <p>
-    <strong>Destination:</strong>
-    <%= @manuscript.destination %>
-  </p>
-
-  <p>
-    <strong>Destination note:</strong>
-    <%= @manuscript.destination_note %>
-  </p> -->
 
   <br>
   <%= display_field_group(@manuscript, 'Text Block', %i|text_height text_width text_depth|) %>
 
 
-  <!-- <h3>Text block</h3>
-
-  <p>
-    <strong>Height:</strong>
-    <%= @manuscript.text_height %>
-  </p>
-
-  <p>
-    <strong>Width:</strong>
-    <%= @manuscript.text_width %>
-  </p>
-
-  <p>
-    <strong>Depth:</strong>
-    <%= @manuscript.text_depth %>
-  </p>
-   -->
-
   <br>
   <%= display_field_group(@manuscript, 'Writing Surface', %i|writing_surface_height writing_surface_width|) %>
 
-  <!-- <h3>Writing Surface</h3>
-
-  <p>
-    <strong>Height:</strong>
-    <%= @manuscript.writing_surface_height %>
-  </p>
-
-  <p>
-    <strong>Width:</strong>
-    <%= @manuscript.writing_surface_width %>
-  </p>
-   -->
 
   <br>
   <% %i(start_year end_year date_note extent provenance state_of_completion resource numbering_method).each do |atr| %>
     <%= display_field(@manuscript, atr) %>
   <%  end %>
 
-  <!-- <p>
-    <strong>Start year:</strong>
-    <%= @manuscript.start_year %>
-  </p>
-
-  <p>
-    <strong>End year:</strong>
-    <%= @manuscript.end_year %>
-  </p>
-
-  <p>
-    <strong>Date note:</strong>
-    <%= @manuscript.date_note %>
-  </p>
-
-  <p>
-    <strong>Extent:</strong>
-    <%= @manuscript.extent %>
-  </p>
-
-  <p>
-    <strong>Provenance:</strong>
-    <%= @manuscript.provenance %>
-  </p>
-
-  <p>
-    <strong>State of completion:</strong>
-    <%= @manuscript.state_of_completion %>
-  </p>
-
-  <p>
-    <strong>Resource:</strong>
-    <%= @manuscript.resource %>
-  </p>
-
-
-  <p>
-    <strong>Numbering method:</strong>
-    <%= @manuscript.numbering_method %>
-  </p> -->
-
-
   <div class="row">
     <div class="col-2"> Calender integral? </div>
     <div class="col-2"><%= yes_no(@manuscript.calendar_integral) %></div>
   </div>
-
 
   <div class="row" >
     <div class="col-2">Calendar range:</div>
     <div class="col-2"><%= "#{@manuscript.start_folio}-#{@manuscript.end_folio}" %></div>
   </div>
 
-
-  <!-- <p>
-    <strong>Calender integral?:</strong>
-    <%= yes_no(@manuscript.calendar_integral) %>
-  </p> -->
-
-  <!-- <p>
-    <strong>Calendar range:</strong>
-    <%= "#{@manuscript.start_folio}-#{@manuscript.end_folio}" %>
-  </p> -->
-
   <br>
 
   <h4> Columns </h4>
   <div class="row">
-  <% @manuscript.columns.each_with_index do |column, index| %>
-    <div class="col-1">
-      <strong><%= "#{index + 1}:" %></strong><br>
-      <%= column %>
-    </div>
-  <% end %>
+    <% @manuscript.columns.each_with_index do |column, index| %>
+      <% next if column.blank? %>
+      <div class="col-1">
+        <strong><%= "#{index + 1}." %></strong><br>
+        <%= column %>
+      </div>
+    <% end %>
   </div>
 
   <br>
 
   <% unless @manuscript.color_weighting.blank? %>
-    <h4> Color Weight </h4>
-    <% @manuscript.color_weighting.keys.sort_by{ |c| @manuscript.color_weighting[c] }.each do |color| %> <!-- uhh... -->
+    <h4>Color Ranking</h4>
+    <% @manuscript.color_weighting.keys.sort_by{ |c| @manuscript.color_weighting[c] }.each do |color| %>
       <div>
         <%= content_tag(:strong, class: color_class(color)){ "#{color.capitalize}" }  %>
         <%= @manuscript.color_weighting[color] %>
@@ -197,29 +72,18 @@
     <div class="col-2"><%= yes_no(@manuscript.has_shading) %></div>
   </div>
 
-
-  <!--
-  <p>
-    <strong>Calender has shading?:</strong>
-    <%= yes_no(@manuscript.has_shading) %>
-  </p> -->
-
-  <br>
-
-  <%= link_to 'edit manuscript', edit_manuscript_path(@manuscript), class: "btn btn-secondary" %>
-  <%= link_to 'back to manuscripts', manuscripts_path, class: "btn btn-secondary" %>
 </div>
+
 
 
 <div class="container">
 
   <br>
-
   <p id="notice"><%= notice %></p>
 
   <div class="row" id="calendar_pages">
     <div class="col-6">
-      <h5>Calendar Pages</h5>
+      <h3>Calendar Pages</h3>
     </div>
 
     <div class="col-6">
@@ -242,8 +106,8 @@
 
         <div class="col-6">
           <div class="btn-group">
-           <%= link_to 'examine', calendar_page, class: "btn btn-secondary" %>
-            <%= link_to 'edit', edit_calendar_page_path(calendar_page), class: "btn btn-secondary" %>
+           <%= link_to 'show', calendar_page, class: "btn btn-secondary" %>
+            <%#= link_to 'edit', edit_calendar_page_path(calendar_page), class: "btn btn-secondary" %>
            <%= link_to 'delete', [@manuscript, calendar_page], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </div>
         </div>

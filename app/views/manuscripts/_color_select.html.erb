@@ -1,0 +1,27 @@
+<% num ||= num %> <!-- why does it break without this? -->
+<!-- <fieldset>
+  <div class="row form-group">
+    <div class="col-1">
+      <%= form.label :"color#{num}", 'color' %>
+    </div>
+    <div class="col-6">
+      <%#= select_tag :colors, options_for_select(Manuscript::COLORS), class: 'form-control' %>
+      <%= form.select :"color#{num}", Manuscript::COLORS, {}, class: 'form-control color-selector' %>
+    </div>
+    <div class="col-1">
+      <%= form.label :"color_weight#{num}", 'importance'  %>
+    </div>
+    <div class="col-2">
+      <%= form.number_field :"color_weight#{num}", min: 0, max: 7, class: 'form-control' %>
+    </div>
+
+    <div class="col-2">
+      <%= content_tag(:p, class: 'btn btn-danger remove-color-select'){ 'cancel' } unless @cancel_flag %>
+    </div>
+    <% @cancel_flag = true %>
+  </div>
+
+  <%#= link_to 'choose another color', '#', class: 'btn btn-secondary add_color_select' %>
+
+</fieldset>
+ -->

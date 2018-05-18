@@ -1,8 +1,11 @@
 <div class="container">
   <h1>Editing Manuscript</h1>
 
+  <div class="btn-group">
+    <%= link_to 'examine', @manuscript, class: "btn btn-secondary" %>
+    <%= link_to 'back', manuscripts_path, class: "btn btn-secondary" %>
+  </div>
+
   <%= render 'form', manuscript: @manuscript %>
 
-  <%= link_to 'examine', @manuscript, class: "btn btn-secondary" %>
-  <%= link_to 'back', manuscripts_path, class: "btn btn-secondary" %>
 </div>

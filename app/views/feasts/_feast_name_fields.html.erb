@@ -1,14 +1,27 @@
-<fieldset>
+<fieldset class="col">
+<!-- <fieldset> -->
   <hr>
 
-  <div class="form-group">
-    <%= fnf.label :name_id, 'Name' %>
-    <%= fnf.collection_select :name_id, Name.all.to_a << Name.new(name: 'other'), :id, :name, include_blank: true %>
+  <div class="row">
+
+    <div class="col-8">
+      <div class="form-group">
+        <%= fnf.label :name_id, 'Name' %>
+        <%= fnf.collection_select :name_id, Name.all.to_a << Name.new(name: 'other'), :id, :name, {include_blank: true},  class: 'name-selection form-control'  %>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <%#= fnf.hidden_field :_destroy %>
+
+      <%#= link_to 'remove', '#', class: 'remove-feast-name btn btn-danger' if @flag %>
+      <%# @flag = true %><!-- is this ok? -->
+    </div>
   </div>
 
- <div class="form-group hidden" id="name_field" name="name_field">
-    <%= fnf.text_field :other_name %>
- </div>
+  <div class="form-group hidden name-field" name="name-field" >
+     <%= fnf.text_field :other_name, placeholder: 'add name', class: 'form-control' %>
+  </div>
 
 
   <div class="form-group">
@@ -26,9 +39,12 @@
     <%= fnf.text_field :saint_location, class: "form-control" %>
   </div>
 
-  <%= fnf.hidden_field :_destroy %>
+  <%#= fnf.hidden_field :_destroy %>
 
-  <%= link_to 'remove', '#', class: 'remove_feast_name btn btn-danger' if @flag %>
-  <% @flag = true %><!-- is this ok? -->
+  <%#= link_to 'remove', '#', class: 'remove_feast_name btn btn-danger' if @flag %>
+  <%# @flag = true %><!-- is this ok? -->
+<!-- </fieldset> -->
 </fieldset>
 
+
+  <%#= link_to_add_feast_name "Add another", fnf, class: "btn btn-secondary" %>

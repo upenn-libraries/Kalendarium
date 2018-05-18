@@ -1,25 +1,37 @@
+     <% if @hr_flag %>
+       <!-- <hr style="border: solid #5b522b 1px; margin: 1px; width: 75%; size: 5px; align-self: right;"> -->
+     <% end %>
+     <% @hr_flag = true %>
+
+     <% @grade_switch ||= 1 %>
+     <% @grade_switch *= -1 %>
+     <% @grade = (@grade_switch == 1) ? 'dark-grade' : 'light-grade' %>
+
      <% day = Kal::Days::DAY_TABLE.find{ |day| day.month_number == date.first && day.day_number == date.last } %>
-     <div class="row table-row">
-        <div class="col-1">
+     <div class="row calendar-row <%= @grade %>">
+        <div class="col-2">
           <%= display_date(day) %>
         </div>
 
-        <div class="col-2">
+        <div class="col-2 ">
           <div class = "row">
-            <% @calendar_page.manuscript.columns.each do |column| %>
+            <%= arrange_columns(@calendar_page.manuscript, day) %>
+            <%#= small_cols  %>
+
+         <!--    <% @calendar_page.manuscript.columns.each do |column| %>
             <% size = ['Golden Number', 'Roman Day'].include?(column) ? 4 : 2 %>
-            <div class=<%="col-#{size}"%>>
+            <div class=<%="col-#{size} calendar-cell"%>>
               <%= display_column(column, day) %>
             </div>
-            <% end %>
+            <% end %> -->
           </div>
         </div>
 
         <div class="col-5">
-          <%= display_column('Text', day) %>
+          <%= display_feast(day) %>
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
           <% feasts = @calendar_page.feasts.select{ |f| day[:month_number] == f.month_number && day[:day_number] == f.day_number } %>
           <% unless feasts.blank? %>
 
@@ -40,14 +52,15 @@
         </div>
      </div>
 
+
       <% if feasts.length > 1 %>
         <% feasts[1..-1].each do |feast| %>
-          <div class="row table-row">
-            <div class="col-3"></div>
+          <div class="row calendar-row">
+            <div class="col-4"></div>
             <div class="col-5">
               <span class=<%= color_class(feast.color) %>><%= feast %></span>
             </div>
-            <div class="col-4">
+            <div class="col-3">
               <div class="btn-group btn-group-sm">
                 <%= show_feast_link(feast)%>
                 <%= edit_feast_link(feast) %>
@@ -55,6 +68,6 @@
               </div>
             </div>
           </div>
+          <!-- <hr> -->
         <% end %>
       <% end %>
-

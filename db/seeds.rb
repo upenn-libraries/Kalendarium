@@ -10,8 +10,11 @@ name_list = %w(
   Andrew
   Agatha
   James
+  Guinefort
 )
 
 names = name_list.map{ |n| {name: n} }
 
 Name.create(names)
+
+

@@ -2,11 +2,17 @@
   background-color: #fec;
 }
 
-.table-row {
-  padding: 2px;
+.calendar-row, .table-row {
+  padding: 1px;
 }
 
-// change underscores to dashes ( _ => - )
+.red-text, .black-text, .blue-text, .green-text, .gold-text, .purple-text, .pink-text {
+  font-weight: 600;
+}
+
+// .calendar-cell {
+//   outline: 4px sold black;
+// }
 
 .big-KNI {
   color: #ba1503;
@@ -18,38 +24,51 @@
 }
 
 .red-text, .egyptian-day {
-  color: red;
+  color: #b7371d;
 }
 
 .black-text {
-  color: black;
+  color: #2c302d;
 }
 
 .blue-text {
-  color: blue;
+  color: #3560a5;
+  font: verdana;
 }
 
 .green-text {
-  color: green;
+  color: #266b35; //#3d8c55;
 }
 
 .purple-text {
-  color: purple;
+  color: #602c6b;
 }
 
 .pink-text {
-  color: #a47;
+  color: #cc5f95;
 }
 
 .gold-text {
   color: #D4AF37;
+// text-shadow: 1px 1px black, -1px -1px white;
 }
 
-.hidden {
-  display: none;
-}
 
 .bordered-modal {
   border: 12px solid #5e552a;
   border-radius: 18px;
+}
+
+.feast-header {
+  background-color: #fec;
+  font-size: 20px;
+}
+
+
+
+
+
+.ui-datepicker-year
+{
+ display:none;
 }

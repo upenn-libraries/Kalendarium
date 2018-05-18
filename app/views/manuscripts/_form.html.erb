@@ -26,27 +26,40 @@
     <%= form.text_field :book_type, id: :manuscript_book_type, class: "form-control" %>
   </div>
 
-  <div class="form-group">
+<!--   <div class="form-group">
     <%= form.label :manuscript_or_print, 'Manuscript or print book?' %>
     <div class="row">
-      <div class="col">
-        <%= form.label :manuscript_or_print, 'manuscript', id: :manuscript_or_print %>
-        <%= form.radio_button :manuscript_or_print, 'manuscript', class: "form-control" %>
+      <div class="col-1">
+        <%= form.label :manuscript_or_print, 'manuscript' %>
+        <%= form.radio_button :manuscript_or_print, 'manuscript', id: :manuscript_or_print, class: "form-control" %>
       </div>
-      <div class="col">
+      <div class="col-1">
         <%= form.label :manuscript_or_print, 'print' %>
         <%= form.radio_button :manuscript_or_print, 'print', id: :manuscript_or_print, class: "form-control" %>
       </div>
-      <div class="col">
+      <div class="col-1">
         <%= form.label :manuscript_or_print, 'unknown' %>
         <%= form.radio_button :manuscript_or_print, 'unknown', id: :manuscript_or_print, class: "form-control" %>
       </div>
     </div>
+  </div> -->
+
+  <div class="form-check form-check-inline">
+    <%= form.label :manuscript_or_print, 'manuscript', for: :manuscript_or_print, class: 'form-check-label' %>
+    <%= form.radio_button :manuscript_or_print, 'manuscript', id: :manuscript_or_print, class: 'form-check-input' %>
+  </div>
+  <div class="form-check form-check-inline">
+    <%= form.label :manuscript_or_print, 'print' %>
+    <%= form.radio_button :manuscript_or_print, 'print', id: :manuscript_or_print, class: 'form-check-input' %>
+  </div>
+  <div class="form-check form-check-inline">
+    <%= form.label :manuscript_or_print, 'unknown' %>
+    <%= form.radio_button :manuscript_or_print, 'unknown', id: :manuscript_or_print, class: 'form-check-input' %>
   </div>
 
   <div class="form-group">
     <%= form.label :language %>
-    <%= form.select :language, Manuscript::LANGUAGES, include_blank: true, id: :manuscript_language, class: "form-control" %>
+    <%= form.select :language, Manuscript::LANGUAGES, {include_blank: true, id: :manuscript_language}, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -113,20 +126,23 @@
 
   <h3>Date Range</h3>
 
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
+<div class="input-group">
+<!--   <div class="row"> -->
+<!--     <div class="col"> -->
+<!--       <div class="form-group"> -->
         <%= form.label :start_year, 'Start' %>
         <%= form.number_field :start_year, min: 0, max: 9999, id: :manuscript_start_year, class: "form-control" %>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
+<!--       </div> -->
+  <!--   </div> -->
+  <!--   <div class="col"> -->
+  <!--     <div class="form-group"> -->
         <%= form.label :end_year, 'End' %>
         <%= form.number_field :end_year, min: 0, max: 9999, id: :manuscript_end_year, class: "form-control" %>
-      </div>
-    </div>
-  </div>
+   <!--    </div> -->
+   <!--  </div> -->
+<!--   </div> -->
+</div>
+
 
   <div class="form-group">
     <%= form.label :date_note %>
@@ -157,7 +173,7 @@
 
   <div class="form-group">
     <%= form.label :numbering_method %>
-    <%= form.select :numbering_method, Manuscript::NUMBERING_METHODS, id: :manuscript_numbering_method, class: "form-control" %>
+    <%= form.select :numbering_method, Manuscript::NUMBERING_METHODS, {id: :manuscript_numbering_method}, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -167,46 +183,53 @@
 
   <h2>Calendar Details</h2>
 
-  <div class="row">
-    <div class="form-group col">
-      <%= form.label :column1, "Column 1" %>
-      <%= form.select :column1, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
-    </div>
-
-    <div class="form-group col">
-      <%= form.label :column2, "Column 2" %>
-      <%= form.select :column2, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
-    </div>
-
-    <div class="form-group col">
-      <%= form.label :column3, "Column 3" %>
-      <%= form.select :column3, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
-    </div>
-
-    <div class="form-group col">
-      <%= form.label :column4, "Column 4" %>
-      <%= form.select :column4, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
-    </div>
-
-<!--     <div class="form-group col">
-      <%= form.label :column5, "Column 5" %>
-      <%= form.select :column5, Manuscript::COLUMN_TYPES, include_blank: true, class: "form-control" %>
-    </div> -->
-  </div>
-
-  <br>
-  Color Weight:
 
   <div class="row">
-    <% Manuscript::COLORS.each do |color| %>
-      <div class="col">
-        <div class="form-group">
-          <%= form.label :"color_weighting_#{color}", color.capitalize, class: color_class(color) %>
-          <%= form.number_field :"color_weighting_#{color}", min: 0, max: Manuscript::COLORS.length, id: :"manuscript_color_weighting_#{color}", class: "form-control" %>
-        </div>
+    <% (1..4).each do |num| %>
+      <div class="form-group col-2">
+        <% blank_val = true unless num == 1 %>
+        <%= form.label :"column#{num}", "Column #{num}" %>
+        <%= form.select :"column#{num}", Manuscript::COLUMN_TYPES, {include_blank: blank_val}, class: 'form-control' %>
       </div>
     <% end %>
   </div>
+
+
+  <br>
+
+<!--   <div>
+
+    <% 7.times do |num| %>
+      <%#= content_tag(:p, id: "color-data#{num}", data: {uh: (render 'color_select', form: form, num: num)}){ } %>
+    <% end %>
+
+      <div id="color-field-location" data-colors="<%= Manuscript::COLORS.join(?-) %>"><%#= render 'color_select', form: form %></div>
+
+    <%#= link_to 'choose another color', '#', class: 'btn btn-secondary add-color-select' %>
+
+</div> -->
+
+
+  <h4>Color Ranking</h4>
+
+    <% Manuscript::COLORS.each do |color| %>
+
+        <div class="form-group row">
+          <div class="col-1">
+            <%= form.label :"color_weighting_#{color}", color.capitalize, class: color_class(color) %>
+          </div>
+          <div class="col-1">
+              <%#= content_tag(:div, style: "background-color: #{color};"){ '&nbsp;'.html_safe } %>
+              <span class="oi oi-media-stop <%="#{color}-text"%>" title="person" aria-hidden="true" style="font-size: 40px;"></span>
+          </div>
+          <div class="col-2">
+            <%#= form.number_field :"color_weighting_#{color}", min: 0, max: Manuscript::COLORS.length, id: :"manuscript_color_weighting_#{color}", class: "form-control" %>
+            <%= form.select :"color_weighting_#{color}", ['not present'] + (1..Manuscript::COLORS.length).to_a, {id: :"manuscript_color_weighting_#{color}"}, class: "form-control" %>
+         </div>
+        </div>
+
+    <% end %>
+
 
   <div class="form-group">
     <%= form.label :has_shading, 'Is there shading?' %>
@@ -214,18 +237,34 @@
   </div>
 
 
-  <div class="form-group">
+  <div class="form-group row">
+    <div class=col-2>
       Starts on folio:
-    <%= form.number_field :start_folio_number, min: 1, max: 999, id: :manuscript_start_folio %>
-    <%= form.select :start_folio_side, %w(r v), include_blank: true, id: :manuscript_start_folio, class: "form-control" %>
-   </div>
-
-
-  <div class="form-group">
-     Ends on folio:
-     <%= form.number_field :end_folio_number, min: 1, max: 999, id: :manuscript_end_folio %>
-     <%= form.select :end_folio_side, %w(r v), include_blank: true, id: :manuscript_end_folio, class: "form-control" %>
+    </div>
+    <div class='form-inline'>
+<!--     <div class=col-1> -->
+      <%= form.number_field :start_folio_number, min: 1, max: 999, id: :manuscript_start_folio, class: "form-control" %>
+<!--     </div> -->
+<!--     <div class=col-1> -->
+      <%= form.select :start_folio_side, %w(r v), {id: :manuscript_start_folio}, class: "form-control" unless @manuscript.numbering_method == 'Paginated' %>
+<!--     </div> -->
+    </div>
   </div>
+
+
+  <div class="form-group row">
+    <div class=col-2>
+      Ends on folio:
+    </div>
+    <div class='form-inline'>
+ <!--    <div class=col-1> -->
+      <%= form.number_field :end_folio_number, min: 1, max: 999, id: :manuscript_end_folio, class: "form-control" %>
+<!--     </div> -->
+ <!--    <div class=col-1> -->
+      <%= form.select :end_folio_side, %w(r v), {id: :manuscript_end_folio}, class: "form-control" unless @manuscript.numbering_method == 'Paginated' %>
+<!--     </div> -->
+</div>
+ </div>
 
 
   <div class="actions">

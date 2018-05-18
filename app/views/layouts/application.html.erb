@@ -6,11 +6,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
+
+
+<!--   date picker testing stuff -->
+ <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+ <!--  <link rel="stylesheet" href="/resources/demos/style.css"> doesn't work without this but it causes issues with the server-->
+ <!--  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<!--   <script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker();
+  } );
+  </script> -->
+  <!-- ####################### -->
+
+
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
     <div class="container">
+      <%= render 'layouts/header' %>
       <% flash.each do |name, msg| %>
         <%= content_tag(:div, msg, class: "alert alert-info") %>
       <% end %>
@@ -21,7 +38,7 @@
   <footer>
     <div class="container">
       <br>
-      <div align="center">K A L E N D A R I U M</div>
+      <div align="center"><h5>K A L E N D A R I U M</h5></div>
       <br>
     </div>
   </footer>

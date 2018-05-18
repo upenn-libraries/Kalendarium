@@ -1,5 +1,18 @@
-<!-- change to 'form_with' ? (also for other resources) -->
+<!--
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+  </script>
+ -->
 
+
+
+<!-- change to 'form_with' ? (also for other resources) -->
 <%= form_for [@manuscript, @calendar_page] do |form| %>
   <% if calendar_page.errors.any? %>
     <div id="error_explanation">
@@ -14,21 +27,26 @@
   <% end %>
 
   <div class="form-group">
+    <% # head text (rhyme, lun/sol-days)... labor/zodiac? %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :folio %>
-    <%= form.select :folio, @calendar_page.manuscript.calendar_folios, class: "form-control" %> <!-- rewrite to work with new routing (?) -->
+    <%= form.select :folio, @calendar_page.manuscript.calendar_folios, {}, class: "form-control" %> <!-- rewrite to work with new routing (?) -->
   </div>
 
-  <div class="form-group">
+  <div class="form-group form-inline">
     <%= form.label :start_month, 'Start' %>
-    <%= form.select :start_month, Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] }, id: :calendar_page_start_month, class: "form-control" %>
-    <%= form.select :start_day, (1..31), class: "form-control" %>
+    <%= form.select :start_month, Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] }, {id: :calendar_page_start_month}, class: "form-control" %>
+    <%= form.select :start_day, (1..31), {id: :calendar_page_start_day}, class: "form-control" %>
+    <input class="datepicker form-control" id="calendar_page_start_day datepicker" placeholder="input date">
   </div>
 
 
-  <div class="form-group">
+  <div class="form-group form-inline">
     <%= form.label :end_month, 'End' %>
-    <%= form.select :end_month, Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] }, id: :calendar_page_end_month, class: "form-control" %>
-    <%= form.select :end_day, (1..31), id: :calendar_page_end_day, class: "form-control" %>
+    <%= form.select :end_month, Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] }, {id: :calendar_page_end_month}, class: "form-control" %>
+    <%= form.select :end_day, (1..31), {id: :calendar_page_end_day}, class: "form-control" %>
   </div>
 
   <div class="actions">
