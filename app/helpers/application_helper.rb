@@ -61,37 +61,46 @@ module ApplicationHelper
 
   # -------------------------
 
-  def arrange_columns(manuscript, day) # should be done once, not every day
+  # def arrange_columns(manuscript, day) # should be done once, not every day
+  #   present_columns = manuscript.columns.select{ |col| col.present? }
+  #   span_sum = present_columns.inject(0) do |sum, col|
+  #     ['Golden Number', 'Roman Day'].include?(col) ? (sum + 2) : (sum + 1)
+  #   end
+
+  #   small_span = (12 / span_sum)
+
+  #   divs = present_columns.map do |col|
+  #     span = ['Golden Number', 'Roman Day'].include?(col) ? (small_span * 2) : (small_span)
+  #     content_tag(:div, class: "col-#{span}"){ display_small_col(col, day) }  # should be done once, not every day
+  #   end
+
+  #   divs.join("\n").html_safe
+  # end
+
+
+  def configure_small_cols(manuscript)
     present_columns = manuscript.columns.select{ |col| col.present? }
     span_sum = present_columns.inject(0) do |sum, col|
       ['Golden Number', 'Roman Day'].include?(col) ? (sum + 2) : (sum + 1)
     end
 
-    small_span = (12 / span_sum)
+    unit_span = (12 / span_sum)
+
+    [present_columns, unit_span]
+  end
+
+  def display_small_cols(col_config, day)
+    present_columns = col_config.first
+    unit_span = col_config.last
 
     divs = present_columns.map do |col|
-      span = ['Golden Number', 'Roman Day'].include?(col) ? (small_span * 2) : (small_span)
-      content_tag(:div, class: "col-#{span}"){ display_column(col, day) }  # should be done once, not every day
+      span = ['Golden Number', 'Roman Day'].include?(col) ? (unit_span * 2) : (unit_span)
+      content_tag(:div, class: "col-#{span}"){ display_small_col(col, day) }
     end
 
     divs.join("\n").html_safe
   end
 
-
-  def display_column col, day # for now
-    case col
-    when 'KNI'
-      display_kni(day)
-    when 'Roman Day'
-      display_roman_day(day)
-    when 'Golden Number'
-      display_golden_number(day)
-    when 'Dominical Letter'
-      display_dominical_letter(day)
-    when 'Text'
-       display_feast(day)
-    end
-  end
 
   def display_small_col col, day
     case col
@@ -131,10 +140,14 @@ module ApplicationHelper
     dominical_letter day.ordinal
   end
 
-  def display_feast day
-    feasts = @calendar_page.feasts.select{ |f| day.month_number == f.month_number && day.day_number == f.day_number } # not ideal to do this both in calendar_page/show, and here
-    return '' if feasts.blank?
-    feast = feasts.first
+  # def display_feast day
+  #   feasts = @calendar_page.feasts.select{ |f| day.month_number == f.month_number && day.day_number == f.day_number } # not ideal to do this both in calendar_page/show, and here
+  #   return '' if feasts.blank?
+  #   feast = feasts.first
+  #   content_tag(:span, class: color_class(feast.color)){ feast.to_s }
+  # end
+
+  def display_feast feast
     content_tag(:span, class: color_class(feast.color)){ feast.to_s }
   end
 
@@ -159,7 +172,7 @@ module ApplicationHelper
   end
 
   def add_feast_link(date)
-    date_params = feast_date_params(date) #{'feast[month_number]': date.first, 'feast[day_number]': date.last}
+    date_params = feast_date_params(date)
     classes = 'btn btn-sm btn-primary add-feast-modal-link'
     link_to 'add feast', new_calendar_page_feast_path(@calendar_page, date_params), data: modal_data, class: classes
   end
