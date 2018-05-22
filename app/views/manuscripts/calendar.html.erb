@@ -1,0 +1,47 @@
+
+<h3><%= @manuscript.name  %></h3>
+<h4>[<%= @manuscript.shelfmark %>]</h4>
+
+<div class="container" id="calendar-table">
+  <% col_config = configure_small_cols(@manuscript) %>
+
+  <% feast_dates = @manuscript.feasts.map{ |f| [f.month_number, f.day_number] }.uniq.sort_by{ |d| (d.first * 10) + d.last } %>
+
+
+  <%# feast_dates = @manuscript.calendar_pages.map do |cp| %>
+  <%#   cp.feasts.uniq{ |f| [f.month_number, f.day_number] }.flatten.map{ |f| [f.month_number, f.day_number] }.sort_by{ |d| (d.first * 10) + d.last }  %>
+  <%# end %>
+
+  <% feast_dates.each_with_index do |date, index| %>
+
+    <% div_id = "#{date.first}-#{date.last}" %>
+    <% grade = index.even? ? 'dark-grade' : 'light-grade' %>
+
+    <%= content_tag(:div, id: div_id, class: grade){ render 'day', date: date, col_config: col_config }  %>
+
+    <%= content_tag(:hr) if date.last == Kal::Months::MONTH_TABLE[date.first - 1].length %>
+
+  <% end %>
+
+
+</div>
+
+
+<%= link_to 'back', manuscript_path(@manuscript), class: 'btn btn-secondary'  %>
+
+
+
+<div class="modal fade" id="feast-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg bordered-modal" role="document">
+    <div class="modal-content">
+      <div class="modal-header feast-header" style="font-size: 30px">
+        New Feast
+      </div>
+      <div class="modal-body container">
+        [...]
+      </div>
+      <div class="btn btn-secondary" id="hide-modal"> cancel </div>
+    </div>
+  </div>
+</div>
+

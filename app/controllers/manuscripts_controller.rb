@@ -1,5 +1,5 @@
 class ManuscriptsController < ApplicationController
-  before_action :set_manuscript, only: [:show, :edit, :update, :destroy]
+  before_action :set_manuscript, only: [:show, :edit, :update, :destroy, :calendar]
 
   # GET /manuscripts
   # GET /manuscripts.json
@@ -59,6 +59,10 @@ class ManuscriptsController < ApplicationController
       format.html { redirect_to manuscripts_url, notice: 'Manuscript was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def calendar
+
   end
 
   private
