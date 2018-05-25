@@ -114,6 +114,7 @@ class Manuscript < ApplicationRecord
     end
 
     def consolidate_color_weighting
+     COLORS.each{ |c| self.send(:"color_weighting_#{c}=", nil) if self.send(:"color_weighting_#{c}") == 'not present' } # messy temporary solution
      self.color_weighting = Hash.new
      self.color_weighting[:black]  = color_weighting_black  unless color_weighting_black.blank?
      self.color_weighting[:blue]   = color_weighting_blue   unless color_weighting_blue.blank?
@@ -123,7 +124,6 @@ class Manuscript < ApplicationRecord
      self.color_weighting[:purple] = color_weighting_purple unless color_weighting_purple.blank?
      self.color_weighting[:gold]   = color_weighting_gold   unless color_weighting_gold.blank?
     end
-
 
     def populate_color_weighting
       self.color_weighting_black  = color_weighting[:black]

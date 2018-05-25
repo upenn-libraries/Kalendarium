@@ -3,7 +3,7 @@
     <div class="col-6"><h1><%= @manuscript.name %></h1></div>
     <div class="btn-group col-6">
       <%= link_to 'edit this manuscript', edit_manuscript_path(@manuscript), class: "btn btn-secondary" %>
-      <%= link_to 'back to manuscripts', manuscripts_path, class: "btn btn-secondary" %>
+      <%= link_to 'view all manuscripts', manuscripts_path, class: "btn btn-secondary" %>
     </div>
   </div>
 
@@ -59,7 +59,7 @@
     <h4>Color Ranking</h4>
     <% @manuscript.color_weighting.keys.sort_by{ |c| @manuscript.color_weighting[c] }.each do |color| %>
       <div>
-        <%= content_tag(:strong, class: color_class(color)){ "#{color.capitalize}" }  %>
+        <%= content_tag :strong, "#{color.capitalize}", class: color_class(color) %>
         <%= @manuscript.color_weighting[color] %>
       </div>
     <% end %>

@@ -5,7 +5,7 @@ module CalendarPageHelper
 
     divs = present_columns.map do |col|
       span = ['Golden Number', 'Roman Day'].include?(col) ? (unit_span * 2) : (unit_span)
-      content_tag(:div, class: "col-#{span}"){ display_small_col(col, day) }
+      content_tag :div, display_small_col(col, day), class: "col-#{span}"
     end
 
     divs.join("\n").html_safe
@@ -27,13 +27,13 @@ module CalendarPageHelper
   def display_date day
   # if Kal::Days::EGYPTIAN_DAYS[month_name(day.month_number)].include?(day.day_number)
     if Kal::Days::EGYPTIAN_DAYS2.include? [day.month_number, day.day_number]
-      e_d = content_tag(:em, class: 'egyptian-day', title: 'Egyptian Day', data: {toggle: :tooltip}){ ' D' }
+      e_d = content_tag :em, ' D', class: 'egyptian-day', title: 'Egyptian Day', data: {toggle: :tooltip}
     end
-    content_tag(:strong){ "#{month_name(day.month_number)[0..2]} #{day.day_number}" } + e_d.to_s
+    content_tag(:strong, "#{month_name(day.month_number)[0..2]} #{day.day_number}") + e_d.to_s
   end
 
   def display_kni day
-    return content_tag(:b, class: 'big-KNI'){ day.kni[0].upcase } if not day.kni_number
+    return content_tag(:b, day.kni[0].upcase, class: 'big-KNI') if not day.kni_number
     day.kni[0].upcase ###
   end
 
@@ -42,7 +42,7 @@ module CalendarPageHelper
   end
 
   def display_golden_number day
-    content_tag(:span, class: 'golden-number'){ day.golden_number }
+    content_tag :span, day.golden_number, class: 'golden-number'
   end
 
   def display_dominical_letter day
@@ -50,7 +50,7 @@ module CalendarPageHelper
   end
 
   def display_feast feast
-    content_tag(:span, class: color_class(feast.color)){ feast.to_s }
+    content_tag :span, feast.to_s, class: color_class(feast.color)
   end
 
   def modal_data(feast=nil)
@@ -59,7 +59,7 @@ module CalendarPageHelper
       target: 'feast-modal',
       remote: 'true'
     }
-    data.merge!(header: content_tag(:span, class: color_class(feast.color)){ feast.to_s }) if feast
+    data.merge!(header: display_feast(feast)) if feast
     data
   end
 

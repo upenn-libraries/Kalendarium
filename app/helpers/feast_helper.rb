@@ -1,12 +1,10 @@
 module FeastHelper
 
   def saint_attribute_optgroup(heading, attributes)
-    content_tag(:optgroup, label: heading) do
-      attributes.map do |attrib|
-        content_tag(:option, value: attrib.code){ attrib.name.humanize }
-      end.join.html_safe
-    end
+    opts = attributes.map{ |attrib| content_tag :option, attrib.name.humanize, value: attrib.code }
+    content_tag :optgroup, opts.join.html_safe, label: heading
   end
+
 
   def link_to_add_feast_name(name, f, options={})
     new_fn = FeastName.new

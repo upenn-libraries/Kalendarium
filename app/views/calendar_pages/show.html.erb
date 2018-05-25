@@ -6,7 +6,7 @@ $(function(){
 
 <div class="container">
 
-  <p id="notice"><%= notice %></p>
+<!--   <p id="notice"><%= notice %></p> -->
 
   <div class="row">
     <strong>Folio:</strong>
@@ -32,7 +32,6 @@ $(function(){
   </div>
 </div>
 
-
 <div class="modal fade" id="update_calendar_page" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg bordered-modal" role="document">
     <div class="modal-content">
@@ -42,24 +41,14 @@ $(function(){
   </div>
 </div>
 
-
 <div class="container" id="calendar-table">
-  <% # col_config = configure_small_cols(@calendar_page.manuscript) %>
   <% @calendar_page.dates.each_with_index do |date, index| %>
-
     <% div_id = "#{date.first}-#{date.last}" %>
     <% grade = index.even? ? 'dark-grade' : 'light-grade' %>
 
-    <!-- <div id="<%= div_id %>" class="<%= grade %>">
-      <%#= render 'day', date: date %>
-    </div> -->
-    <!-- , small_cols: arrange_columns -->
-
-    <%#= content_tag(:div, id: div_id, class: grade){ render 'day', date: date, col_config: col_config }  %>
     <%= content_tag(:div, id: div_id, class: grade){ render 'day', date: date }  %>
 
     <%= content_tag(:hr) if date.last == Kal::Months::MONTH_TABLE[date.first - 1].length %>
-
   <% end %>
 </div>
 
@@ -69,7 +58,6 @@ $(function(){
   <%= link_to 'back', "/manuscripts/#{@calendar_page.manuscript.id}#calendar_pages", class: "btn btn-secondary" %>
   <%#= link_to 'Back', manuscript_path(@calendar_page.manuscript) %>
 </div>
-
 
 
 <div class="modal fade" id="feast-modal" tabindex="-1" role="dialog">

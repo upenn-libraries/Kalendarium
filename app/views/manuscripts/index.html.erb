@@ -14,7 +14,7 @@
       <div class="col-3"><%= manuscript.shelfmark %></div>
       <div class="col-6"><%= manuscript.name %></div>
       <div class="col-3 btn-group"> <!-- ok to put both classes in one div? -->
-        <%= link_to 'examine', manuscript, class: "btn btn-secondary" %>
+        <%= link_to 'show', manuscript, class: "btn btn-secondary" %>
         <%= link_to 'edit', edit_manuscript_path(manuscript), class: "btn btn-secondary" %>
         <%= link_to 'delete', manuscript, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
       </div>

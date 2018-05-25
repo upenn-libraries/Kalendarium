@@ -17,7 +17,6 @@
     <% div_id = "#{date.first}-#{date.last}" %>
     <% grade = index.even? ? 'dark-grade' : 'light-grade' %>
 
-    <%#= content_tag(:div, id: div_id, class: grade){ render 'day', date: date, col_config: col_config }  %>
     <%= content_tag(:div, id: div_id, class: grade){ render 'day', date: date }  %>
 
     <%= content_tag(:hr) if date.last == Kal::Months::MONTH_TABLE[date.first - 1].length %>
