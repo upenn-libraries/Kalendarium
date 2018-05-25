@@ -11,7 +11,7 @@ class FeastsController < ApplicationController
   # GET /feasts/1
   # GET /feasts/1.json
   def show
-    @calendar_page = params[:origin_calendar_page] if params[:origin_calendar_page] # outdated?
+    @calendar_page = params[:origin_calendar_page] if params[:origin_calendar_page]
 
     respond_to do |format|
       format.html { render layout: !request.xhr? }
@@ -23,9 +23,6 @@ class FeastsController < ApplicationController
     @feast = @calendar_page.feasts.build(feast_params)
     @feast.manuscript = @calendar_page.manuscript
 
-    # people = params['feast_people']
-    # person_number = people ? people.to_i : 1
-    # person_number.times{ @feast.feast_names.build }
     @feast.feast_names.build
 
     respond_to do |format|
