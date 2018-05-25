@@ -34,10 +34,6 @@ $(document).on('turbolinks:load', function() {
 
 
 
-
-
-
-
  $('select.multiselect').multiselect({
     buttonText: function(options, select) {
       return 'choose attributes';
