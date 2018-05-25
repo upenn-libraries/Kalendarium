@@ -12,9 +12,12 @@ class Manuscript < ApplicationRecord
   before_save :combine_folio_information
   before_save :generate_calendar_folios
 
-  after_find  :populate_columns
-  after_find  :populate_color_weighting
-  after_find  :split_folio_information
+  after_find :populate_columns
+  after_find :populate_color_weighting
+  after_find :split_folio_information
+
+  after_find  :configure_small_cols # for now, though maybe should be saved in database
+  attr_reader :col_config
 
   attr_accessor :column1
   attr_accessor :column2
@@ -189,6 +192,17 @@ class Manuscript < ApplicationRecord
      # else
      #   (start_f.to_i..end_folio.to_i).to_a.map(&:to_s)
        end
+    end
+
+    def configure_small_cols
+      present_columns = self.columns.select{ |col| col.present? }
+      span_sum = present_columns.inject(0) do |sum, col|
+       ['Golden Number', 'Roman Day'].include?(col) ? (sum + 2) : (sum + 1)
+      end
+
+      unit_span = (12 / span_sum)
+
+      @col_config = [present_columns, unit_span]
     end
 end
 

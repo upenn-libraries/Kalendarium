@@ -44,7 +44,7 @@ $(function(){
 
 
 <div class="container" id="calendar-table">
-  <% col_config = configure_small_cols(@calendar_page.manuscript) %>
+  <% # col_config = configure_small_cols(@calendar_page.manuscript) %>
   <% @calendar_page.dates.each_with_index do |date, index| %>
 
     <% div_id = "#{date.first}-#{date.last}" %>
@@ -55,7 +55,8 @@ $(function(){
     </div> -->
     <!-- , small_cols: arrange_columns -->
 
-    <%= content_tag(:div, id: div_id, class: grade){ render 'day', date: date, col_config: col_config }  %>
+    <%#= content_tag(:div, id: div_id, class: grade){ render 'day', date: date, col_config: col_config }  %>
+    <%= content_tag(:div, id: div_id, class: grade){ render 'day', date: date }  %>
 
     <%= content_tag(:hr) if date.last == Kal::Months::MONTH_TABLE[date.first - 1].length %>
 

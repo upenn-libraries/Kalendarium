@@ -3,7 +3,7 @@
 <h4>[<%= @manuscript.shelfmark %>]</h4>
 
 <div class="container" id="calendar-table">
-  <% col_config = configure_small_cols(@manuscript) %>
+  <%# col_config = configure_small_cols(@manuscript) %>
 
   <% feast_dates = @manuscript.feasts.map{ |f| [f.month_number, f.day_number] }.uniq.sort_by{ |d| (d.first * 10) + d.last } %>
 
@@ -17,7 +17,8 @@
     <% div_id = "#{date.first}-#{date.last}" %>
     <% grade = index.even? ? 'dark-grade' : 'light-grade' %>
 
-    <%= content_tag(:div, id: div_id, class: grade){ render 'day', date: date, col_config: col_config }  %>
+    <%#= content_tag(:div, id: div_id, class: grade){ render 'day', date: date, col_config: col_config }  %>
+    <%= content_tag(:div, id: div_id, class: grade){ render 'day', date: date }  %>
 
     <%= content_tag(:hr) if date.last == Kal::Months::MONTH_TABLE[date.first - 1].length %>
 

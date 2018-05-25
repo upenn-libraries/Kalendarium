@@ -13,7 +13,8 @@
 
   <div class="col-2 ">
     <div class = "row">
-      <%= display_small_cols(col_config, day) %>
+      <%#= display_small_cols(col_config, day) %>
+      <%= display_small_cols(@calendar_page.manuscript.col_config, day) %>
     </div>
   </div>
 
@@ -33,6 +34,13 @@
       <%= add_feast_link(date)  %>
 
     <% else %>
+     <!--  <div class="btn-group btn-group-sm">
+        <%= link_to 'details', '#', class: 'btn btn-secondary disabled', 'aria-disabled': true %>
+        <%= link_to 'edit', '#', class: 'btn btn-secondary disabled', 'aria-disabled': true %>
+        <%= link_to 'delete', '#', class: 'btn btn-danger disabled', 'aria-disabled': true %>
+      </div>
+ -->
+
       <%= add_feast_link(date) %>
     <% end %>
 
