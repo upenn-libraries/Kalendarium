@@ -53,7 +53,7 @@ module CalendarPageHelper
     content_tag :span, feast.to_s, class: color_class(feast.color)
   end
 
-  def modal_data(feast=nil)
+  def modal_data(feast = nil)
     data = {
       toggle: 'modal',
       target: 'feast-modal',
