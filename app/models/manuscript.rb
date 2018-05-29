@@ -64,31 +64,14 @@ class Manuscript < ApplicationRecord
 
   # decapitalize all these items?
 
-  NUMBERING_METHODS = %w(Foliated Paginated)
+  NUMBERING_METHODS = %w(foliated paginated)
 
-  LANGUAGES = %w(English French Italian Spanish German Latin Klingon)
+  LANGUAGES = %w(english french italian spanish german latin klingon)
 
-  COLUMN_TYPES = ['Golden Number', 'Dominical Letter', 'KNI', 'Roman Day']#, 'Text']
+  COLUMN_TYPES = ['golden number', 'dominical letter', 'KNI', 'numeral']
 
   COLORS = %w(black blue red green pink purple gold)
 
-  # COLOR_CODES = {
-  #   black:  [  0,   0,   0],
-  #   blue:   [  0,   0, 255],
-  #   green:  [  0, 128,   0],
-  #   pink:   [218, 112, 214],
-  #   red:    [255,   0,   0],
-  #   purple: [128,   0, 128],
-  #   gold:   [205, 133,  63]
-  # }
-
-  # 'grade_black':  {name:'Black/Brown',  code:'Ni', rgb: 'rgb(0, 0, 0)'},
-  # 'grade_blue':   {name:'Blue',         code:'Li', rgb: 'rgb(0, 0, 255)'},
-  # 'grade_green':  {name:'Green',        code:'Vi', rgb: 'rgb(0, 128, 0)'},
-  # 'grade_pink':   {name:'Pink',         code:'Ro', rgb: 'rgb(218, 112, 214)'},
-  # 'grade_red':    {name:'Red',          code:'Ru', rgb: 'rgb(255, 0, 0)'},
-  # 'grade_purple': {name:'Purple',       code:'Pu', rgb: 'rgb(128, 0, 128)'},
-  # 'grade_gold':   {name:'Gold',         code:'Au', rgb: 'rgb(205, 133, 63)'}
 
 
   def to_s
@@ -197,7 +180,7 @@ class Manuscript < ApplicationRecord
     def configure_small_cols
       present_columns = self.columns.select{ |col| col.present? }
       span_sum = present_columns.inject(0) do |sum, col|
-       ['Golden Number', 'Roman Day'].include?(col) ? (sum + 2) : (sum + 1)
+       ['golden number', 'numeral'].include?(col) ? (sum + 2) : (sum + 1)
       end
 
       unit_span = (12 / span_sum)

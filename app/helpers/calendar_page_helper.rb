@@ -4,7 +4,7 @@ module CalendarPageHelper
     unit_span = col_config.last
 
     divs = present_columns.map do |col|
-      span = ['Golden Number', 'Roman Day'].include?(col) ? (unit_span * 2) : (unit_span)
+      span = ['golden_number', 'numeral'].include?(col) ? (unit_span * 2) : (unit_span)
       content_tag :div, display_small_col(col, day), class: "col-#{span}"
     end
 
@@ -15,11 +15,11 @@ module CalendarPageHelper
     case col
     when 'KNI'
       display_kni(day)
-    when 'Roman Day'
-      display_roman_day(day)
-    when 'Golden Number'
+    when 'numeral'
+      display_numeral(day)
+    when 'golden number'
       display_golden_number(day)
-    when 'Dominical Letter'
+    when 'dominical letter'
       display_dominical_letter(day)
     end
   end
@@ -37,7 +37,7 @@ module CalendarPageHelper
     day.kni[0].upcase ###
   end
 
-  def display_roman_day day
+  def display_numeral day
     day.kni_number
   end
 
@@ -45,8 +45,14 @@ module CalendarPageHelper
     content_tag :span, day.golden_number, class: 'golden-number'
   end
 
+  # ABCDEFG = %w(A b c d e f g)
+  # def dominical_letter ordinal
+  #   ABCDEFG[(ordinal % 7) - 1]
+  # end
+
   def display_dominical_letter day
-    dominical_letter day.ordinal
+    # dominical_letter(day.ordinal)
+    'Abcdefg'[(day.ordinal % 7) - 1]
   end
 
   def display_feast feast
