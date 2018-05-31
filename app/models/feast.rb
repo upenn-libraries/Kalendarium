@@ -39,15 +39,13 @@ class Feast < ApplicationRecord
   private
     def handle_other_name
       feast_names.each do |fn|
-        o_n = fn.other_name
-        unless o_n.blank?
-          new_name = Name.new(name: o_n)
+        if fn.other_name.present?
+          new_name = Name.new(name: fn.other_name)
           new_name.save
           fn.name = new_name
-       # else
-         # true
         end
       end
+      true
     end
 
 end
