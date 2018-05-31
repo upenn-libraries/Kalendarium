@@ -86,7 +86,7 @@ module CalendarPageHelper
   end
 
   def delete_feast_link(feast)
-    link_to 'delete', [@calendar_page, feast], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+    link_to 'delete', [@calendar_page, feast], method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"
   end
 
   def feast_date_params month_day

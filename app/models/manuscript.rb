@@ -23,7 +23,6 @@ class Manuscript < ApplicationRecord
   attr_accessor :column2
   attr_accessor :column3
   attr_accessor :column4
-# attr_accessor :column5
 
 
 # --------------------------
@@ -85,7 +84,6 @@ class Manuscript < ApplicationRecord
       self.columns[1] = column2
       self.columns[2] = column3
       self.columns[3] = column4
-    # self.columns[4] = column5
     end
 
     def populate_columns
@@ -93,7 +91,6 @@ class Manuscript < ApplicationRecord
       self.column2 = columns[1]
       self.column3 = columns[2]
       self.column4 = columns[3]
-    # self.column5 = columns[4]
     end
 
     def consolidate_color_weighting
@@ -161,24 +158,24 @@ class Manuscript < ApplicationRecord
 
     def generate_calendar_folios
       self.calendar_folios =
-      begin
-     # if numbering_method == 'foliated'
+      # begin
+        if numbering_method == 'foliated'
         # return [start_folio_number + start_folio_side] if
         #   (start_folio_number == end_folio_number) &&
         #   (start_folio_side == end_folio_side)
-        start_recto = start_folio_side == 'r'
-        end_verso   =   end_folio_side == 'v'
-        initials = start_recto ? [start_folio_number + 'r', start_folio_number + 'v'] : [start_folio_number + 'v']
-        finals   = end_verso   ? [end_folio_number   + 'r', end_folio_number   + 'v'] : [end_folio_number   + 'r']
-        intermediates = ((start_folio_number.to_i + 1)..(end_folio_number.to_i - 1)).to_a.map{ |n| ["#{n}r", "#{n}v"] }
-        (initials + intermediates + finals).flatten
-     # else
-     #   (start_f.to_i..end_folio.to_i).to_a.map(&:to_s)
-       end
+          start_recto = start_folio_side == 'r'
+          end_verso   =   end_folio_side == 'v'
+          initials = start_recto ? [start_folio_number + 'r', start_folio_number + 'v'] : [start_folio_number + 'v']
+          finals   = end_verso   ? [end_folio_number   + 'r', end_folio_number   + 'v'] : [end_folio_number   + 'r']
+          intermediates = ((start_folio_number.to_i + 1)..(end_folio_number.to_i - 1)).to_a.map{ |n| ["#{n}r", "#{n}v"] }
+          (initials + intermediates + finals).flatten
+        else
+         (start_f.to_i..end_folio.to_i).to_a.map(&:to_s)
+        end
     end
 
     def configure_small_cols
-      present_columns = self.columns.select{ |col| col.present? }
+      present_columns = self.columns.select(&:present?)#{ |col| col.present? }
       span_sum = present_columns.inject(0) do |sum, col|
        ['golden number', 'numeral'].include?(col) ? (sum + 2) : (sum + 1)
       end
@@ -188,16 +185,5 @@ class Manuscript < ApplicationRecord
       @col_config = [present_columns, unit_span]
     end
 end
-
-
-
-
-
-
-
-
-
-
-
 
 

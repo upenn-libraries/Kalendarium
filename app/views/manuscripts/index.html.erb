@@ -5,16 +5,29 @@
 
   <div class="row">
     <div class="col-3"><h5>Shelfmark</h5></div>
-    <div class="col-6"><h5>Name</h5></div>
+    <div class="col-3"><h5>Name</h5></div>
+    <div class="col-3"><h5>Calendar Pages</h5></div>
     <div class="col-3" ></div>
   </div>
 
   <% @manuscripts.each do |manuscript| %>
     <div class="row table-row">
       <div class="col-3"><%= manuscript.shelfmark %></div>
-      <div class="col-6"><%= manuscript.name %></div>
+      <div class="col-3"><%= manuscript.name %></div>
+      <div class="col-3">
+
+        <div class="row">
+        <!--   <div class="btn-group btn-group-sm"> -->
+            <% manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |c_p| %>
+              <%= link_to c_p.folio, calendar_page_path(c_p), class: 'cal-page-link' %> <!-- , class: 'btn btn-secondary'  -->
+              &nbsp;
+            <% end %>
+        <!--   </div> -->
+        </div>
+
+      </div>
       <div class="col-3 btn-group"> <!-- ok to put both classes in one div? -->
-        <%= link_to 'show', manuscript, class: "btn btn-secondary" %>
+        <%= link_to 'details', manuscript, class: "btn btn-secondary" %>
         <%= link_to 'edit', edit_manuscript_path(manuscript), class: "btn btn-secondary" %>
         <%= link_to 'delete', manuscript, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
       </div>
