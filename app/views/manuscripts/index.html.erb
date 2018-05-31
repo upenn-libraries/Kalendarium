@@ -18,7 +18,8 @@
 
         <div class="row">
         <!--   <div class="btn-group btn-group-sm"> -->
-            <% manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |c_p| %>
+            <%# manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |c_p| %>
+            <% manuscript.calendar_pages.sort.each do |c_p| %>
               <%= link_to c_p.folio, calendar_page_path(c_p), class: 'cal-page-link' %> <!-- , class: 'btn btn-secondary'  -->
               &nbsp;
             <% end %>

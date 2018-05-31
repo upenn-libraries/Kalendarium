@@ -14,6 +14,10 @@ class CalendarPage < ApplicationRecord
     (folio_number * 10) + side_number
   end
 
+  def <=> other
+    self.folio_ordinal <=> other.folio_ordinal
+  end
+
   private
     def check_chronology
       # start_month < end_month || (start_month == end_month && start_day < end_day)
@@ -31,6 +35,7 @@ class CalendarPage < ApplicationRecord
         end_d   = month_num == end_month   ? end_day   : months[month_num - 1].length
         (start_d..end_d).each{ |day_num| self.dates << [month_num, day_num] }
       end
+
       true
 
       # self.dates =

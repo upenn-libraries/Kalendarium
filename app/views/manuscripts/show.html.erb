@@ -98,7 +98,8 @@
     <div class="col-6"></div>
   </div>
 
-    <% @manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |calendar_page| %>
+    <%# @manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |calendar_page| %>
+    <% @manuscript.calendar_pages.sort.each do |calendar_page| %>
       <div class="row table-row">
         <div class="col-2"><%= calendar_page.folio %></div>
         <div class="col-2"><%= "#{month_name calendar_page.start_month} #{calendar_page.start_day}" %></div>
