@@ -18,6 +18,13 @@ class CalendarPage < ApplicationRecord
     self.folio_ordinal <=> other.folio_ordinal
   end
 
+  def date_range
+    "#{month_name(start_month)} #{start_day}-#{month_name(end_month)} #{end_day}"
+  end
+  def month_name(month_number) # copied from helper.... best practice??
+    Kal::Months::MONTH_TABLE[month_number - 1].name
+  end
+
   private
     def check_chronology
       # start_month < end_month || (start_month == end_month && start_day < end_day)
