@@ -72,7 +72,6 @@ class Manuscript < ApplicationRecord
   COLORS = %w(black blue red green pink purple gold)
 
 
-
   def to_s
     name
   end

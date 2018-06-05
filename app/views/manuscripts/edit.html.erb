@@ -1,9 +1,19 @@
 <div class="container">
-  <h1>Editing Manuscript</h1>
+  <div class="row">
+    <div class="col-9">
+      <h1>Editing "<%= @manuscript.name %>"</h1>
+    </div>
 
-  <div class="btn-group">
-    <%= link_to 'examine', @manuscript, class: "btn btn-secondary" %>
-    <%= link_to 'back', manuscripts_path, class: "btn btn-secondary" %>
+    <div class="col-3">
+      <div class="btn-group btn-group-lg">
+ <!--        <div class="col-6"> -->
+        <%= link_to 'view', @manuscript, class: "btn btn-secondary btn-lg " %>
+  <!--     </div> -->
+   <!--    <div class="col-6"> -->
+        <%= link_to 'back', manuscripts_path, class: "btn btn-secondary btn-lg " %>
+     <!--  </div> -->
+      </div>
+    </div>
   </div>
 
   <%= render 'form', manuscript: @manuscript %>

@@ -1,4 +1,4 @@
-<fieldset class="col">
+<fieldset class="not-col">
 <!-- <fieldset> -->
   <hr>
 
@@ -12,10 +12,10 @@
     </div>
 
     <div class="col-4">
-      <%#= fnf.hidden_field :_destroy %>
+      <%= fnf.hidden_field :_destroy %>
 
-      <%#= link_to 'remove', '#', class: 'remove-feast-name btn btn-danger' if @flag %>
-      <%# @flag = true %><!-- is this ok? -->
+      <%= link_to 'remove', '#', class: 'remove-feast-name btn btn-danger' if @flag %>
+      <% @flag = true %><!-- is this ok? -->
     </div>
   </div>
 
@@ -34,7 +34,7 @@
   </div>
 
 
-  <div class="form-group">
+  <div class="form-group col-8">
     <%= fnf.label :saint_location, 'Location' %>
     <%= fnf.text_field :saint_location, class: "form-control" %>
   </div>
@@ -46,5 +46,6 @@
 <!-- </fieldset> -->
 </fieldset>
 
-
+<!-- <p>.</p>
+ -->
   <%#= link_to_add_feast_name "Add another", fnf, class: "btn btn-secondary" %>

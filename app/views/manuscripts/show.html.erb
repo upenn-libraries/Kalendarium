@@ -1,7 +1,7 @@
  <div class="container">
   <div class="row">
-    <div class="col-6"><h1><%= @manuscript.name %></h1></div>
-    <div class="btn-group col-6">
+    <div class="col-7"><h1><%= @manuscript.name %></h1></div>
+    <div class="btn-group-lg btn-group col-5">
       <%= link_to 'edit this manuscript', edit_manuscript_path(@manuscript), class: "btn btn-secondary" %>
       <%= link_to 'view all manuscripts', manuscripts_path, class: "btn btn-secondary" %>
     </div>
@@ -13,19 +13,20 @@
     <%= display_field(@manuscript, atr, always_display: true)  %>
   <%  end %>
 
-
   <br>
+
   <%= display_field_group(@manuscript, 'Provenance?', %i|origin origin_note destination destination_note|) %>
 
   <br>
+
   <%= display_field_group(@manuscript, 'Text Block', %i|text_height text_width text_depth|) %>
 
-
   <br>
+
   <%= display_field_group(@manuscript, 'Writing Surface', %i|writing_surface_height writing_surface_width|) %>
 
-
   <br>
+
   <% %i(start_year end_year date_note extent provenance state_of_completion resource numbering_method).each do |atr| %>
     <%= display_field(@manuscript, atr) %>
   <%  end %>
@@ -88,6 +89,7 @@
 
     <div class="col-6">
       <%= link_to 'New', new_manuscript_calendar_page_path(manuscript_id: @manuscript.id), class: "btn btn-primary" %> <!-- old attempt, update? -->
+      <%= link_to 'full calendar', calendar_manuscript_path(@manuscript), class: "btn btn-secondary" %>
     </div>
   </div>
 
@@ -119,7 +121,6 @@
 
 
 <%#= link_to 'all feasts', manuscript_calendar_path(@manuscript), class: "btn btn-secondary btn-block" %>
-<%= link_to 'all feasts', calendar_manuscript_path(@manuscript), class: "btn btn-secondary btn-block" %>
 
 
 
