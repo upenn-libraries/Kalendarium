@@ -10,21 +10,21 @@
   </div>
 <%# end %>
  -->
+<div class="row">
+  <div class="form-group colors col-6">
+    <%= form.label :color%>
+    <%= form.select :color, colors_for_manuscript(@calendar_page.manuscript), {}, class: "form-control", id: "color-selection" %>
+  </div>
 
-<div class="form-group colors">
-  <%= form.label :color%>
-  <%= form.select :color, colors_for_manuscript(@calendar_page.manuscript), {}, class: "form-control", id: "color-selection" %>
-</div>
-
-
-<div class="form-group">
-  <%= form.label :modifier %>
-  <%= form.select :modifier, Feast::MODIFIERS, {include_blank: true}, class: "form-control" %>
+  <div class="form-group col-6">
+    <%= form.label :modifier %>
+    <%= form.select :modifier, Feast::MODIFIERS, {include_blank: true}, class: "form-control", placeholder: "none" %>
+  </div>
 </div>
 
 <h4>Entitites</h4>
 
-<div class="row">
+<div class="not-row">
 
   <%= form.fields_for :feast_names do |fnf| %>
     <%= render 'feast_name_fields', fnf: fnf %>
@@ -32,14 +32,15 @@
 
   <%= link_to_add_feast_name "Add another", form, class: "btn btn-secondary" %>
 </div>
+<%#= link_to_add_feast_name "Add another", form, class: "btn btn-secondary" %>
   <hr>
 
-
-<div class="form-group">
-  <%= form.label :shading %>
-  <%= form.text_field :shading, class: "form-control" %>
-</div>
-
+<% if @calendar_page.manuscript.has_shading == true %>
+  <div class="form-group">
+    <%= form.label :shading %>
+    <%= form.text_field :shading, class: "form-control" %>
+  </div>
+<% end %>
 
 <div class="form-group">
   <%= form.label :transcription %>
