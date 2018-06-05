@@ -24,11 +24,11 @@ $(function(){
   </div>
 
   <div class="row">
-    <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#update_calendar_page" >
+    <!-- <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#update_calendar_page" >
       edit the calendar page with a modal, if you would like to
-    </button>
+    </button> -->
 
-    <%= link_to 'edit (without a modal)', edit_calendar_page_path(@calendar_page), class: "btn btn-secondary" %>
+    <%= link_to 'edit', edit_calendar_page_path(@calendar_page), class: "btn btn-secondary" %>
   </div>
 </div>
 
