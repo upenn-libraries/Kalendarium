@@ -22,26 +22,24 @@ div {
  .btn-primary {
     background-color: #36472e;
     color: #f2dd79;
-   // border: 3px solid #878247;
-   // border-radius: 4px;
     border-color: #36472e;
   }
 
   .btn-primary:hover {
-    color: black;
-    background-color: #f2dd79;
+    color: #f2dd79;
+    background-color: #4f6843;
     border-color: #36472e;
   }
 
   .btn-secondary {
-    background-color: #bdc18d;
+    background-color: #bdc18d;;
     color: #36472e;
     border-color: #36472e;
   }
 
   .btn-secondary:hover {
-    color: black;
-    background-color: #f6f9d9;
+    color: #36472e;
+    background-color: #d9dda1;
   }
 
   .btn:active {
@@ -55,9 +53,9 @@ div {
     color: #ed9b28;
   }
 
- .btn-danger:hover {
-    color: white;
-    background-color: #ed9b28;
+  .btn-danger:hover {
+    background-color: #e2593b;
+    color: #ed9b28;
   }
 
   .light-grade {
@@ -68,6 +66,20 @@ div {
     background-color: #e7e1c4;
   }
 
+  .multiselect-container {
+    background-color: #bdc18d;
+    border: 3px solid #5e552a;
+    border-radius: 12px;
+
+    label {
+      color: #36472e;
+    }
+  }
+
+  .multiselect-group {
+     // border: 1px solid #5e552a;
+     // border-radius: 6px;
+  }
 }
 
 

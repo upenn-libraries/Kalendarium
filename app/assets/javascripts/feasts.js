@@ -34,11 +34,13 @@ $(document).on('turbolinks:load', function() {
 
 
 
- $('select.multiselect').multiselect({
-    buttonText: function(options, select) {
-      return 'choose attributes';
-    }
-  });
+ // $('select.multiselect').multiselect({
+ //    enableCollapsibleOptGroups: true,
+ //    collapseOptGroupsByDefault: true,
+ //    buttonText: function(options, select) {
+ //      return 'choose attributes';
+ //    }
+ //  });
 
 
 
@@ -57,7 +59,12 @@ $(document.body).on('ajax:success', '.feast-modal-link', function(event) {
       $('#feast-modal .modal-body').html(xhr.responseText);
       $('#feast-modal .modal-header').html($(this).attr('data-header'));
       $('#feast-modal .multiselect').multiselect({
-        buttonClass: 'btn btn-secondary'
+        buttonClass: 'btn btn-secondary',
+        enableCollapsibleOptGroups: true,
+        collapseOptGroupsByDefault: false,
+        buttonText: function(options, select) {
+          return 'choose attributes';
+        }
       });
       $('#feast-modal').modal('show')
     }).on("ajax:error", event => $('#feast-modal .modal-content').html("<p>ERROR</p>"));
