@@ -38,6 +38,7 @@ gem 'jquery-rails'
 #gem 'bootstrap-sass', '~> 4.3.7'
 gem 'bootstrap'
 gem 'popper_js'
+gem 'bootstrap-multiselect-rails', '~> 0.9.9'
 
 gem 'open-iconic-rails'
 
