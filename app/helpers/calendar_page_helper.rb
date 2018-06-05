@@ -45,13 +45,7 @@ module CalendarPageHelper
     content_tag :span, day.golden_number, class: 'golden-number'
   end
 
-  # ABCDEFG = %w(A b c d e f g)
-  # def dominical_letter ordinal
-  #   ABCDEFG[(ordinal % 7) - 1]
-  # end
-
   def display_dominical_letter day
-    # dominical_letter(day.ordinal)
     'Abcdefg'[(day.ordinal % 7) - 1]
   end
 

@@ -30,7 +30,6 @@ module ManuscriptHelper
     head + divs.compact.join("\n").html_safe
   end
 
-
   def member_field(attribute, value)
     content_tag(:div, class: 'row') do
       content_tag(:div, "#{attribute.to_s.humanize}:", class: 'col-3') +
@@ -39,6 +38,5 @@ module ManuscriptHelper
   end
 
 end
-
 
 
