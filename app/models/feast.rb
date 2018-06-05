@@ -19,8 +19,6 @@ class Feast < ApplicationRecord
     deposition
     elevation
     translation
-
-    death
   )
   # "invention of the body", "reception of his[JtB] appearance", "conversacio Pauli", "Purificatio S. Mariae"
 

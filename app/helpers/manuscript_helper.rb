@@ -10,7 +10,7 @@ module ManuscriptHelper
       return unless options[:always_display]
     end
     content_tag(:div, class: 'row') do
-      (content_tag :div, "#{attribute.to_s.humanize}:", class: 'col-3') +
+      (content_tag :strong, "#{attribute.to_s.humanize}:", class: 'col-3') + # should still be div probably. temporary change
       (content_tag :div, "#{value}", class: 'col-9')
     end
   end
@@ -32,7 +32,7 @@ module ManuscriptHelper
 
   def member_field(attribute, value)
     content_tag(:div, class: 'row') do
-      content_tag(:div, "#{attribute.to_s.humanize}:", class: 'col-3') +
+      content_tag(:strong, "#{attribute.to_s.humanize}:", class: 'col-3') + # should still be div probably. temporary change
       content_tag(:div, "#{value}", class: 'col-9')
     end
   end
