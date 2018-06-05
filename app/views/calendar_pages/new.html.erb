@@ -1,7 +1,10 @@
 <div class="container">
-  <h1>New Calendar Page</h1>
+
+  <div class="row">
+    <div class="col-9"><h1>New Calendar Page</h1></div>
+    <div class="col-3"><%= link_to 'back', manuscript_path(@manuscript), class: "btn btn-secondary btn-block btn-lg" %></div>
+  </div>
 
   <%= render 'form', calendar_page: @calendar_page %>
 
-  <%= link_to 'back', manuscript_path(@manuscript), class: "btn btn-secondary" %>
 </div>

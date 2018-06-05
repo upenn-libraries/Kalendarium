@@ -39,7 +39,7 @@
     <%= form.label :start_month, 'Start' %>
     <%= form.select :start_month, Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] }, {id: :calendar_page_start_month}, class: "form-control" %>
     <%= form.select :start_day, (1..31), {id: :calendar_page_start_day}, class: "form-control" %>
-    <input class="datepicker form-control" id="calendar_page_start_day datepicker" placeholder="input date">
+    <!-- <input class="datepicker form-control" id="calendar_page_start_day datepicker" placeholder="input date"> -->
   </div>
 
 
@@ -50,7 +50,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit class: "btn btn-primary btn-lg" %>
   </div>
 <% end %>
 

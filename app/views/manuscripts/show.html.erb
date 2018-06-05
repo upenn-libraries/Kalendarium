@@ -15,7 +15,7 @@
 
   <br>
 
-  <%= display_field_group(@manuscript, 'Provenance?', %i|origin origin_note destination destination_note|) %>
+  <%= display_field_group(@manuscript, 'Provenance', %i|origin origin_note destination destination_note|) %>
 
   <br>
 
@@ -32,12 +32,12 @@
   <%  end %>
 
   <div class="row">
-    <div class="col-2"> Calender integral? </div>
+    <div class="col-2"><strong>Calender integral?</strong></div>
     <div class="col-2"><%= yes_no(@manuscript.calendar_integral) %></div>
   </div>
 
   <div class="row" >
-    <div class="col-2">Calendar range:</div>
+    <div class="col-2"><strong>Calendar range:</strong>></div>
     <div class="col-2"><%= "#{@manuscript.start_folio}-#{@manuscript.end_folio}" %></div>
   </div>
 
@@ -69,7 +69,7 @@
   <br>
 
   <div class="row">
-    <div class="col-2"> Calender has shading? </div>
+    <div class="col-2"><strong>Calender has shading?</strong></div>
     <div class="col-2"><%= yes_no(@manuscript.has_shading) %></div>
   </div>
 
