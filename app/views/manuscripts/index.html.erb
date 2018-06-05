@@ -1,26 +1,47 @@
+<script>
+$(function(){
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
 <div class="container">
 <!--   <p id="notice"><%= notice %></p> -->
-
-  <h1>Manuscripts</h1>
+  <br>
 
   <div class="row">
-    <div class="col-3"><h5>Shelfmark</h5></div>
-    <div class="col-3"><h5>Name</h5></div>
-    <div class="col-3"><h5>Calendar Pages</h5></div>
+    <div class="col-9">
+      <h1>All Manuscripts</h1>
+    </div>
+
+    <div class="col-3">
+      <%= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-primary btn-lg btn-block" %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-2"><h5>Shelfmark</h5></div>
+    <div class="col-3"><h5>Manuscript</h5></div>
+    <div class="col-4"><h5>Calendar Pages</h5></div>
     <div class="col-3" ></div>
   </div>
 
-  <% @manuscripts.each do |manuscript| %>
-    <div class="row table-row">
-      <div class="col-3"><%= manuscript.shelfmark %></div>
+  <% @manuscripts.each_with_index do |manuscript, index| %>
+    <% grade = 'dark-grade' if index.even? %>
+    <div class="row table-row <%= grade %>">
+      <div class="col-2"><%= manuscript.shelfmark %></div>
       <div class="col-3"><%= manuscript.name %></div>
-      <div class="col-3">
+      <div class="col-4">
+
+
 
         <div class="row">
         <!--   <div class="btn-group btn-group-sm"> -->
             <%# manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |c_p| %>
             <% manuscript.calendar_pages.sort.each do |c_p| %>
-              <%= link_to c_p.folio, calendar_page_path(c_p), class: 'cal-page-link' %> <!-- , class: 'btn btn-secondary'  -->
+              <%= link_to c_p.folio, calendar_page_path(c_p), class: 'cal-page-link', title: "<span class='index-tooltip gold-text'>#{c_p.date_range}</span>", data: {toggle: 'tooltip', html: true} %>
+              <%#= content_tag :a, c_p.folio, class: 'cal-modal-link gold-text', data: {toggle: 'modal', target: '#calendar_page_modal'} %> <!-- , class: 'btn btn-secondary'  -->
               &nbsp;
             <% end %>
         <!--   </div> -->
@@ -38,10 +59,20 @@
 
   <br>
 
-  <%= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-primary" %>
+  <%#= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-primary" %>
 </div>
 
 
 <!--   <div class="col-1"><%#= link_to 'Show', manuscript %></div>
   <div class="col-1"><%#= link_to 'Edit', edit_manuscript_path(manuscript) %></div>
   <div class="col-1"><%#= link_to 'Destroy', manuscript, method: :delete, data: { confirm: 'Are you sure?' } %></div> -->
+
+
+<div class="modal fade" id="calendar_page_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg bordered-modal" role="document">
+    <div class="modal-content">
+      <h3>yes..</h3>
+      <div class='container'>calendar page</div>
+    </div>
+  </div>
+</div>
