@@ -25,7 +25,15 @@ module Kal
       SaintAttribute.new('solitary', 'solitary', 'solit'),
       SaintAttribute.new('subdeacon', 'subdeacon', 'subdiac'),
       SaintAttribute.new('virgin', 'virgin', 'v'),
-      SaintAttribute.new('widow', 'widow', 'vid')
+      SaintAttribute.new('widow', 'widow', 'vid'),
+
+
+
+      SaintAttribute.new(*%w|duke duke duc|),
+      SaintAttribute.new(*%w|king king re|),
+      SaintAttribute.new(*%w|queen queen regin|),
+
+      SaintAttribute.new(*%w|evangelist evangelist evangel|)
     ]
 
 
@@ -73,6 +81,7 @@ module Kal
      'Clerical titles' => CLERICAL_TITLES,
      'Monastic titles' => MONASTIC_TITLES,
      'Biblical roles'  => BIBLICAL_ROLES,
+     'Secular titles'  => SECULAR_TITLES,
      'Qualifiers'      => QUALIFIERS
      }
   end
