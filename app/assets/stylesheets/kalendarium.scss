@@ -1,5 +1,7 @@
 #calendar-table, .feast_details {
   background-color: #fec;
+  border: 4px solid #b2ae97;
+  border-radius: 4px;
 }
 
 .calendar-row, .table-row {
@@ -51,7 +53,7 @@
 
 
 .bordered-modal {
-  border: 12px solid #5e552a;
+  border: 12px solid #455640; //#5e552a;
   border-radius: 18px;
 }
 
@@ -64,6 +66,15 @@
 .cal-page-link {
   color: #36472e;
 }
+
+.modern-date {
+  color: #b2ae97;
+}
+
+.empty-kal-space {
+  // background-color: #36472e;
+}
+
 
 .tooltip, .index-tooltip, .tooltip-arrow, .tooltip-inner, .tooltip-top {
   // background-color: #36472e;

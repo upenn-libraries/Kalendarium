@@ -2,12 +2,12 @@
   <div class="row">
     <div class="col-7"><h1><%= @manuscript.name %></h1></div>
     <div class="btn-group-lg btn-group col-5">
-      <%= link_to 'edit this manuscript', edit_manuscript_path(@manuscript), class: "btn btn-secondary" %>
-      <%= link_to 'view all manuscripts', manuscripts_path, class: "btn btn-secondary" %>
+      <%= link_to 'edit this manuscript', edit_manuscript_path(@manuscript), class: "btn btn-kal-standard" %>
+      <%= link_to 'view all manuscripts', manuscripts_path, class: "btn btn-kal-standard" %>
     </div>
   </div>
 
-  <p id="notice"><%= notice %></p>
+  <!-- <p id="notice"><%= notice %></p> -->
 
   <% %i(shelfmark book_type manuscript_or_print language script).each do |atr| %>
     <%= display_field(@manuscript, atr, always_display: true)  %>
@@ -88,8 +88,8 @@
     </div>
 
     <div class="col-6">
-      <%= link_to 'New', new_manuscript_calendar_page_path(manuscript_id: @manuscript.id), class: "btn btn-primary" %> <!-- old attempt, update? -->
-      <%= link_to 'full calendar', calendar_manuscript_path(@manuscript), class: "btn btn-secondary" %>
+      <%= link_to 'New', new_manuscript_calendar_page_path(manuscript_id: @manuscript.id), class: "btn btn-kal-special" %> <!-- old attempt, update? -->
+      <%= link_to 'full calendar', calendar_manuscript_path(@manuscript), class: "btn btn-kal-standard" %>
     </div>
   </div>
 
@@ -109,8 +109,8 @@
 
         <div class="col-6">
           <div class="btn-group">
-           <%= link_to 'show', calendar_page, class: "btn btn-secondary" %>
-            <%#= link_to 'edit', edit_calendar_page_path(calendar_page), class: "btn btn-secondary" %>
+           <%= link_to 'show', calendar_page, class: "btn btn-kal-standard" %>
+            <%#= link_to 'edit', edit_calendar_page_path(calendar_page), class: "btn btn-kal-standard" %>
            <%= link_to 'delete', [@manuscript, calendar_page], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </div>
         </div>
@@ -120,7 +120,7 @@
 </div>
 
 
-<%#= link_to 'all feasts', manuscript_calendar_path(@manuscript), class: "btn btn-secondary btn-block" %>
+<%#= link_to 'all feasts', manuscript_calendar_path(@manuscript), class: "btn btn-kal-standard btn-block" %>
 
 
 

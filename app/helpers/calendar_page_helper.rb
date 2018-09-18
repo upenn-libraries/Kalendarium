@@ -8,7 +8,7 @@ module CalendarPageHelper
       content_tag :div, display_small_col(col, day), class: "col-#{span}"
     end
 
-    divs.join("\n").html_safe
+    divs.join(?\n).html_safe
   end
 
   def display_small_col col, day
@@ -26,10 +26,10 @@ module CalendarPageHelper
 
   def display_date day
   # if Kal::Days::EGYPTIAN_DAYS[month_name(day.month_number)].include?(day.day_number)
-    if Kal::Days::EGYPTIAN_DAYS2.include? [day.month_number, day.day_number]
+    if @never #Kal::Days::EGYPTIAN_DAYS2.include? [day.month_number, day.day_number]
       e_d = content_tag :em, ' D', class: 'egyptian-day', title: 'Egyptian Day', data: {toggle: :tooltip}
     end
-    content_tag(:strong, "#{month_name(day.month_number)[0..2]} #{day.day_number}") + e_d.to_s
+    content_tag(:strong, "#{month_name(day.month_number)[0..2]} #{day.day_number}", class: 'modern-date') + e_d.to_s
   end
 
   def display_kni day
@@ -64,23 +64,24 @@ module CalendarPageHelper
   end
 
   def show_feast_link(feast)
-    classes = 'btn btn-secondary feast-modal-link'
+    classes = 'btn btn-kal-standard feast-modal-link'
     link_to 'details', feast_path(feast), data: modal_data(feast), class: classes
   end
 
   def edit_feast_link(feast)
-    classes = 'btn btn-secondary edit-feast-modal-link'
+    classes = 'btn btn-kal-standard edit-feast-modal-link'
     link_to 'edit', edit_feast_path(feast), data: modal_data(feast), class: classes
   end
 
   def add_feast_link(date)
     date_params = feast_date_params(date)
-    classes = 'btn btn-sm btn-primary float-right add-feast-modal-link'
+    classes = 'btn btn-sm btn-kal-special float-right add-feast-modal-link'
     link_to 'add feast', new_calendar_page_feast_path(@calendar_page, date_params), data: modal_data, class: classes
   end
 
   def delete_feast_link(feast)
-    link_to 'delete', [@calendar_page, feast], method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"
+    message = "Are you sure you want to delete the feast '#{feast.to_s}' (#{feast.month_number}/#{feast.day_number})?"
+    link_to 'X', [@calendar_page, feast], method: :delete, data: {confirm: message}, class: "btn btn-danger"
   end
 
   def feast_date_params month_day

@@ -8,18 +8,21 @@ $(function(){
 
   <div class=row>
     <div class="col-10">
-      <h1><%= "#{@calendar_page.manuscript}: f. #{@calendar_page.folio}"%></h1>
+      <h1><%#= "#{@calendar_page.manuscript}: f. #{@calendar_page.folio}"%></h1>
+      <h4><%#= "#{month_name @calendar_page.start_month} #{@calendar_page.start_day} - #{month_name @calendar_page.end_month} #{@calendar_page.end_day}" %>
+      <h1><%= @calendar_page.manuscript %></h1>
+      <h4><%= "f.#{@calendar_page.folio}: #{month_name @calendar_page.start_month} #{@calendar_page.start_day} - #{month_name @calendar_page.end_month} #{@calendar_page.end_day}" %></h4>
     </div>
     <div class="btn-group btn-group-lg col-2">
-          <%= link_to 'edit', edit_calendar_page_path(@calendar_page), class: "btn btn-secondary btn-lg " %>
+          <%= link_to 'edit', edit_calendar_page_path(@calendar_page), class: "btn btn-kal-standard btn-lg " %>
       <!--   </div>
         <div class="col-2"> -->
-            <%= link_to 'back', "/manuscripts/#{@calendar_page.manuscript.id}#calendar_pages", class: "btn btn-secondary btn-lg " %>
+            <%= link_to 'back', "/manuscripts/#{@calendar_page.manuscript.id}#calendar_pages", class: "btn btn-kal-standard btn-lg " %>
     </div>
   </div>
 
   <!--   <p id="notice"><%= notice %></p> -->
-  <div class="row">
+<!--   <div class="row">
       <div class="col-2">
         <strong>Start:</strong>
         <%= "#{month_name @calendar_page.start_month} #{@calendar_page.start_day}" %>
@@ -28,7 +31,7 @@ $(function(){
        <strong>End:</strong>
         <%= "#{month_name @calendar_page.end_month} #{@calendar_page.end_day}" %>
       </div>
-  </div>
+  </div> -->
 
 
   <div class="modal fade" id="update_calendar_page" tabindex="-1" role="dialog">
@@ -41,22 +44,40 @@ $(function(){
   </div>
 
   <div class="container" id="calendar-table">
+ <!--    <div class="row">
+      <div class="col-1">
+        1
+      </div>
+      <div class="col-2">
+        22
+      </div>
+      <div class="col-6">
+        666666
+      </div>
+      <div class="col-3">
+        333
+      </div>
+    </div> -->
     <% @calendar_page.dates.each_with_index do |date, index| %>
       <% div_id = "#{date.first}-#{date.last}" %>
       <% grade = index.even? ? 'dark-grade' : 'light-grade' %>
 
       <%= content_tag(:div, id: div_id, class: grade){ render 'day', date: date }  %>
 
-      <%= content_tag(:hr) if date.last == Kal::Months::MONTH_TABLE[date.first - 1].length %>
+      <% break if date == @calendar_page.dates.last %>
+      <%= content_tag(:hr, '', style: 'border: solid #b2ae97 4px;') if date.last == Kal::Months::MONTH_TABLE[date.first - 1].length %>
+      <%#= content_tag(:div, '', class: 'dark-grade'){ content_tag(:div, '', class: 'row'){content_tag(:hr, '', style: 'border: solid #b2ae97 4px;', class: 'col') } } if date.last == Kal::Months::MONTH_TABLE[date.first - 1].length %>
+
     <% end %>
   </div>
+  <br><br>
 </div>
 
 <!--
 <div class="container">
-  <%#= link_to 'edit', edit_calendar_page_path, class: "btn btn-secondary" %>
+  <%#= link_to 'edit', edit_calendar_page_path, class: "btn btn-kal-standard" %>
 
-  <%= link_to 'back', "/manuscripts/#{@calendar_page.manuscript.id}#calendar_pages", class: "btn btn-secondary" %>
+  <%= link_to 'back', "/manuscripts/#{@calendar_page.manuscript.id}#calendar_pages", class: "btn btn-kal-standard" %>
   <%#= link_to 'Back', manuscript_path(@calendar_page.manuscript) %>
 </div>
 
@@ -71,7 +92,7 @@ $(function(){
       <div class="modal-body container">
         [...]
       </div>
-      <div class="btn btn-secondary" id="hide-modal"> cancel </div>
+      <div class="btn btn-kal-standard" id="hide-modal"> cancel </div>
     </div>
   </div>
 </div>

@@ -10,11 +10,11 @@ $(function(){
 
   <div class="row">
     <div class="col-9">
-      <h1>All Manuscripts</h1>
+      <h1>Manuscripts</h1>
     </div>
 
     <div class="col-3">
-      <%= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-primary btn-lg btn-block" %>
+      <%= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-kal-special btn-lg //btn-block" %>
     </div>
   </div>
 
@@ -41,7 +41,7 @@ $(function(){
             <%# manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |c_p| %>
             <% manuscript.calendar_pages.sort.each do |c_p| %>
               <%= link_to c_p.folio, calendar_page_path(c_p), class: 'cal-page-link', title: "<span class='index-tooltip gold-text'>#{c_p.date_range}</span>", data: {toggle: 'tooltip', html: true} %>
-              <%#= content_tag :a, c_p.folio, class: 'cal-modal-link gold-text', data: {toggle: 'modal', target: '#calendar_page_modal'} %> <!-- , class: 'btn btn-secondary'  -->
+              <%#= content_tag :a, c_p.folio, class: 'cal-modal-link gold-text', data: {toggle: 'modal', target: '#calendar_page_modal'} %> <!-- , class: 'btn btn-kal-standard'  -->
               &nbsp;
             <% end %>
         <!--   </div> -->
@@ -49,8 +49,8 @@ $(function(){
 
       </div>
       <div class="col-3 btn-group"> <!-- ok to put both classes in one div? -->
-        <%= link_to 'details', manuscript, class: "btn btn-secondary" %>
-        <%= link_to 'edit', edit_manuscript_path(manuscript), class: "btn btn-secondary" %>
+        <%= link_to 'details', manuscript, class: "btn btn-kal-standard" %>
+        <%= link_to 'edit', edit_manuscript_path(manuscript), class: "btn btn-kal-standard" %>
         <%= link_to 'delete', manuscript, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
       </div>
     </div>
@@ -59,7 +59,7 @@ $(function(){
 
   <br>
 
-  <%#= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-primary" %>
+  <%#= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-kal-special" %>
 </div>
 
 

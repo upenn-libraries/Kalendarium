@@ -5,7 +5,7 @@
   <% @feast.feast_names.each do |fn| %>
 
     <div class="row">
-      <h1>St. <%= fn.name %></h1>
+      <h1 class="<%= color_class(@feast.color) %>">St. <%= fn.name %></h1>
     </div>
 
     <div class="row" >
@@ -39,6 +39,6 @@
   <div class="row">
     <br>
 
-    <%= (link_to 'back', calendar_page_path(@feast.calendar_page), class: "btn btn-secondary") if !request.xhr? %>
+    <%= (link_to 'back', calendar_page_path(@feast.calendar_page), class: "btn btn-kal-standard") if !request.xhr? %>
   </div>
 </div>

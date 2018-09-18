@@ -16,7 +16,7 @@ module ManuscriptHelper
   end
   # consider adding field_name/field_value CSS classes
 
-  def display_field_group(object, heading, attributes)
+  def display_field_group(object, heading, attributes, options={})
     head = content_tag :h4, heading, class: 'field-group-heading'
     values = attributes.map{ |a| object.send(a) }
     return head + '<no information>' if values.all?(&:blank?)

@@ -35,11 +35,16 @@
 
     <% else %>
      <!--  <div class="btn-group btn-group-sm">
-        <%= link_to 'details', '#', class: 'btn btn-secondary disabled', 'aria-disabled': true %>
-        <%= link_to 'edit', '#', class: 'btn btn-secondary disabled', 'aria-disabled': true %>
+        <%= link_to 'details', '#', class: 'btn btn-kal-standard disabled', 'aria-disabled': true %>
+        <%= link_to 'edit', '#', class: 'btn btn-kal-standard disabled', 'aria-disabled': true %>
         <%= link_to 'delete', '#', class: 'btn btn-danger disabled', 'aria-disabled': true %>
       </div>
  -->
+<!--  <div class="btn-group btn-group-sm">
+     <%= link_to 'details', '#', class: 'btn btn-kal-blank' %>
+        <%= link_to 'edit', '#', class: 'btn btn-kal-blank' %>
+        <%= link_to 'x', '#', class: 'btn btn-kal-blank' %>
+ </div> -->
 
       <%= add_feast_link(date) %>
     <% end %>
@@ -61,7 +66,13 @@
           <%= edit_feast_link(feast) %>
           <%= delete_feast_link(feast) %>
         </div>
+        <button class="btn-kal-blank btn-sm float-right"><%= 'add feast' %></button>
+       <!--  <div class="container empty-kal-space" style="background-color: #36472e !important;"></div> -->
       </div>
+      <!-- <div class="col-1"><button class="btn btn-kal-special btn-block"></button></div> -->
+      <!-- <button class="btn btn-kal-special btn-sm"><%= (['&nbsp;'] * 15 ).join.html_safe %></button> -->
     </div>
   <% end %>
 <% end %>
+
+

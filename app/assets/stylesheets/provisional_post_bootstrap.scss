@@ -19,32 +19,76 @@ div {
     background-color: #f6f9d9;
   }
 
- .btn-primary {
+ // .btn-primary {
+ //    background-color: #36472e;
+ //    color: #f2dd79;
+ //    border-color: #36472e;
+ //  }
+
+ //  .btn-primary:hover {
+ //    color: #f2dd79;
+ //    background-color: #4f6843;
+ //    border-color: #36472e;
+ //  }
+
+
+ //  .btn-secondary {
+ //    background-color: #bdc18d;;
+ //    color: #36472e;
+ //    border-color: #36472e;
+ //  }
+
+ //  .btn-secondary:hover {
+ //    color: #36472e;
+ //    background-color: #d9dda1;
+ //  }
+
+
+// ===============================
+ .btn-kal-special {
     background-color: #36472e;
     color: #f2dd79;
     border-color: #36472e;
   }
 
-  .btn-primary:hover {
+  .btn-kal-special:hover {
     color: #f2dd79;
     background-color: #4f6843;
     border-color: #36472e;
   }
 
-  .btn-secondary {
-    background-color: #bdc18d;;
+
+ .btn-kal-special:active {
+    background-color: #D4AF37 !important;
+    color: white;
+  }
+
+
+  .btn-kal-blank {
+     background-color: #b2ae97;
+     color: #b2ae97;
+     border-color: #b2ae97;
+  }
+
+  .btn-kal-standard {
+    background-color: #bdc18d;
     color: #36472e;
     border-color: #36472e;
   }
 
-  .btn-secondary:hover {
+  .btn-kal-standard:hover {
     color: #36472e;
     background-color: #d9dda1;
   }
+// ===============================
 
-  .btn:active {
-    background-color: #D4AF37 !important;
-    color: white;
+
+  .btn {
+    //border-radius: 0px;
+  }
+
+  .btn:focus {
+
   }
 
 
@@ -60,6 +104,7 @@ div {
 
   .light-grade {
    // background-color: #f9f3e6;
+   // background-color: #fec;
   }
 
   .dark-grade {
@@ -88,6 +133,7 @@ div {
     overflow-y: auto;
     overflow-x: hidden;
   }
+
 
 }
 

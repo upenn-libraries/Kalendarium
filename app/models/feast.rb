@@ -20,17 +20,17 @@ class Feast < ApplicationRecord
     elevation
     translation
   )
-  # "invention of the body", "reception of his[JtB] appearance", "conversacio Pauli", "Purificatio S. Mariae"
 
+
+  MAX_LENGTH = 56
 
   def to_s
     s = ''
     s << feast_names.join(', ')        unless feast_names.blank?
     s << " [#{modifier}]"              unless modifier.blank?
     s << (': "' + transcription + '"') unless transcription.blank?
-    limit = 56
-    elip = s.length > limit ? '...' : ''
-    "#{s[0...limit]}#{elip}"
+    elip = s.length > MAX_LENGTH ? '...' : ''
+    "#{s[0...MAX_LENGTH]}#{elip}"
   end
 
 

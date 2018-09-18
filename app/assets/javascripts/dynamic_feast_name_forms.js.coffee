@@ -10,7 +10,7 @@ $(document).on 'click', 'form .add-feast-name', (event) ->
 
 
   $(this).before($(this).data('fields'))#.replace(regexp, time))
-  $(this).siblings('fieldset:last').find('.multiselect').multiselect buttonClass: 'btn btn-secondary'
+  $(this).siblings('fieldset:last').find('.multiselect').multiselect buttonClass: 'btn btn-kal-standard'
   event.preventDefault()
 
 

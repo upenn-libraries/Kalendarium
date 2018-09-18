@@ -32,9 +32,9 @@
     <%= render 'feast_name_fields', fnf: fnf %>
   <% end %>
 
-  <%= link_to_add_feast_name "Add another", form, class: "btn btn-secondary" %>
+  <%= link_to_add_feast_name "Add another", form, class: "btn btn-kal-standard" %>
 </div>
-<%#= link_to_add_feast_name "Add another", form, class: "btn btn-secondary" %>
+<%#= link_to_add_feast_name "Add another", form, class: "btn btn-kal-standard" %>
   <hr>
 
 <% if @calendar_page.manuscript.has_shading == true %>
@@ -56,6 +56,6 @@
 <%= form.hidden_field :manuscript_id %>
 
 <div class="form-group">
-  <%= form.submit class: "btn btn-primary btn-lg" %>
+  <%= form.submit class: "btn btn-kal-special btn-lg" %>
 </div>
 

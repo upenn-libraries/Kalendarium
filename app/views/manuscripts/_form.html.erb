@@ -121,8 +121,8 @@
   <h5>Date Range</h5>
 <!--
   <div class="row"> -->
-    <div class="form-group form-inline col-6">
-    <!--   <div class="row"> -->
+    <div class="//form-group form-inline col-6">
+      <div class="row">
         <div class="col-6">
     <!--       <div class="form-group"> -->
             <%= form.label :start_year, 'Start' %>
@@ -135,7 +135,7 @@
             <%= form.number_field :end_year, min: 0, max: 9999, id: :manuscript_end_year, class: "form-control" %>
        <!--    </div> -->
         </div>
-    <!--   </div> -->
+      </div>
     </div>
 
     <div class="form-group col-8">
@@ -272,7 +272,7 @@
 
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary btn-lg" %>
+    <%= form.submit class: "btn btn-kal-special btn-lg" %>
   </div>
 <% end %>
 
