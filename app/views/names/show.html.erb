@@ -1,0 +1,18 @@
+<div class="container">
+  <%= notice %>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @name.name %>
+  </p>
+
+  <% @name.variants.each do |v| %>
+    <%= v.variant.to_s + v.language.to_s.upcase %>
+    <br>
+  <% end %>
+
+  <div class="btn-group">
+    <%= link_to 'Edit', edit_name_path(@name), class: 'btn btn-kal-standard' %>
+    <%= link_to 'Back', names_path, class: 'btn btn-kal-standard' %>
+  </div>
+</div>

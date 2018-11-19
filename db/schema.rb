@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119205848) do
+ActiveRecord::Schema.define(version: 20181108154344) do
 
   create_table "calendar_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "folio", null: false
@@ -93,6 +93,17 @@ ActiveRecord::Schema.define(version: 20180119205848) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "variant_id"
+    t.index ["variant_id"], name: "index_names_on_variant_id"
+  end
+
+  create_table "variants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "variant"
+    t.string "language"
+    t.bigint "name_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name_id"], name: "index_variants_on_name_id"
   end
 
   add_foreign_key "calendar_pages", "manuscripts"
@@ -100,4 +111,6 @@ ActiveRecord::Schema.define(version: 20180119205848) do
   add_foreign_key "feast_names", "names"
   add_foreign_key "feasts", "calendar_pages"
   add_foreign_key "feasts", "manuscripts"
+  add_foreign_key "names", "variants"
+  add_foreign_key "variants", "names"
 end

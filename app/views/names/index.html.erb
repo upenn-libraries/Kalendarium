@@ -1,0 +1,39 @@
+<div class='container'>
+  <%= notice %>
+
+  <h1>Names</h1>
+
+<!--   <% @names.each do |name| %>
+    <div class="row">
+      <div class="col-2"><%= name.name %></div>
+      <div class="col-10 btn-group">
+        <%= link_to 'details', name, class: 'btn btn-kal-standard' %>
+        <%= link_to 'edit', edit_name_path(name), class: 'btn btn-kal-standard'  %>
+        <%= link_to 'X', name, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+      </div>
+    </div>
+  <% end %> -->
+
+  <% @names.each_with_index do |name, i| %>
+    <%= "<div class='row'>".html_safe if i % 3 == 0 %>
+    <div class="col-4">
+      <div class="row">
+        <div class="col-4"><%= name.name %></div>
+        <div class="col-8 btn-group">
+          <%= link_to 'details', name, class: 'btn btn-kal-standard' %>
+          <%= link_to 'edit', edit_name_path(name), class: 'btn btn-kal-standard'  %>
+          <%= link_to 'X', name, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+        </div>
+      </div>
+    </div>
+    <%= "</div>".html_safe if (i % 3 == 2) || i == @names.length %>
+  <% end %>
+
+ <br>
+
+  <%= link_to 'New Name', new_name_path, class: 'btn btn-kal-standard' %>
+</div>
+
+
+
+

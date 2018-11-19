@@ -1,5 +1,4 @@
 module FeastHelper
-
   def saint_attribute_optgroup(heading, attributes)
     opts = attributes.map{ |attrib| content_tag :option, attrib.name.humanize, value: attrib.code }
     content_tag :optgroup, opts.join.html_safe, label: heading
@@ -9,6 +8,7 @@ module FeastHelper
   def link_to_add_feast_name(name, f, options={})
     new_fn = FeastName.new
     id = new_fn.object_id
+
     fields = f.fields_for(:feast_names, new_fn) do |builder|
       render("feast_name_fields", fnf: builder)
     end
@@ -21,5 +21,4 @@ module FeastHelper
 
     link_to(name, '#', options)
   end
-
 end

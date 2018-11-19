@@ -1,0 +1,15 @@
+<fieldset>
+  <div class="row form-group field">
+    <%= vf.label :variant, class: 'col-2' %>
+    <%= vf.text_field :variant, class: 'col-6 form-control' %>
+    <%= vf.select :language, Manuscript::LANGUAGES, {}, class: 'col-2 form-control' %>
+
+     <div class="col-2">
+      <%= vf.hidden_field :_destroy %>
+
+      <%= link_to 'x', '#', class: 'remove-variant btn btn-danger btn-lg btn-block' %>
+
+    </div>
+  </div>
+
+</fieldset>

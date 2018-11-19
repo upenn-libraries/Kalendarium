@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :names
   resources :manuscripts do
     resources :calendar_pages, only: [:new, :create, :destroy]
     # resources :feasts, only: [:new, :create, :destroy]
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   resources :feasts, only: [:edit, :update, :show]
+
+# resources :names
 
   get 'calendars/:manuscript_id', to: 'calendars#show', as: 'calendars'
 

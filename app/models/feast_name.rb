@@ -20,7 +20,6 @@ class FeastName < ApplicationRecord
     sa_string ? "#{name}(#{sa_string})" : "#{name}"
   end
 
-
   private
     def handle_other_name
       return true if self.other_name.blank?

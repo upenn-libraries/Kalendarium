@@ -1,0 +1,32 @@
+<%= form_with(model: name, local: true) do |form| %>
+<%#= form_for @name do |form| %>
+  <% if name.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(name.errors.count, "error") %> prohibited this name from being saved:</h2>
+
+      <ul>
+      <% name.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row form-group field">
+    <div class="col-2"><%= form.label :name, 'Standard form' %></div>
+    <div class="col-8"><%= form.text_field :name, id: :name_name, class: 'form-control' %></div>
+  </div>
+
+<div>
+  <%#= form.fields_for :variants, Variant.new do |vf| %>
+  <%= form.fields_for :variants do |vf| %>
+    <%= render 'variant_fields', vf: vf %>
+  <% end %>
+</div>
+
+  <%= link_to_add_variant "Add another", form, class: "btn btn-kal-standard" %>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-kal-standard' %>
+  </div>
+<% end %>

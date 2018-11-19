@@ -35,7 +35,6 @@
 
 
   <div class="row">
-
     <div class="form-group col-5">
         <%= fnf.label :name_id, 'Name' %>
         <%= fnf.collection_select :name_id, Name.all.to_a << Name.new(name: 'other'), :id, :name, {include_blank: true},  class: 'name-selection form-control'  %>
@@ -57,7 +56,6 @@
       <%= link_to 'x', '#', class: 'remove-feast-name btn btn-danger btn-lg btn-block' if @flag %>
       <% @flag = true %><!-- is this ok? -->
     </div>
-
   </div>
 
   <div class="form-group hidden name-field" name="name-field" >
@@ -70,4 +68,18 @@
     <%= fnf.text_field :saint_location, class: "form-control" %>
   </div>
 </fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
