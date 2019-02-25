@@ -13,7 +13,6 @@
 
   <div class="col-2 ">
     <div class = "row">
-      <%#= display_small_cols(col_config, day) %>
       <%= display_small_cols(@calendar_page.manuscript.col_config, day) %>
     </div>
   </div>
@@ -26,8 +25,8 @@
     <% unless feasts.blank? %>
 
       <div class="btn-group btn-group-sm">
-        <%= show_feast_link(feasts.first) %>
-        <%= edit_feast_link(feasts.first) %>
+        <%= show_feast_link(date, feasts.first) %>
+        <%= edit_feast_link(date, feasts.first) %>
         <%= delete_feast_link(feasts.first) %>
       </div>
 
@@ -62,15 +61,14 @@
       </div>
       <div class="col-3">
         <div class="btn-group btn-group-sm">
-          <%= show_feast_link(feast)%>
-          <%= edit_feast_link(feast) %>
+          <%= show_feast_link(date, feast)%>
+          <%= edit_feast_link(date, feast) %>
           <%= delete_feast_link(feast) %>
         </div>
         <button class="btn-kal-blank btn-sm float-right"><%= 'add feast' %></button>
        <!--  <div class="container empty-kal-space" style="background-color: #36472e !important;"></div> -->
       </div>
       <!-- <div class="col-1"><button class="btn btn-kal-special btn-block"></button></div> -->
-      <!-- <button class="btn btn-kal-special btn-sm"><%= (['&nbsp;'] * 15 ).join.html_safe %></button> -->
     </div>
   <% end %>
 <% end %>

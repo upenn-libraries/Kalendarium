@@ -1,10 +1,12 @@
 <div class="container">
-
   <div class="row">
     <div class="col-9"><h1>New Calendar Page</h1></div>
-    <div class="col-3"><%= link_to 'back', manuscript_path(@manuscript), class: "btn btn-kal-standard btn-block btn-lg" %></div>
+    <div class="col-3">
+      <%= link_to 'back', manuscript_path(@manuscript), class: "btn btn-kal-standard btn-block btn-lg" unless request.xhr? %>
+    </div>
   </div>
 
   <%= render 'form', calendar_page: @calendar_page %>
 
+  <%= content_tag(:div, class: 'btn btn-block btn-kal-standard btn-sm', id: 'hide-modal'){ 'Cancel' } if request.xhr? %>
 </div>

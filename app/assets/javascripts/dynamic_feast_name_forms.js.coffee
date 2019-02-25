@@ -8,14 +8,15 @@ $(document).on 'click', 'form .add-feast-name', (event) ->
   time = new Date().getTime()
   regexp = new RegExp($(this).data('id'), 'g')
 
-
-  $(this).before($(this).data('fields'))#.replace(regexp, time))
-  $(this).siblings('fieldset:last').find('.multiselect').multiselect buttonClass: 'btn btn-kal-standard'
+  $(this).parents('.row').siblings('hr').before($(this).data('fields').replace(regexp, time))
+  $(this).parents('.row').siblings('hr').siblings('fieldset:last').find('.multiselect').multiselect(buttonClass: 'btn btn-kal-standard')
   event.preventDefault()
 
 
-
-  # $(this).prev('div').children('p').before($(this).data('fields'))
-  # $(this).prev('div').children('p').siblings('fieldset:last').find('.multiselect').multiselect buttonClass: 'btn btn-secondary'
+  # $(this).before($(this).data('fields').replace(regexp, time))
+  # $(this).siblings('fieldset:last').find('.multiselect').multiselect buttonClass: 'btn btn-kal-standard'
   # event.preventDefault()
 
+
+# $(this).parents('fieldset').after($(this).data('fields').replace(regexp, time))
+# $(this).parents('fieldset').siblings('fieldset:last').find('.multiselect').multiselect buttonClass: 'btn btn-kal-standard'

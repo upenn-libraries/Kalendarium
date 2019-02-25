@@ -1,37 +1,44 @@
+<script>
+$(function(){
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
 <div class='container'>
   <%= notice %>
 
-  <h1>Names</h1>
+  <br>
 
-<!--   <% @names.each do |name| %>
-    <div class="row">
-      <div class="col-2"><%= name.name %></div>
-      <div class="col-10 btn-group">
-        <%= link_to 'details', name, class: 'btn btn-kal-standard' %>
-        <%= link_to 'edit', edit_name_path(name), class: 'btn btn-kal-standard'  %>
-        <%= link_to 'X', name, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
-      </div>
-    </div>
-  <% end %> -->
+  <div class="row">
+    <div class="col-10"><h1>Names</h1></div>
+
+    <div class="col-2"><%= link_to 'New', new_name_path, class: 'btn btn-kal-special btn-lg' %></div>
+  </div>
+
+  <br>
 
   <% @names.each_with_index do |name, i| %>
     <%= "<div class='row'>".html_safe if i % 3 == 0 %>
     <div class="col-4">
       <div class="row">
-        <div class="col-4"><%= name.name %></div>
+        <div class="col-4" data-html="true" data-toggle="tooltip" title="<%= name.variants.any? ? ('Variants:<br>' + name.variants.join('<br>')).html_safe : '' %>"><%= name %></div>
         <div class="col-8 btn-group">
           <%= link_to 'details', name, class: 'btn btn-kal-standard' %>
           <%= link_to 'edit', edit_name_path(name), class: 'btn btn-kal-standard'  %>
-          <%= link_to 'X', name, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+          <%= link_to 'X', name, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         </div>
       </div>
+<!--       <% name.variants.each do |variant| %>
+        <div class="row"> <%= variant %></div>
+      <% end %> -->
     </div>
     <%= "</div>".html_safe if (i % 3 == 2) || i == @names.length %>
   <% end %>
 
  <br>
 
-  <%= link_to 'New Name', new_name_path, class: 'btn btn-kal-standard' %>
+  <%#= link_to 'New Name', new_name_path, class: 'btn btn-kal-standard' %>
 </div>
 
 

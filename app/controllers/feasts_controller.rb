@@ -35,7 +35,7 @@ class FeastsController < ApplicationController
     @calendar_page = @feast.calendar_page
 
     respond_to do |format|
-      format.html { render layout: !request.xhr? }
+      format.html{ render layout: !request.xhr? }
     end
   end
 
@@ -43,15 +43,16 @@ class FeastsController < ApplicationController
   # POST /feasts.json
   def create
     @feast = @calendar_page.feasts.build(feast_params)
+
     respond_to do |format|
       if @feast.save
       # @calendar_page = @feast.calendar_page
-        format.html { redirect_to @calendar_page, notice: 'Feast was successfully created.' }
-        format.json { render :show, status: :created, location: @feast }
+        format.html{ redirect_to @calendar_page, notice: 'Feast was successfully created.' }
+        format.json{ render :show, status: :created, location: @feast }
         format.js
       else
-        format.html { render :new }
-        format.json { render json: @feast.errors, status: :unprocessable_entity }
+        format.html{ render :new }
+        format.json{ render json: @feast.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -63,12 +64,12 @@ class FeastsController < ApplicationController
     respond_to do |format|
       if @feast.update(feast_params)
         @calendar_page = @feast.calendar_page
-        format.html { redirect_to @feast.calendar_page, notice: 'Feast was successfully updated.' }
-        format.json { render :show, status: :ok, location: @feast }
+        format.html{ redirect_to @feast.calendar_page, notice: 'Feast was successfully updated.' }
+        format.json{ render :show, status: :ok, location: @feast }
         format.js
       else
-        format.html { render :edit }
-        format.json { render json: @feast.errors, status: :unprocessable_entity }
+        format.html{ render :edit }
+        format.json{ render json: @feast.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -78,8 +79,8 @@ class FeastsController < ApplicationController
   def destroy
     @feast.destroy
     respond_to do |format|
-      format.html { redirect_to @feast.calendar_page, notice: 'This feast has ceased' }
-      format.json { head :no_content }
+      format.html{ redirect_to @feast.calendar_page, notice: 'This feast has ceased' }
+      format.json{ head :no_content }
     end
   end
 

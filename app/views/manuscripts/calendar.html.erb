@@ -13,14 +13,11 @@
     <%# end %>
 
     <% feast_dates.each_with_index do |date, index| %>
-
       <% div_id = "#{date.first}-#{date.last}" %>
       <% grade = index.even? ? 'dark-grade' : 'light-grade' %>
 
+      <%= content_tag(:hr, '', style: 'border: solid #b2ae97 4px;') if date.first != feast_dates[index - 1].first && !(index == 0) %>
       <%= content_tag(:div, id: div_id, class: grade){ render 'day', date: date }  %>
-
-      <%= content_tag(:hr) if date.last == Kal::Months::MONTH_TABLE[date.first - 1].length %>
-
     <% end %>
 
 

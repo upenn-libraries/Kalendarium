@@ -1,7 +1,33 @@
-<div class="container">
-  <h1>New Name</h1>
+<div class="container" style="background-color: #fec;">
+  <% unless request.xhr? %>
+    <h1>New Name</h1>
+  <% else %>
+    <h4>New name</h4>
+  <% end %>
 
-  <%= render 'form', name: @name %>
+  <% options = {name: @name, html: {class: 'form'}} %>
+  <% options.merge!({remote: true, format: :js}) if request.xhr? %>
 
-  <%= link_to 'Back', names_path, class: 'btn btn-kal-standard' %>
+
+  <%#= form_with(model: name, local: true) do |form| %>
+    <%#= render 'form', name: @name %>
+  <%# end %>
+
+  <%= form_for @name, options do |form| %>
+    <%= render 'form', form: form %>
+  <% end %>
+
+  <%= link_to 'Back', names_path, class: 'btn btn-kal-standard' unless request.xhr? %>
+
+
 </div>
+
+
+
+
+<script type="text/javascript">
+  var names = $('#all-names').data('names').split('|')
+  $( ".autocomplete-test:last" ).autocomplete({
+    source: names
+  });
+</script>

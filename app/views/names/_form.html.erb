@@ -1,11 +1,10 @@
-<%= form_with(model: name, local: true) do |form| %>
-<%#= form_for @name do |form| %>
-  <% if name.errors.any? %>
+<%#= form_with(model: name, local: true) do |form| %>
+  <% if @name.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(name.errors.count, "error") %> prohibited this name from being saved:</h2>
+      <h2><%= pluralize(@name.errors.count, "error") %> prohibited this name from being saved:</h2>
 
       <ul>
-      <% name.errors.full_messages.each do |message| %>
+      <% @name.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -13,20 +12,32 @@
   <% end %>
 
   <div class="row form-group field">
-    <div class="col-2"><%= form.label :name, 'Standard form' %></div>
-    <div class="col-8"><%= form.text_field :name, id: :name_name, class: 'form-control' %></div>
+    <div class="col-4"><%= form.label :name, 'Standard form (English):' %></div>
+    <div class="col-6"><%= form.text_field :name, id: :name_name, class: 'form-control autocomplete-test' %></div>
+    <div class="col-2"><%= link_to_add_variant "Add variant", form, class: "btn btn-kal-special" %></div>
   </div>
 
 <div>
   <%#= form.fields_for :variants, Variant.new do |vf| %>
-  <%= form.fields_for :variants do |vf| %>
-    <%= render 'variant_fields', vf: vf %>
-  <% end %>
+  <%#= form.fields_for :variants do |vf| %>
+    <%#= render 'variant_fields', vf: vf %>
+  <%# end %>
 </div>
 
-  <%= link_to_add_variant "Add another", form, class: "btn btn-kal-standard" %>
+
 
   <div class="actions">
-    <%= form.submit class: 'btn btn-kal-standard' %>
+    <% submit_button_classes = 'btn btn-kal-special' %>
+    <% # submit_button_classes.concat(' btn-block') if request.xhr? %>
+    <%= form.submit class: submit_button_classes %>
   </div>
+<%# end %>
+
+
+<% unless request.xhr? %>
+  <div id="all-names" data-names="<%= Name.all.map(&:name).join(?|) %>"></div>
+<% else %>
+  <br>
 <% end %>
+
+

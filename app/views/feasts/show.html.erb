@@ -1,11 +1,8 @@
 <div class="container">
-  <div class="row">
-    <h3><%= "#{@feast.month_number}/#{@feast.day_number}" %></h3>
-  </div>
   <% @feast.feast_names.each do |fn| %>
 
     <div class="row">
-      <h1 class="<%= color_class(@feast.color) %>">St. <%= fn.name %></h1>
+      <h1 class="<%= color_class(@feast.color) %>"><%= fn.name %></h1>
     </div>
 
     <div class="row" >

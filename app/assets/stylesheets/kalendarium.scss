@@ -53,8 +53,16 @@
 
 
 .bordered-modal {
-  border: 12px solid #455640; //#5e552a;
-  border-radius: 18px;
+  // border: 12px solid #455640; //#5e552a;
+  //   border-radius: 18px;
+  border: 8px solid #455640;
+  border-radius: 12px;
+}
+
+
+.bordered-modal-sm {
+  border: 6px solid #455640;
+  border-radius: 9px;
 }
 
 .feast-header {
@@ -80,7 +88,22 @@
   // background-color: #36472e;
 }
 
-.ui-datepicker-year
-{
+.ui-datepicker-year {
   display:none;
+}
+
+.ui-autocomplete {
+  z-index: 9999 !important;
+  background-color: #bdc18d;
+  color: #36472e;
+  border: 1px solid #455640;
+  border-color: #36472e;
+  border-radius: 2px;
+  width: 200px;
+}
+
+
+
+.ui-menu-item-wrapper:focus {
+  color: blue;
 }

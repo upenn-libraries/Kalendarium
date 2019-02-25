@@ -1,6 +1,4 @@
 <!-- <div class="container" id="feast-form-area"> -->
-  <h1><%= "#{month_name(@feast.month_number)} #{@feast.day_number}" %></h1>
-
   <% options = {html: {class: "form"}} %>
   <% options.merge!({remote: true, format: :js}) if request.xhr? %>
 

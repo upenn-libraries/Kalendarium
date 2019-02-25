@@ -9,23 +9,4 @@ class Name < ApplicationRecord
   def to_s
     name
   end
-
-
-
-  # serialize :bariants
-
-  # before_save :collect_bariants
-
-  # after_find :populate_bariants
-
-  # 4.times{ |i| attr_accessor :"bariant#{i}"}
-
-  # private
-  #   def collect_bariants
-
-  #   end
-
-  #   def populate_bariants
-
-  #   end
 end

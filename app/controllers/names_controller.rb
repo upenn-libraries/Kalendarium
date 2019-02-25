@@ -17,6 +17,10 @@ class NamesController < ApplicationController
     @name = Name.new
 
     @name.variants.build
+
+    respond_to do |format|
+      format.html{ render layout: !request.xhr? }
+    end
   end
 
   # GET /names/1/edit
@@ -30,11 +34,12 @@ class NamesController < ApplicationController
 
     respond_to do |format|
       if @name.save
-        format.html { redirect_to @name, notice: 'Name was successfully created.' }
-        format.json { render :show, status: :created, location: @name }
+        format.html{ redirect_to @name, notice: 'Name was successfully created.' }
+        format.json{ render :show, status: :created, location: @name }
+        format.js
       else
-        format.html { render :new }
-        format.json { render json: @name.errors, status: :unprocessable_entity }
+        format.html{ render :new }
+        format.json{ render json: @name.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,11 +49,11 @@ class NamesController < ApplicationController
   def update
     respond_to do |format|
       if @name.update(name_params)
-        format.html { redirect_to @name, notice: 'Name was successfully updated.' }
-        format.json { render :show, status: :ok, location: @name }
+        format.html{ redirect_to @name, notice: 'Name was successfully updated.' }
+        format.json{ render :show, status: :ok, location: @name }
       else
-        format.html { render :edit }
-        format.json { render json: @name.errors, status: :unprocessable_entity }
+        format.html{ render :edit }
+        format.json{ render json: @name.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,8 +63,8 @@ class NamesController < ApplicationController
   def destroy
     @name.destroy
     respond_to do |format|
-      format.html { redirect_to names_url, notice: 'Name was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html{ redirect_to names_url, notice: 'Name was successfully destroyed.' }
+      format.json{ head :no_content }
     end
   end
 
@@ -74,3 +79,14 @@ class NamesController < ApplicationController
       params.require(:name).permit(:name, variants_attributes: [:id, :variant, :language, :_destroy])
     end
 end
+
+
+
+
+
+
+
+
+
+%w(btn btn-kal-standard).tap{ |x| x << ok if @ok }
+

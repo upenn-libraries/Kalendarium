@@ -18,6 +18,10 @@ class CalendarPagesController < ApplicationController
   def new
     # @calendar_page = CalendarPage.new
     @calendar_page = @manuscript.calendar_pages.build
+
+    respond_to do |format|
+      format.html{ render layout: !request.xhr? }
+    end
   end
 
   # GET /calendar_pages/1/edit

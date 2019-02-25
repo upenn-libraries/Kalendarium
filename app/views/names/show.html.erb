@@ -3,11 +3,12 @@
 
   <p>
     <strong>Name:</strong>
-    <%= @name.name %>
+    <%= @name %>
   </p>
 
   <% @name.variants.each do |v| %>
-    <%= v.variant.to_s + v.language.to_s.upcase %>
+    <%#= "#{v.variant} (#{v.language.to_s.upcase})" %>
+    <%= v.to_s %>
     <br>
   <% end %>
 

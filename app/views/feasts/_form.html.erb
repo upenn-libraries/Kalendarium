@@ -10,43 +10,50 @@
   </div>
 <%# end %>
  -->
+
+<h2>Feast</h2>
+
 <div class="row">
-  <div class="form-group colors col-6">
+  <div class="form-group colors col-3">
     <%= form.label :color%>
     <%= form.select :color, colors_for_manuscript(@calendar_page.manuscript), {}, class: "form-control", id: "color-selection" %>
   </div>
 
-  <div class="form-group col-6">
+  <div class="form-group col-3">
     <%= form.label :modifier %>
-    <%= form.select :modifier, Feast::MODIFIERS, {include_blank: true}, class: "form-control", placeholder: "none" %>
+    <%= form.select :modifier, Feast::MODIFIERS, {include_blank: true}, class: 'form-control', placeholder: "none" %>
+  </div>
+
+  <div class="form-group col-3">
+    <%= form.label :number_of_subjects %>
+    <%= select_tag :number_of_subjects, options_for_select(1..10), class: 'entity-selection btn btn-kal-standard', style: 'width:200px; height:30px' %>
   </div>
 </div>
 
 <br>
 
-<h3>Entitites</h3>
-
-<div class="not-row">
+<div class="row">
+  <div class="col-2"><h4>Subjects</h4></div>
+<!--   <div class="col-5"></div> -->
+  <div class="col-2"><%= link_to_add_feast_name 'add subject', form, class: 'btn btn-sm btn-kal-special' %></div>
+</div>
 
   <%= form.fields_for :feast_names do |fnf| %>
     <%= render 'feast_name_fields', fnf: fnf %>
   <% end %>
 
-  <%= link_to_add_feast_name "Add another", form, class: "btn btn-kal-standard" %>
-</div>
-<%#= link_to_add_feast_name "Add another", form, class: "btn btn-kal-standard" %>
-  <hr>
+<hr>
 
-<% if @calendar_page.manuscript.has_shading == true %>
+<% # if @calendar_page.manuscript.has_shading %>
   <div class="form-group">
-    <%= form.label :shading %>
-    <%= form.text_field :shading, class: "form-control" %>
+    <h5><%= form.label :shading, 'Prescriptions' %></h5>
+    <%= form.text_field :shading, class: 'form-control' %>
   </div>
-<% end %>
+<% # end %>
 
 <div class="form-group">
-  <%= form.label :transcription %>
-  <%= form.text_area :transcription, class: "form-control" %>
+  <h5><%= form.label :transcription %></h5>
+  <%= form.text_area :transcription, class: 'form-control' %>
 </div>
 
 <br>
@@ -56,6 +63,8 @@
 <%= form.hidden_field :manuscript_id %>
 
 <div class="form-group">
-  <%= form.submit class: "btn btn-kal-special btn-lg" %>
+  <%= form.submit class: 'btn btn-kal-special btn-lg' %>
 </div>
 
+
+<div id="all-names" data-names="<%= Name.all.map(&:name).join(?|) %>"></div>

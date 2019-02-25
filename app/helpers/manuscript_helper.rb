@@ -37,6 +37,19 @@ module ManuscriptHelper
     end
   end
 
+
+  def add_calendar_page_link
+    data = {toggle: 'modal', target: 'calendar-page-modal', remote: 'true'}
+    classes = 'btn btn-kal-special btn-lg add-calendar-page-link'
+    link_to 'New', new_manuscript_calendar_page_path(@manuscript), data: data, class: classes
+  end
+
+  def add_calendar_page_link2(manuscript)
+    data = {toggle: 'modal', target: 'calendar-page-modal', remote: 'true'}
+    classes = 'btn btn-kal-special add-calendar-page-link'
+    link_to '<strong>+</strong>'.html_safe, new_manuscript_calendar_page_path(manuscript), data: data, class: classes
+  end
 end
+
 
 

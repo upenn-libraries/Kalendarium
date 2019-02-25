@@ -65,7 +65,7 @@ class Manuscript < ApplicationRecord
 
   NUMBERING_METHODS = %w(foliated paginated)
 
-  LANGUAGES = %w(english french italian spanish german latin klingon)
+  LANGUAGES = %w(english french italian spanish german latin)
 
   COLUMN_TYPES = ['golden number', 'dominical letter', 'KNI', 'numeral']
 

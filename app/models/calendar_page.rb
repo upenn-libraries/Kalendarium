@@ -8,7 +8,7 @@ class CalendarPage < ApplicationRecord
   # validate :check_chronology # not working?
 
   def folio_ordinal
-    return folio.to_i unless %(r v).include? folio[-1]
+    return folio.to_i unless %(r v).include? folio[-1] # unless foliated
     folio_number = folio[0..-2].to_i
     side_number  = folio[-1] == 'r' ? 0 : 1
     (folio_number * 10) + side_number

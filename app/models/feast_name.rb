@@ -2,6 +2,8 @@ class FeastName < ApplicationRecord
   belongs_to :feast
   belongs_to :name
 
+  attr_accessor :'_'
+
   attr_accessor :other_name
   before_validation :handle_other_name
 

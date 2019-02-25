@@ -11,17 +11,21 @@ module CalendarPageHelper
     divs.join(?\n).html_safe
   end
 
-  def display_small_col col, day
-    case col
-    when 'KNI'
-      display_kni(day)
-    when 'numeral'
-      display_numeral(day)
-    when 'golden number'
-      display_golden_number(day)
-    when 'dominical letter'
-      display_dominical_letter(day)
-    end
+  # def display_small_col col, day
+  #   case col
+  #   when 'KNI'
+  #     display_kni(day)
+  #   when 'numeral'
+  #     display_numeral(day)
+  #   when 'golden number'
+  #     display_golden_number(day)
+  #   when 'dominical letter'
+  #     display_dominical_letter(day)
+  #   end
+  # end
+
+  def display_small_col(col, day)
+    send(:"display_#{col.downcase.gsub(' ', '_')}", day)
   end
 
   def display_date day
@@ -53,30 +57,35 @@ module CalendarPageHelper
     content_tag :span, feast.to_s, class: color_class(feast.color)
   end
 
-  def modal_data(feast = nil)
+  def modal_data(date, feast = nil)
     data = {
       toggle: 'modal',
       target: 'feast-modal',
       remote: 'true'
     }
-    data.merge!(header: display_feast(feast)) if feast
+
+  # date_display = "&nbsp;#{date[0]}/#{date[1]}&nbsp;&nbsp;|&nbsp;&nbsp;"
+    date_display = "&nbsp;<div class='modern-date'>#{date[0]}/#{date[1]}</div>&nbsp;"
+    header = feast ? display_feast(feast) : '<span class="black-text">Add new feast</span>'
+    data[:header] = content_tag(:div, class: 'row'){ "#{date_display} #{header}" }
+
     data
   end
 
-  def show_feast_link(feast)
+  def show_feast_link(date, feast)
     classes = 'btn btn-kal-standard feast-modal-link'
-    link_to 'details', feast_path(feast), data: modal_data(feast), class: classes
+    link_to 'details', feast_path(feast), data: modal_data(date, feast), class: classes
   end
 
-  def edit_feast_link(feast)
+  def edit_feast_link(date, feast)
     classes = 'btn btn-kal-standard edit-feast-modal-link'
-    link_to 'edit', edit_feast_path(feast), data: modal_data(feast), class: classes
+    link_to 'edit', edit_feast_path(feast), data: modal_data(date, feast), class: classes
   end
 
   def add_feast_link(date)
     date_params = feast_date_params(date)
     classes = 'btn btn-sm btn-kal-special float-right add-feast-modal-link'
-    link_to 'add feast', new_calendar_page_feast_path(@calendar_page, date_params), data: modal_data, class: classes
+    link_to 'add feast', new_calendar_page_feast_path(@calendar_page, date_params), data: modal_data(date), class: classes
   end
 
   def delete_feast_link(feast)
@@ -86,5 +95,12 @@ module CalendarPageHelper
 
   def feast_date_params month_day
     {"feast[month_number]": month_day.first, "feast[day_number]": month_day.last}
+  end
+
+
+  def edit_calendar_page_link
+    data = {toggle: 'modal', target: 'calendar-page-modal', remote: 'true'}
+    classes = 'btn btn-kal-standard edit-feast-modal-link'
+    link_to 'edit', edit_feast_path(feast), data: data, class: classes
   end
 end

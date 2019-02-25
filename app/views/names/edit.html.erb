@@ -1,7 +1,11 @@
 <div class="container">
   <h1>Editing Name</h1>
 
-  <%= render 'form', name: @name %>
+
+  <%= form_with(model: @name, local: true) do |form| %>
+    <%= render 'form', name: @name, form: form %>
+  <% end %>
+
 
   <div class='btn-group'>
     <%= link_to 'Show', @name, class: 'btn btn-kal-standard' %>

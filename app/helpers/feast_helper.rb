@@ -4,12 +4,11 @@ module FeastHelper
     content_tag :optgroup, opts.join.html_safe, label: heading
   end
 
-
   def link_to_add_feast_name(name, f, options={})
     new_fn = FeastName.new
     id = new_fn.object_id
 
-    fields = f.fields_for(:feast_names, new_fn) do |builder|
+    fields = f.fields_for(:feast_names, new_fn, child_index: id) do |builder|
       render("feast_name_fields", fnf: builder)
     end
 
