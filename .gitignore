@@ -26,3 +26,4 @@ doc
 bin/scratch
 .DS_Store
 app/.DS_Store
+.ruby-version
