@@ -14,6 +14,9 @@
   <%# end %>
 
   <%= form_for @name, options do |form| %>
+    <% if request.xhr? %>
+    <%= csrf_meta_tags %>
+    <% end %>
     <%= render 'form', form: form %>
   <% end %>
 

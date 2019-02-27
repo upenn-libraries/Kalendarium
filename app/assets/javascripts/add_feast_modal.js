@@ -22,8 +22,8 @@ $(document).on('turbolinks:load', function() {
         success: function(data) {
           // name_selection.parents('.row').after(data);
           name_location.html(data);
-          name_location.removeClass('hidden')
-          name_location.addClass('bordered-name-form')
+          name_location.removeClass('hidden');
+          name_location.addClass('bordered-name-form');
         },
         error: function(){ alert('ajax request failed') }
       });

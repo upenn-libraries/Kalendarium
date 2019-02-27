@@ -6,6 +6,7 @@
     </div>
   </div>
 
+
   <%= render 'form', calendar_page: @calendar_page %>
 
   <%= content_tag(:div, class: 'btn btn-block btn-kal-standard btn-sm', id: 'hide-modal'){ 'Cancel' } if request.xhr? %>

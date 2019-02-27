@@ -1,6 +1,8 @@
 class NamesController < ApplicationController
   before_action :set_name, only: [:show, :edit, :update, :destroy]
 
+  self.per_form_csrf_tokens = true
+
   # GET /names
   # GET /names.json
   def index

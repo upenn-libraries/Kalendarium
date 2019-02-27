@@ -5,6 +5,7 @@
     <div class="form-group col-4">
         <%= fnf.label :name_id, 'Name' %>
         <%= fnf.collection_select :name_id, Name.all.to_a.sort_by(&:name) << Name.new(name: 'other'), :id, :name, {include_blank: true},  class: 'name-selection form-control'  %>
+        <%#= fnf.text_field :name_id, class: "name-input form-control"  %>
     </div>
 
     <div class="form-group col-3">
@@ -25,31 +26,14 @@
     <div class="col-2">
       <%= fnf.label :'_', '' %>
       <%= fnf.hidden_field :_destroy %>
-      <%= link_to 'X', '#', class: 'remove-feast-name btn btn-danger btn-lg btn-block' unless @flag %>
+      <% if @flag %>
+        <%#= link_to_add_feast_name '+', locals[:form], class: 'btn btn-kal-special btn-lg btn-block' %></div>
+      <% else %>
+        <%= link_to 'X', '#', class: 'remove-feast-name btn btn-danger btn-lg btn-block' %>
+      <% end %>
       <% @flag = true %><!-- is this ok? -->
     </div>
   </div>
-
-<!--   <div class="form-group hidden name-field col-5" name="name-field" >
-    <%#= fnf.text_field :other_name, placeholder: 'add new name', class: 'form-control' %>
-  </div> -->
-<!--
-  <div class="row">
-    <div class="form-group col-5">
-      <%= fnf.label :saint_location, 'Location' %>
-      <%= fnf.text_field :saint_location, class: "form-control" %>
-    </div>
-
-    <div class="col-5"><%#= add_name_link %></div>
-  </div> -->
-
-
-<!--     <div class="col-2">
-      <%= fnf.hidden_field :_destroy %>
-      <%= link_to 'x', '#', class: 'remove-feast-name btn btn-danger btn-lg btn-block' unless @flag %>
-      <% @flag = true %>
-    </div>
- -->
 
   <div class="name-form-location"></div>
 </fieldset>

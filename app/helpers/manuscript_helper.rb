@@ -1,5 +1,4 @@
 module ManuscriptHelper
-
   def colors_for_manuscript ms
     Manuscript::COLORS.select{ |color| ms.color_weighting[color.to_sym] }
   end

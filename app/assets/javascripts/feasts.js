@@ -8,6 +8,14 @@ $(document).on('turbolinks:load', function() {
  //  });
 
 
+    // var names = $('#all-names').data('names').split('|')
+    // $( ".autocomplete-test:last" ).autocomplete({
+    //   source: names
+    // });
+    autocompleteWithNames = function(field){
+      form.autocomplete({source: names});
+    }
+
 
   // feast buttons for launching modal on calendar_page#show
 
