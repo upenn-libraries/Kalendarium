@@ -33,7 +33,7 @@ gem 'jquery-rails'
 
 gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
-
+gem 'bootstrap-multiselect-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
