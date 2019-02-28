@@ -6,7 +6,7 @@ $(function(){
 
 <div class="container">
 <!--   <p id="notice"><%= notice %></p> -->
-  <br>
+<!--   <br> -->
 
   <div class="row">
     <div class="col-9">
@@ -14,7 +14,7 @@ $(function(){
     </div>
 
     <div class="col-3">
-      <%= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-kal-special btn-lg" %>
+      <%#= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-kal-special btn-lg" %>
     </div>
   </div>
 
@@ -24,7 +24,7 @@ $(function(){
     <div class="col-2"><h5>Shelfmark</h5></div>
     <div class="col-3"><h5>Manuscript</h5></div>
     <div class="col-4"><h5>Calendar Pages</h5></div>
-    <div class="col-3" ></div>
+    <div class="col-3"> <%= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-kal-special btn-lg" %></div>
   </div>
 
   <% @manuscripts.each_with_index do |manuscript, index| %>

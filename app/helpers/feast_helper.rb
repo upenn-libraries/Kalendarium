@@ -1,6 +1,6 @@
 module FeastHelper
   def saint_attribute_optgroup(heading, attributes)
-    opts = attributes.map{ |attrib| content_tag :option, attrib.name.humanize, value: attrib.code }
+    opts = attributes.map{ |attrib| content_tag :option, attrib.name.humanize.capitalize, value: attrib.code }
     content_tag :optgroup, opts.join.html_safe, label: heading
   end
 

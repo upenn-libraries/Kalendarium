@@ -18,8 +18,9 @@ class FeastName < ApplicationRecord
   ABBREVIATIONS.default = 'nil.' # temporary, related to hidden field issue
 
   def to_s
-    sa_string = saint_attributes.map{ |sa| ABBREVIATIONS[sa] }.join(' ') unless saint_attributes.blank?
-    sa_string ? "#{name}(#{sa_string})" : "#{name}"
+   # sa_string = saint_attributes.map{ |sa| ABBREVIATIONS[sa] }.join(' ') unless saint_attributes.blank?
+   # sa_string ? "#{name}(#{sa_string})" : "#{name}"
+   name.to_s
   end
 
   private

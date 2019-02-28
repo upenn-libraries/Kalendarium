@@ -8,27 +8,29 @@ class Feast < ApplicationRecord
 
  # before_save :handle_other_name # being handled in FeastName instead
 
+ MODIFIERS = %w(vigil octave second)
 
-  MODIFIERS = %w(
-    octave
+  #  MODIFIERS = %w(
+  #   octave
 
-    vigil
+  #   vigil
 
-    ordination
-    invention
-    deposition
-    elevation
-    translation
-  )
+  #   ordination
+  #   invention
+  #   deposition
+  #   elevation
+  #   translation
+  # )
 
 
-  MAX_LENGTH = 56
+  MAX_LENGTH = 47
 
   def to_s
     s = ''
-    s << feast_names.join(', ')        unless feast_names.blank?
+    s << feast_names.join(', ')        unless  feast_names.blank?
     s << " [#{modifier}]"              unless modifier.blank?
     s << (': "' + transcription + '"') unless transcription.blank?
+  # s << transcription unless transcription.blank?
     elip = s.length > MAX_LENGTH ? '...' : ''
     "#{s[0...MAX_LENGTH]}#{elip}"
   end

@@ -1,32 +1,45 @@
 <div class="container">
-  <% @feast.feast_names.each do |fn| %>
+  <h3> Subjects </h3>
+  <br>
 
-    <div class="row">
-      <h1 class="<%= color_class(@feast.color) %>"><%= fn.name %></h1>
-    </div>
+  <% @feast.feast_names.each do |fn| %>
+<!--     <div class="row"> -->
+      <h5 class="<%= color_class('black') %>"><%= fn.name %></h4>
+<!--     </div> -->
 
     <div class="row" >
       <!-- temporary, for fun -->
-      <% name_voc = %w(a e i o u).include?(fn.name.to_s[-1]) ? (fn.name.to_s.chop + ?e) : (fn.name.to_s + ?e)  %>
-      <p>Sancte <%= name_voc %> ora pro nobis</p>
+      <%# name_voc = %w(a e i o u).include?(fn.name.to_s[-1]) ? (fn.name.to_s.chop + ?e) : (fn.name.to_s + ?e)  %>
+      <!--       <p>Sancte <%#= name_voc %> ora pro nobis</p> -->
       <!--                    -->
+      <%#= 'Attributes' if fn.saint_attributes.any? %>
     </div>
 
     <div>
       <% unless fn.saint_attributes.blank? %>
         <ul>
           <% fn.saint_attributes.each do |s_a| %>
-            <li>a great <%= s_a %></li><br>
+            <li><%= s_a %></li>
           <% end %>
         </ul>
       <% end %>
     </div>
-
+  <br>
   <% end %>
+
+  <% unless @feast.shading.blank? %>
+    <div>
+      <h3>Prescriptions</h3>
+      <p>
+        <%= @feast.shading %>
+      </p>
+    </div>
+  <% end %>
+
 
   <% unless @feast.transcription.blank? %>
     <div>
-      <h4>Transcription:</h4>
+      <h3>Transcription</h3>
       <p class="<%= color_class(@feast.color) %> feast_details">
         <%= @feast.transcription %>
       </p>
@@ -34,8 +47,6 @@
   <% end %>
 
   <div class="row">
-    <br>
-
     <%= (link_to 'back', calendar_page_path(@feast.calendar_page), class: "btn btn-kal-standard") if !request.xhr? %>
   </div>
 </div>
