@@ -8,13 +8,10 @@
     <%# end %>
     </ul>
   </div>
-<%# end %>
- -->
+<%# end %> -->
+
 <h2>Feast</h2>
 
-<!-- <div id="all-names" data-names="<%= Name.all.map(&:name).join(?|) %>"></div> -->
-<!-- moved to application layout for the moment
- -->
 <div class="row">
   <div class="form-group colors col-3">
     <%= form.label :color%>
@@ -25,10 +22,6 @@
     <%= form.label :modifier %>
     <%= form.select :modifier, Feast::MODIFIERS, {include_blank: true}, class: 'form-control', placeholder: "none" %>
   </div>
-
-  <div class="form-group col-3">
-
-  </div>
 </div>
 
 <br>
@@ -38,17 +31,18 @@
   <div class="col-6"><%= link_to_add_feast_name 'Add new subject', form, class: 'btn btn-kal-special btn-block btn-sm' %></div>
 </div>
 
-<%= form.fields_for :feast_names do |fnf| %>
-  <%= render 'feast_name_fields', fnf: fnf, locals: {form: form} %>
-<% end %>
+  <%= form.fields_for :feast_names do |fnf| %>
+    <%= render 'feast_name_fields', fnf: fnf, locals: {form: form} %>
+  <% end %>
 
 <hr>
 
-<div class="form-group">
-  <h5><%= form.label :shading, 'Prescriptions' %></h5>
-  <%= form.text_field :shading, class: 'form-control' %>
-</div>
-
+<% # if @calendar_page.manuscript.has_shading %>
+  <div class="form-group">
+    <h5><%= form.label :shading, 'Prescriptions' %></h5>
+    <%= form.text_field :shading, class: 'form-control' %>
+  </div>
+<% # end %>
 
 <div class="form-group">
   <h5><%= form.label :transcription %></h5>
@@ -61,31 +55,12 @@
 <%= form.hidden_field :day_number %>
 <%= form.hidden_field :manuscript_id %>
 
-<div class="btn-group">
+<div class="form-group">
   <%= form.submit class: 'btn btn-kal-special btn-lg' %>
-  <%= link_to 'back', [@manuscript, @calendar_page], class: "btn btn-kal-standard btn-lg" unless request.xhr? %>
 </div>
 
 
-
-
-
-<!-- name modal -->
-<!-- temporarily moved to layout -->
-<!-- <div class="modal fade" id="name-modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg bordered-modal" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="font-size: 30px">
-        New Name
-      </div>
-      <div class="modal-body container">
-        [...]
-      </div>
-      <div class="btn btn-kal-standard" id="hide-modal"> cancel </div>
-    </div>
-  </div>
-</div>
- -->
+<div id="all-names" data-names="<%= Name.all.map(&:name).join(?|) %>"></div>
 
 
 

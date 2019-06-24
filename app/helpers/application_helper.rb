@@ -1,9 +1,9 @@
 module ApplicationHelper
-  def yes_no(bool_val)
-    bool_val ? 'yes' : 'no'
+  def yes_no(value)
+    value ? 'yes' : 'no'
   end
 
-  def color_class color
+  def color_class(color)
     color.to_s.downcase + '-text'
   end
 

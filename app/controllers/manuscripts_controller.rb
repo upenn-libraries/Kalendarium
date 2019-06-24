@@ -105,7 +105,6 @@ class ManuscriptsController < ApplicationController
         :column2,
         :column3,
         :column4,
-      # :column5,
 
         :start_folio,
         :start_folio_number,

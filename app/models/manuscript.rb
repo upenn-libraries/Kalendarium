@@ -1,6 +1,6 @@
 class Manuscript < ApplicationRecord
   has_many :calendar_pages, dependent: :destroy
-  has_many :feasts # dependent destroy?
+  has_many :feasts, dependent: :destroy
 
   validates_presence_of :name
   serialize :columns
@@ -16,35 +16,13 @@ class Manuscript < ApplicationRecord
   after_find :populate_color_weighting
   after_find :split_folio_information
 
-  after_find  :configure_small_cols # for now, though maybe should be saved in database
+  after_find  :configure_small_cols
   attr_reader :col_config
 
   attr_accessor :column1
   attr_accessor :column2
   attr_accessor :column3
   attr_accessor :column4
-
-
-# --------------------------
-
-  # attr_accessor :color0
-  # attr_accessor :color1
-  # attr_accessor :color2
-  # attr_accessor :color3
-  # attr_accessor :color4
-  # attr_accessor :color5
-  # attr_accessor :color6
-
-  # attr_accessor :color_weight0
-  # attr_accessor :color_weight1
-  # attr_accessor :color_weight2
-  # attr_accessor :color_weight3
-  # attr_accessor :color_weight4
-  # attr_accessor :color_weight5
-  # attr_accessor :color_weight6
-
-# ---------------------------
-
 
   attr_accessor :color_weighting_black
   attr_accessor :color_weighting_blue
@@ -59,9 +37,6 @@ class Manuscript < ApplicationRecord
   attr_accessor :end_folio_number
   attr_accessor :end_folio_side
 
-
-
-  # decapitalize all these items?
 
   NUMBERING_METHODS = %w(foliated paginated)
 
@@ -93,7 +68,7 @@ class Manuscript < ApplicationRecord
     end
 
     def consolidate_color_weighting
-     COLORS.each{ |c| self.send(:"color_weighting_#{c}=", nil) if self.send(:"color_weighting_#{c}") == 'not present' } # messy temporary solution
+     COLORS.each{ |c| self.send(:"color_weighting_#{c}=", nil) if self.send(:"color_weighting_#{c}") == 'not present' }
      self.color_weighting = Hash.new
      self.color_weighting[:black]  = color_weighting_black  unless color_weighting_black.blank?
      self.color_weighting[:blue]   = color_weighting_blue   unless color_weighting_blue.blank?
@@ -114,40 +89,19 @@ class Manuscript < ApplicationRecord
       self.color_weighting_gold   = color_weighting[:gold]
     end
 
-    ##########################
-    # def assign_color_weight
-    #   self.color_weight = Hash.new # database column
-    #   7.times do |num|
-    #     self.color_weight[send(:"color#{num}")] = send(:"color_weight#{num}") if send(:"color#{num}")
-    #   end
-
-    # # 7.times do |num|
-    # #   self.color_weight[:"color#{num}"] = [send(:"color#{num}", send(:"color_weight#{num}")] if send(:"color#{num}"
-    # # end
-
-    # end
-
-    def display_color_weight
-
-    end
-    ##########################
-
-
-
-
     def combine_folio_information
       self.start_folio = start_folio_number + start_folio_side
       self.end_folio   = end_folio_number + end_folio_side
     end
 
     def split_folio_information
-      if %w(r v).include? start_folio[-1]
+      if 'r v'.include? start_folio[-1]
         self.start_folio_number = start_folio.chop
         self.start_folio_side   = start_folio[-1]
       else
         self.start_folio_number = start_folio
       end
-      if %w(r v).include? end_folio[-1]
+      if 'r v'.include? end_folio[-1]
         self.end_folio_number = end_folio.chop
         self.end_folio_side   = end_folio[-1]
       else
@@ -174,7 +128,7 @@ class Manuscript < ApplicationRecord
     end
 
     def configure_small_cols
-      present_columns = self.columns.select(&:present?)#{ |col| col.present? }
+      present_columns = self.columns.select(&:present?)
       span_sum = present_columns.inject(0) do |sum, col|
        ['golden number', 'numeral'].include?(col) ? (sum + 2) : (sum + 1)
       end

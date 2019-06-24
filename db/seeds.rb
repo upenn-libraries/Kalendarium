@@ -12,13 +12,13 @@
 # Stephen
 
 require 'csv'
-CSV.foreach File.expand_path('../name_seeds.csv', __FILE__) do |row|
+CSV.foreach File.expand_path('../huge_seed_sample.csv', __FILE__) do |row|
   name = row.shift
   name_object = Name.find_or_create_by name: name
   if row.size == 2
-    Variant.find_or_create_by variant: row.first do |var|
-      var.language = row.last
-      var.name     = name_object
+    Variant.find_or_create_by name: name_object, variant: row.first, language: row.last do |var|
+    # var.language = row.last
+    # var.name     = name_object
     end
   end
 end

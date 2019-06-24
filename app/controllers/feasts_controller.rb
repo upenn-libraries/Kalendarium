@@ -23,7 +23,8 @@ class FeastsController < ApplicationController
     @feast = @calendar_page.feasts.build(feast_params)
     @feast.manuscript = @calendar_page.manuscript
 
-    @feast.feast_names.build
+    feast_name = @feast.feast_names.build
+    # feast_name.names.build
 
     respond_to do |format|
       format.html { render layout: !request.xhr? }
@@ -53,6 +54,7 @@ class FeastsController < ApplicationController
       else
         format.html{ render :new }
         format.json{ render json: @feast.errors, status: :unprocessable_entity }
+        format.js # should be different?
       end
     end
   end
@@ -70,6 +72,7 @@ class FeastsController < ApplicationController
       else
         format.html{ render :edit }
         format.json{ render json: @feast.errors, status: :unprocessable_entity }
+        format.js # should be different?
       end
     end
   end
@@ -115,7 +118,15 @@ class FeastsController < ApplicationController
         :day_number,
         :calendar_page_id,
         :manuscript_id,
-        feast_names_attributes: [:id, :name_id, :other_name, :saint_location, :_destroy, saint_attributes: [] ]
+        feast_names_attributes: [
+          :id,
+          :name_id,
+          :other_name,
+          :saint_location,
+          :_destroy,
+          saint_attributes: [],
+        # name_attributes: [:id, :name]
+        ]
       )
     end
 end

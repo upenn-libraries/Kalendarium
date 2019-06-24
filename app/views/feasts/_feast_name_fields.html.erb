@@ -1,11 +1,17 @@
-</div></fieldset>
+<!-- </div></fieldset> -->
 <fieldset >
   <hr>
   <div class="row">
-    <div class="form-group col-4">
-        <%= fnf.label :name_id, 'Name' %>
-        <%= fnf.collection_select :name_id, Name.all.to_a.sort_by(&:name) << Name.new(name: 'Other (Add new name)'), :id, :name, {include_blank: true},  class: 'name-selection form-control'  %>
-        <%#= fnf.text_field :name_id, class: "name-input form-control"  %>
+    <div class="form-group col-3">
+      <%= fnf.label :name_id, 'Name' %>
+      <%#= fnf.collection_select :name_id, Name.all.to_a.sort_by(&:name) << Name.new(name: 'Other (Add new name)'), :id, :name, {include_blank: true},  class: 'name-selection form-control'  %>
+      <%= fnf.text_field :name_id, class: "name-input form-control"  %>
+    </div>
+
+    <div class="col-1">
+      &nbsp;
+      <!-- <div class="btn btn-kal-special new-name">New</div> -->
+      <%= add_name_link  %>
     </div>
 
     <div class="form-group col-3">
@@ -27,15 +33,20 @@
       <%= fnf.label :'_', '' %>
       <%= fnf.hidden_field :_destroy %>
       <% if @flag %>
-        <%#= link_to_add_feast_name '+', locals[:form], class: 'btn btn-kal-special btn-lg btn-block' %></div>
+        <%#= link_to_add_feast_name '+', locals[:form], class: 'btn btn-kal-special btn-lg btn-block' %>
       <% else %>
-        <%= fnf.label :nil, '&nbsp;'.html_safe %>
-        <%= link_to 'X', '#', class: 'remove-feast-name btn btn-danger //btn-lg btn-block' %>
+        &nbsp;
+        <%= link_to 'X', '#', class: 'remove-feast-name btn btn-danger btn-lg' %>
       <% end %>
       <% @flag = true %><!-- is this ok? -->
     </div>
   </div>
 
+<!--
+    <%= fnf.fields_for :names do |nf| %>
+      <%= render 'name_fields', nf: nf, locals: {form: fnf} %>
+    <% end %>
+ -->
   <div class="name-form-location"></div>
 </fieldset>
 

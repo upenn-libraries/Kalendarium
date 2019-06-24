@@ -6,16 +6,11 @@
 
     <div class="col-3 float-right">
       <div class="btn-group btn-group-lg">
- <!--        <div class="col-6"> -->
         <%= link_to 'view', @manuscript, class: "btn btn-kal-standard btn-lg " %>
-  <!--     </div> -->
-   <!--    <div class="col-6"> -->
         <%= link_to 'back', manuscripts_path, class: "btn btn-kal-standard btn-lg " %>
-     <!--  </div> -->
       </div>
     </div>
   </div>
 
   <%= render 'form', manuscript: @manuscript %>
-
 </div>

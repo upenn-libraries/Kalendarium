@@ -16,7 +16,6 @@ class CalendarPagesController < ApplicationController
 
   # GET /calendar_pages/new
   def new
-    # @calendar_page = CalendarPage.new
     @calendar_page = @manuscript.calendar_pages.build
 
     respond_to do |format|

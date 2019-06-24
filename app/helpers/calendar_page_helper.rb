@@ -11,49 +11,35 @@ module CalendarPageHelper
     divs.join(?\n).html_safe
   end
 
-  # def display_small_col col, day
-  #   case col
-  #   when 'KNI'
-  #     display_kni(day)
-  #   when 'numeral'
-  #     display_numeral(day)
-  #   when 'golden number'
-  #     display_golden_number(day)
-  #   when 'dominical letter'
-  #     display_dominical_letter(day)
-  #   end
-  # end
-
   def display_small_col(col, day)
     send(:"display_#{col.downcase.gsub(' ', '_')}", day)
   end
 
-  def display_date day
-  # if Kal::Days::EGYPTIAN_DAYS[month_name(day.month_number)].include?(day.day_number)
-    if @never #Kal::Days::EGYPTIAN_DAYS2.include? [day.month_number, day.day_number]
+  def display_date(day)
+    if @never # Kal::Days::EGYPTIAN_DAYS2.include? [day.month_number, day.day_number]
       e_d = content_tag :em, ' D', class: 'egyptian-day', title: 'Egyptian Day', data: {toggle: :tooltip}
     end
     content_tag(:strong, "#{month_name(day.month_number)[0..2]} #{day.day_number}", class: 'modern-date') + e_d.to_s
   end
 
-  def display_kni day
+  def display_kni(day)
     return content_tag(:b, day.kni[0].upcase, class: 'big-KNI') if not day.kni_number
     day.kni[0].upcase ###
   end
 
-  def display_numeral day
+  def display_numeral(day)
     day.kni_number
   end
 
-  def display_golden_number day
+  def display_golden_number(day)
     content_tag :span, day.golden_number, class: 'golden-number'
   end
 
-  def display_dominical_letter day
+  def display_dominical_letter(day)
     'Abcdefg'[(day.ordinal % 7) - 1]
   end
 
-  def display_feast feast
+  def display_feast(feast)
     content_tag :span, feast.to_s, class: color_class(feast.color)
   end
 
@@ -64,7 +50,6 @@ module CalendarPageHelper
       remote: 'true'
     }
 
-  # date_display = "&nbsp;#{date[0]}/#{date[1]}&nbsp;&nbsp;|&nbsp;&nbsp;"
     date_display = "&nbsp;<div class='modern-date'>#{date[0]}/#{date[1]}</div>&nbsp;"
     header = feast ? display_feast(feast) : '<span class="black-text">Add new feast</span>'
     data[:header] = content_tag(:div, class: 'row'){ "#{date_display} #{header}" }
@@ -85,7 +70,8 @@ module CalendarPageHelper
   def add_feast_link(date)
     date_params = feast_date_params(date)
     classes = 'btn btn-sm btn-kal-special float-right add-feast-modal-link'
-    link_to 'add feast', new_calendar_page_feast_path(@calendar_page, date_params), data: modal_data(date), class: classes
+  # link_to 'add feast', new_calendar_page_feast_path(@calendar_page, date_params), data: modal_data(date), class: classes
+    link_to 'add feast', new_calendar_page_feast_path(@calendar_page, date_params), class: classes
   end
 
   def delete_feast_link(feast)
@@ -93,7 +79,7 @@ module CalendarPageHelper
     link_to 'X', [@calendar_page, feast], method: :delete, data: {confirm: message}, class: "btn btn-danger"
   end
 
-  def feast_date_params month_day
+  def feast_date_params(month_day)
     {"feast[month_number]": month_day.first, "feast[day_number]": month_day.last}
   end
 

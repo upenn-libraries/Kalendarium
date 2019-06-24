@@ -7,15 +7,13 @@
     </div>
   </div>
 
-  <!-- <p id="notice"><%= notice %></p> -->
-
   <% %i(shelfmark book_type manuscript_or_print language script).each do |atr| %>
     <%= display_field(@manuscript, atr, always_display: true)  %>
   <%  end %>
 
   <br>
 
-  <%= display_field_group(@manuscript, 'Provenance', %i|origin origin_note destination destination_note|) %>
+  <%= display_field_group(@manuscript, 'Origin', %i|origin origin_note destination destination_note|) %>
 
   <br>
 
@@ -76,7 +74,6 @@
 </div>
 
 
-
 <div class="container">
 
   <br>
@@ -92,7 +89,6 @@
     </div>
 
     <div class="col-4">
-      <%#= link_to 'New', new_manuscript_calendar_page_path(manuscript_id: @manuscript.id), class: "btn btn-kal-special btn-lg" %> <!-- old attempt, update? -->
       <%= add_calendar_page_link %>
     </div>
   </div>
@@ -104,7 +100,6 @@
     <div class="col-6"></div>
   </div>
 
-  <%# @manuscript.calendar_pages.sort_by(&:folio_ordinal).each do |calendar_page| %>
   <% @manuscript.calendar_pages.sort.each do |calendar_page| %>
     <div class="row table-row">
       <div class="col-2"><%= calendar_page.folio %></div>
@@ -114,7 +109,6 @@
       <div class="col-6">
         <div class="btn-group">
          <%= link_to 'view', calendar_page, class: "btn btn-sm btn-kal-standard" %>
-          <%#= link_to 'edit', edit_calendar_page_path(calendar_page), class: "btn btn-kal-standard" %>
          <%= link_to 'X', [@manuscript, calendar_page], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
         </div>
       </div>
@@ -123,17 +117,13 @@
     <% end %>
 </div>
 
-
-
 <div class="modal fade" id="calendar-page-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg bordered-modal" role="document">
     <div class="modal-content">
-      <div class="modal-body container">...</div>
+      <div class="modal-body container"></div>
     </div>
   </div>
 </div>
-
-<%#= link_to 'all feasts', manuscript_calendar_path(@manuscript), class: "btn btn-kal-standard btn-block" %>
 
 
 

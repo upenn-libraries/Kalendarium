@@ -13,7 +13,7 @@
 
   <div class="row form-group field">
     <div class="col-4"><%= form.label :name, 'Standard form (English):' %></div>
-    <div class="col-6"><%= form.text_field :name, id: :name_name, class: 'form-control autocomplete-test' %></div>
+    <div class="col-6"><%= form.text_field :name, id: :name_name, class: 'form-control' %></div>
     <div class="col-2"><%= link_to_add_variant "Add variant", form, class: "btn btn-kal-special" %></div>
   </div>
 
@@ -26,7 +26,7 @@
 
 
 
-  <div class="actions">
+  <div class="row action-buttons">
     <% submit_button_classes = 'btn btn-kal-special' %>
     <% # submit_button_classes.concat(' btn-block') if request.xhr? %>
     <%= form.submit class: submit_button_classes %>

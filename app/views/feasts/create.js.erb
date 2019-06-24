@@ -1,2 +1,4 @@
 $('#feast-modal').modal('hide');
+// $('#<%= "#{@feast.month_number}-#{@feast.day_number}" %>').html("<%= escape_javascript render partial: 'calendar_pages/day', locals: { date: [@feast.month_number, @feast.day_number], manuscript: @feast.manuscript } if params[:id] %>");
 $('#<%= "#{@feast.month_number}-#{@feast.day_number}" %>').html("<%= escape_javascript render partial: 'calendar_pages/day', locals: { date: [@feast.month_number, @feast.day_number], manuscript: @feast.manuscript } %>");
+// added ruby condition to above line, but not clear if that's the right way to handle failure

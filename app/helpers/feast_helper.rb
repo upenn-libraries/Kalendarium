@@ -16,8 +16,20 @@ module FeastHelper
     options[:class] ||= ""
     options[:class] += " add-feast-name"
 
-    options.update({data: {id: id, fields: fields.gsub("\n", "")}})#.merge(options)
+    options.merge!({data: {id: id, fields: fields.gsub("\n", "")}})
 
     link_to(name, '#', options)
   end
+
+
+
+
+  def add_name_link
+    data = {toggle: 'modal', target: 'name-modal', remote: 'true'}
+    classes = 'btn btn-kal-special btn-lg add-name-link'
+    link_to 'New', new_name_path, data: data, class: classes
+  end
 end
+
+
+

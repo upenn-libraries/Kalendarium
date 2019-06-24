@@ -1,11 +1,7 @@
 module Kal
   module Months
 
-    Month = Struct.new(:name, :number, :length) # do
-     #  def to_s
-     #    name
-     #  end
-     # end
+    Month = Struct.new(:name, :number, :length)
 
     MONTH_TABLE = [
       Month.new('January',    1, 31),
@@ -22,31 +18,6 @@ module Kal
       Month.new('December',  12, 31)
     ]
 
-
-  #   MONTH_SELECT = [
-  #   ['January',   1],
-  #   ['February',  2],
-  #   ['March',     3],
-  #   ['April',     4],
-  #   ['May',       5],
-  #   ['June',      6],
-  #   ['July',      7],
-  #   ['August',    8],
-  #   ['September', 9],
-  #   ['October',  10],
-  #   ['November', 11],
-  #   ['December', 12]
-  # ]
-
   end
 end
 
-
-=begin
-
-month revisions
-change table CalendarPage~Month to Integer
-change field in calendar_pages/form
-change references...
-
-=end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181108154344) do
+ActiveRecord::Schema.define(version: 20190325184254) do
 
   create_table "calendar_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "folio", null: false
@@ -32,7 +32,9 @@ ActiveRecord::Schema.define(version: 20181108154344) do
     t.string "saint_location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "name_date_id"
     t.index ["feast_id"], name: "index_feast_names_on_feast_id"
+    t.index ["name_date_id"], name: "index_feast_names_on_name_date_id"
     t.index ["name_id"], name: "index_feast_names_on_name_id"
   end
 
@@ -89,6 +91,19 @@ ActiveRecord::Schema.define(version: 20181108154344) do
     t.text "calendar_folios", null: false
   end
 
+  create_table "name_dates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "month"
+    t.integer "day"
+    t.integer "use_count"
+    t.boolean "preset"
+    t.bigint "name_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day"], name: "index_name_dates_on_day"
+    t.index ["month"], name: "index_name_dates_on_month"
+    t.index ["name_id"], name: "index_name_dates_on_name_id"
+  end
+
   create_table "names", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -108,9 +123,11 @@ ActiveRecord::Schema.define(version: 20181108154344) do
 
   add_foreign_key "calendar_pages", "manuscripts"
   add_foreign_key "feast_names", "feasts"
+  add_foreign_key "feast_names", "name_dates"
   add_foreign_key "feast_names", "names"
   add_foreign_key "feasts", "calendar_pages"
   add_foreign_key "feasts", "manuscripts"
+  add_foreign_key "name_dates", "names"
   add_foreign_key "names", "variants"
   add_foreign_key "variants", "names"
 end

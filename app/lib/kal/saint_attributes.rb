@@ -20,7 +20,6 @@ module Kal
       SaintAttribute.new('pope', 'pope', 'pp'),
       SaintAttribute.new('priest', 'priest', 'pb'),
       SaintAttribute.new('prophet', 'prophet', 'proph'),
-      SaintAttribute.new('protomartyr', 'protomartyr', 'protom'),
       SaintAttribute.new('recluse', 'recluse', 'reclus'),
       SaintAttribute.new('solitary', 'solitary', 'solit'),
       SaintAttribute.new('subdeacon', 'subdeacon', 'subdiac'),
@@ -74,16 +73,16 @@ module Kal
     CLERICAL_TITLES = attribute_group(%w|subdeacon deacon priest bishop archbishop cardinal pope|)
     MONASTIC_TITLES = attribute_group(%w|monk nun abbot abbess hermit recluse|)
     BIBLICAL_ROLES  = attribute_group(%w|apostle evangelist prophet angel|)
-    SECULAR_TITLES  = attribute_group(%w|king queen duke duchess|)
-    QUALIFIERS      = attribute_group(%w|martyr protomartyr confessor virgin widow|)
+    SECULAR_TITLES  = attribute_group(%w|king queen duke|)
+    QUALIFIERS      = attribute_group(%w|martyr confessor virgin widow|)
 
     OPTGROUPS = {
-     'Clerical titles' => CLERICAL_TITLES,
-     'Monastic titles' => MONASTIC_TITLES,
-     'Biblical roles'  => BIBLICAL_ROLES,
-     'Secular titles'  => SECULAR_TITLES,
-     'Qualifiers'      => QUALIFIERS
-     }
+      'Clerical titles' => CLERICAL_TITLES,
+      'Monastic titles' => MONASTIC_TITLES,
+      'Biblical roles'  => BIBLICAL_ROLES,
+      'Secular titles'  => SECULAR_TITLES,
+      'Qualifiers'      => QUALIFIERS
+    }
   end
 end
 
@@ -265,124 +264,5 @@ Abreviations p.43!
 
 
 
-# tables...
-=begin
-
-Day | has_many :celebrations; has_many :saint_names through :celebration
-  ordinal:integer
-  month_numer: integer
-  day_number: integer
-
-
-SaintName | has_many :celebrations; has_many :days through :celebration
-  value:string
-
-Celebration | belongs to :day; belongs to :saint_name
-  saint_attributes:text
-  saint_location:string
-end
-
-
-Feast
-  modifier:string
-  color:string
-  shading:text
-  transcription:text
-
---------------------------
-
-
-
-
-Day
-  t.integer :ordinal
-  t.integer :month_number
-  t.integer :day_number
-  t.string  :golden_number
-
-Feast
-  t.string modifier
-  t.text   :shading
-  t.string :color
-  t.text   :transcription
-  # etc
-
-Name
-  t.string :name
-
-FeastName
-  t.integer :feast_id
-  t.integer :name_id
-  t.text    :saint_attributes
-  t.string  :saint_location
-
-
-=end
-
-
-
-  # attr_accessor :st_attr_abb
-  # attr_accessor :st_attr_aep
-  # attr_accessor :st_attr_card
-  # attr_accessor :st_attr_cf
-  # attr_accessor :st_attr_diac
-  # attr_accessor :st_attr_ep
-  # attr_accessor :st_attr_erem
-  # attr_accessor :st_attr_m
-  # attr_accessor :st_attr_mon
-  # attr_accessor :st_attr_pb
-  # attr_accessor :st_attr_pp
-  # attr_accessor :st_attr_protom
-  # attr_accessor :st_attr_s
-  # attr_accessor :st_attr_v
-  # attr_accessor :st_attr_vid
-
-
- # SAINT_ATTRIBUTES = w(
- #    abb.
- #    aep.
- #    card.
- #    cf.
- #    diac.
- #    ep.
- #    erem.
- #    m.
- #    mon.
- #    pb.
- #    protom.
- #    v.
- #    vid.
- #  )# missing( subdiac. non. solit. reclus. proph. ap. )
-
-
-
-
- # FULL_ST_ATTR = {
- #    st_attr_pp:      'pope',
- #    st_attr_card:    'cardinal',
- #    st_attr_aep:     'archbishop',
- #    st_attr_ep:      'bishop',
-
- #    st_attr_pb:      'presbyter',
- #    st_attr_diac:    'deacon',
- #    st_attr_subdiac: 'subdeacon',
-
- #    st_attr_abb:     'abbot',
- #    st_attr_mon:     'monk',
- #    st_attr_non:     'nun',
- #    st_attr_solit:   'soliary',
- #    st_attr_erem:    'hermit',
- #    st_attr_reclus:  'recluse',
-
- #    st_attr_proph:   'prophet',
- #    st_attr_ap:      'apostle',
-
- #    st_attr_m:       'martyr',
- #    st_attr_protom:  'protomartyr',
- #    st_attr_cf:      'confessor',
-
- #    st_attr_v:       'virgin',
- #    st_attr_vid:     'widow'
- #  }
 
 

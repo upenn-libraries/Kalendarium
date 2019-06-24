@@ -11,7 +11,7 @@ module NameHelper
     options[:class] ||= ""
     options[:class] += " add-variant"
 
-    options.update({data: {id: id, fields: fields.gsub("\n", "")}})#.merge(options)
+    options.merge!({data: {id: id, fields: fields.gsub("\n", "")}})
 
     link_to(name, '#', options)
   end
@@ -30,5 +30,26 @@ module NameHelper
    def add_name_link
     classes = 'btn btn-sm btn-kal-special btn-large add-name-link'
     link_to 'new name', new_name_path(@feast_name), data: {remote: true}, class: classes
+  end
+
+
+  def json_variants
+    varis = {}
+    Variant.all.each{ |v| (varis[Name.find(v.name_id).name] ||= []) << v.variant }
+    varis.to_json
+  end
+
+  def json_variants2
+    varis = {}.tap{ |v| Variant.all.each{ |vv| (v[Name.find(vv.name_id).name] ||= []) << vv.variant } }
+    varis.keys.map do |name|
+      v = varis[name]
+      {
+        label: name + ': ' + v.join(', '),
+        value: name,
+        constructor: name,
+        model: rand(266..999),
+        type: v.join(' '),
+      }.to_json
+    end
   end
 end

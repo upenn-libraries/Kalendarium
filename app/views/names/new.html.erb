@@ -1,8 +1,6 @@
 <div class="container" style="background-color: #fec;">
   <% unless request.xhr? %>
     <h1>New Name</h1>
-  <% else %>
-    <h4>New name</h4>
   <% end %>
 
   <% options = {name: @name, html: {class: 'form'}} %>

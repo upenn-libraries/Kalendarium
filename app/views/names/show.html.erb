@@ -8,9 +8,16 @@
 
   <% @name.variants.each do |v| %>
     <%#= "#{v.variant} (#{v.language.to_s.upcase})" %>
-    <%= v.to_s %>
+    <%= ?* + v.to_s %>
     <br>
   <% end %>
+
+  <% if @name.name_dates.any? %>
+    <h5>Occurences</h5>
+    <% @name.name_dates.each do |nd| %>
+      <div><%= "#{month_name(nd.month)} #{nd.day}" %></div>
+    <% end %>
+  <% end  %>
 
   <div class="btn-group">
     <%= link_to 'Edit', edit_name_path(@name), class: 'btn btn-kal-standard' %>

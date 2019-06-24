@@ -66,7 +66,7 @@
 
   <br>
 
-  <h4>Provenance</h4>
+  <h4>Origin</h4>
   <div class="row">
     <div class="form-group col-4">
       <%= form.label :origin %>
@@ -83,11 +83,6 @@
 
   <hr>
   <h4>Text block</h4>
-<!--
-  <div class="row"> -->
-<!--     <div class="col-8"><h3>Text block</h3></div> -->
-<!--     <div class="col-6"><h5>Text block</h5></div> -->
-<!--   </div> -->
 
   <div class="row">
     <div class="form-group col-2">
@@ -105,11 +100,9 @@
       <%= form.number_field :text_depth, min: 0, id: :manuscript_text_depth, class: "form-control" %>
     </div>
   </div>
-<!--     <div class="col-2"></div> -->
+
 
   <br>
-
-
 
   <h4>Writing surface</h4>
     <div class="row">
@@ -126,32 +119,21 @@
 
   <br>
 
-    <hr>
+  <hr>
 
 
   <h4>Date</h4>
-<!--
-  <div class="row"> -->
-    <div class="form-group //form-inline row">
-<!--       <div class="col-1">
-        <%= form.label :range, 'Range:' %>
+
+    <div class="form-group row">
+      <div class="col-2">
+        <%= form.label :start_year, 'Start' %>
+        <%= form.text_field :start_year, id: :manuscript_start_year, class: "form-control" %>
       </div>
- -->
-        <div class="col-2">
-    <!--       <div class="form-group"> -->
-            <%= form.label :start_year, 'Start' %>
-            <%#= form.number_field :start_year, min: 0, max: 9999, id: :manuscript_start_year, class: "form-control" %>
-            <%= form.text_field :start_year, id: :manuscript_start_year, class: "form-control" %>
-    <!--       </div> -->
-        </div>
-        <div class="col-2">
-      <!--     <div class="form-group"> -->
-            <%= form.label :end_year, 'End' %>
-            <%#= form.number_field :end_year, min: 0, max: 9999, id: :manuscript_end_year, class: "form-control" %>
-             <%= form.text_field :end_year, id: :manuscript_end_year, class: "form-control" %>
-       <!--    </div> -->
-        </div>
-     <!--  </div> -->
+
+      <div class="col-2">
+        <%= form.label :end_year, 'End' %>
+        <%= form.text_field :end_year, id: :manuscript_end_year, class: "form-control" %>
+      </div>
     </div>
 
 
@@ -164,19 +146,18 @@
   <h4>Other information</h4>
 
 
-<!-- <div class="row" -->
   <div class="form-group col-4">
     <%= form.label :extent %>
     <%= form.text_field :extent, id: :manuscript_extent, class: "form-control" %>
   </div>
 
 
-<!--   <div class="form-group">
+  <div class="form-group col-4">
     <%= form.label :provenance %>
     <%= form.text_field :provenance, id: :manuscript_provenance, class: "form-control" %>
   </div>
 
- -->
+
   <div class="form-group col-4">
     <%= form.label :state_of_completion %>
     <%= form.text_field :state_of_completion, id: :manuscript_state_of_completion, class: "form-control" %>
@@ -186,16 +167,11 @@
     <%= form.label :resource %>
     <%= form.text_field :resource, id: :manuscript_resource, class: "form-control" %>
   </div>
-<!-- </div> -->
 
-<!-- <div class="row"> -->
   <div class="form-group col-4">
     <%= form.label :numbering_method %>
     <%= form.select :numbering_method, Manuscript::NUMBERING_METHODS, {id: :manuscript_numbering_method}, class: "form-control" %>
   </div>
-
-
-<!-- </div> -->
 
   <br>
 
@@ -228,7 +204,6 @@
   </div>
 
 
-  <!-- <div class="row"> -->
     <div class="form-group col-4">
       <%= form.label :destination, 'Destination (Intended place of use)' %>
       <%= form.text_field :destination, id: :manuscript_destination, class: "form-control" %>
@@ -237,12 +212,12 @@
     <div class="form-group col-4">
       <%= form.label :destination_note %>
       <%= form.text_area :destination_note, id: :manuscript_destination_note, class: "form-control" %>
-  <!--     <span class='form-text text-muted'> where the calendar is intended to be used </span> -->
+
     </div>
- <!--  </div> -->
+
 
   <div class="form-group">
-    <%= form.label :has_shading, 'Does the calendar include liturgical prescriptions?' %><%# 'Is there shading?' %>
+    <%= form.label :has_shading, 'Does the calendar include liturgical prescriptions?' %>
     <%= form.check_box :has_shading, id: :manuscript_has_shading, class: "form-control" %>
   </div>
 
@@ -265,24 +240,20 @@
     <br>
     <div class="form-group row">
     <% Manuscript::COLORS.each_with_index do |color, index| %>
+      <div class="col-1">
+        <%= form.label :"color_weighting_#{color}", color.capitalize, class: color_class(color) %>
+      </div>
+      <div class="col-1">
+        <span class="oi oi-media-stop <%="#{color}-text"%>" title="person" aria-hidden="true" style="font-size: 40px;"></span>
+      </div>
+      <div class="col-2">
 
- <!--     <div class="form-group row"> -->
-          <div class="col-1">
-            <%= form.label :"color_weighting_#{color}", color.capitalize, class: color_class(color) %>
-          </div>
-          <div class="col-1">
-              <%#= content_tag(:div, style: "background-color: #{color};"){ '&nbsp;'.html_safe } %>
-              <span class="oi oi-media-stop <%="#{color}-text"%>" title="person" aria-hidden="true" style="font-size: 40px;"></span>
-          </div>
-          <div class="col-2">
-            <%#= form.number_field :"color_weighting_#{color}", min: 0, max: Manuscript::COLORS.length, id: :"manuscript_color_weighting_#{color}", class: "form-control" %>
-            <%= form.select :"color_weighting_#{color}", ['not used'] + (1..Manuscript::COLORS.length).to_a, {id: :"manuscript_color_weighting_#{color}"}, class: "form-control" %>
-         </div>
+      </div>
 
-        <% if index.odd? %>
-          </div>
-          <div class="form-group row">
-        <% end %>
+      <% if index.odd? %>
+       </div>
+      <div class="form-group row">
+      <% end %>
 
     <% end %>
     </div>

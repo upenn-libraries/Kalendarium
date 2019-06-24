@@ -5,15 +5,14 @@ module ManuscriptHelper
 
   def display_field(object, attribute, options = {})
     value = object.send(attribute)
-    if value.blank? && (value != false) # issues with 'false' value?
+    if value.blank? && (value != false)
       return unless options[:always_display]
     end
     content_tag(:div, class: 'row') do
-      (content_tag :strong, "#{attribute.to_s.humanize}:", class: 'col-3') + # should still be div probably. temporary change
-      (content_tag :div, "#{value}", class: 'col-9')
+      (content_tag :div, "<strong>#{attribute.to_s.humanize}:</strong>".html_safe, class: 'col-2') +
+      (content_tag :div, "#{value}", class: 'col-4')
     end
   end
-  # consider adding field_name/field_value CSS classes
 
   def display_field_group(object, heading, attributes, options={})
     head = content_tag :h4, heading, class: 'field-group-heading'
@@ -21,7 +20,7 @@ module ManuscriptHelper
     return head + '<no information>' if values.all?(&:blank?)
 
     divs = attributes.map do |attribute|
-      value = object.send(attribute) # redundancy
+      value = object.send(attribute)
       next if value.blank? && (value != false)
       member_field(attribute, value)
     end
@@ -31,11 +30,10 @@ module ManuscriptHelper
 
   def member_field(attribute, value)
     content_tag(:div, class: 'row') do
-      content_tag(:strong, "#{attribute.to_s.humanize}:", class: 'col-3') + # should still be div probably. temporary change
-      content_tag(:div, "#{value}", class: 'col-9')
+      content_tag(:div, "<strong>#{attribute.to_s.humanize}:</strong>".html_safe, class: 'col-2') +
+      content_tag(:div, "#{value}", class: 'col-4')
     end
   end
-
 
   def add_calendar_page_link
     data = {toggle: 'modal', target: 'calendar-page-modal', remote: 'true'}

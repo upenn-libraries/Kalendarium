@@ -6,15 +6,13 @@ $(function(){
 
 <div class="container">
 <!--   <p id="notice"><%= notice %></p> -->
-<!--   <br> -->
 
   <div class="row">
-    <div class="col-9">
+    <div class="col-6">
       <h1>Manuscripts</h1>
     </div>
 
     <div class="col-3">
-      <%#= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-kal-special btn-lg" %>
     </div>
   </div>
 
@@ -39,14 +37,13 @@ $(function(){
             <% manuscript.calendar_pages.sort.each do |c_p| %>
               <%= link_to c_p.folio, calendar_page_path(c_p), class: 'cal-page-link btn btn-kal-standard', title: "<span class='index-tooltip gold-text'>#{c_p.date_range}</span>", data: {toggle: 'tooltip', html: true} %>
 
-              <%#= content_tag :a, c_p.folio, class: 'cal-modal-link gold-text', data: {toggle: 'modal', target: '#calendar_page_modal'} %> <!-- , class: 'btn btn-kal-standard'  -->
             <% end %>
             <%= add_calendar_page_link2(manuscript) %>
           </div>
         </div>
 
       </div>
-      <div class="col-3 btn-group float-right"> <!-- ok to put both classes in one div? -->
+      <div class="col-3 btn-group float-right">
         <%= link_to 'details', manuscript, class: "btn btn-kal-standard" %>
         <%= link_to 'edit', edit_manuscript_path(manuscript), class: "btn btn-kal-standard" %>
         <%= link_to 'X', manuscript, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
@@ -54,22 +51,15 @@ $(function(){
     </div>
   <% end %>
 
-
   <br>
 
-  <%#= link_to 'New Manuscript', new_manuscript_path, class: "btn btn-kal-special" %>
 </div>
-
-
-<!--   <div class="col-1"><%#= link_to 'Show', manuscript %></div>
-  <div class="col-1"><%#= link_to 'Edit', edit_manuscript_path(manuscript) %></div>
-  <div class="col-1"><%#= link_to 'Destroy', manuscript, method: :delete, data: { confirm: 'Are you sure?' } %></div> -->
 
 
 <div class="modal fade" id="calendar-page-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg bordered-modal" role="document">
     <div class="modal-content">
-       <div class="modal-body container">...</div>
+       <div class="modal-body container"></div>
     </div>
   </div>
 </div>

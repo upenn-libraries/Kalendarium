@@ -82,13 +82,3 @@ class NamesController < ApplicationController
     end
 end
 
-
-
-
-
-
-
-
-
-%w(btn btn-kal-standard).tap{ |x| x << ok if @ok }
-

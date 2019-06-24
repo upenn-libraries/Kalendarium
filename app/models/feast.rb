@@ -6,31 +6,17 @@ class Feast < ApplicationRecord
   has_many :names, through: :feast_names
   accepts_nested_attributes_for :feast_names, allow_destroy: true, reject_if: :all_blank
 
- # before_save :handle_other_name # being handled in FeastName instead
+  accepts_nested_attributes_for :names
 
- MODIFIERS = %w(vigil octave second)
-
-  #  MODIFIERS = %w(
-  #   octave
-
-  #   vigil
-
-  #   ordination
-  #   invention
-  #   deposition
-  #   elevation
-  #   translation
-  # )
-
+  MODIFIERS = %w(vigil octave)
 
   MAX_LENGTH = 47
 
   def to_s
     s = ''
-    s << feast_names.join(', ')        unless  feast_names.blank?
+    s << feast_names.join(', ')        unless feast_names.blank?
     s << " [#{modifier}]"              unless modifier.blank?
     s << (': "' + transcription + '"') unless transcription.blank?
-  # s << transcription unless transcription.blank?
     elip = s.length > MAX_LENGTH ? '...' : ''
     "#{s[0...MAX_LENGTH]}#{elip}"
   end
@@ -47,7 +33,6 @@ class Feast < ApplicationRecord
       end
       true
     end
-
 end
 
 

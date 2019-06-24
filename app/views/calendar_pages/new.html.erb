@@ -1,11 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-9"><h1>New Calendar Page</h1></div>
+    <div class="col-9"><h3>New calendar page for '<%= @manuscript %>'</h3></div>
     <div class="col-3">
       <%= link_to 'back', manuscript_path(@manuscript), class: "btn btn-kal-standard btn-block btn-lg" unless request.xhr? %>
     </div>
   </div>
-
 
   <%= render 'form', calendar_page: @calendar_page %>
 

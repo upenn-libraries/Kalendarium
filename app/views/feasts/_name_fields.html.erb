@@ -1,0 +1,30 @@
+
+  <h1>Name Fields</h1>
+
+  <div class="row form-group field">
+    <div class="col-4"><%= nf.label :name, 'Standard form (English):' %></div>
+    <div class="col-6"><%= nf.text_field :name, id: :name_name, class: 'form-control' %></div>
+    <div class="col-2"><%#= link_to_add_variant "Add variant", nf, class: "btn btn-kal-special" %></div>
+  </div>
+
+<div>
+  <%#= nf.fields_for :variants, Variant.new do |vf| %>
+  <%#= nf.fields_for :variants do |vf| %>
+    <%#= render 'variant_fields', vf: vf %>
+  <%# end %>
+</div>
+
+
+
+
+<%= content_tag(:div, class: 'btn btn-kal-standard btn-block col-6'){ 'Cancel' } %>
+
+
+
+<% unless request.xhr? %>
+  <div id="all-names" data-names="<%= Name.all.map(&:name).join(?|) %>"></div>
+<% else %>
+  <br>
+<% end %>
+
+
