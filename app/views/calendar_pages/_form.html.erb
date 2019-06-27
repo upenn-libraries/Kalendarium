@@ -1,11 +1,3 @@
-<!--
-  <script>
-  $( function() {
-    $( ".datepicker" ).datepicker();
-  } );
-  </script>
- -->
-
 <!-- change to 'form_with' ? (also for other resources) -->
 <%= form_for [@manuscript, @calendar_page] do |form| %>
   <% if calendar_page.errors.any? %>
@@ -20,15 +12,10 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <% # head text (rhyme, lun/sol-days)... labor/zodiac? %>
-  </div>
-
-
   <div class="row">
-    <div class="form-group form-inline col-2">  <!-- style="width: 200px;" -->
+    <div class="form-group form-inline col-2">
       <%= form.label :folio %>
-      <%= form.select :folio, @calendar_page.manuscript.calendar_folios, {}, class: "form-control" %> <!-- rewrite to work with new routing (?) -->
+      <%= form.select :folio, @calendar_page.manuscript.calendar_folios, {}, class: "form-control" %>
     </div>
 
 
@@ -36,7 +23,6 @@
       <%= form.label :start_month, 'Start:&nbsp;'.html_safe %>
       <%= form.select :start_month, Kal::Months::MONTH_TABLE.map{ |m| [m.name, m.number] }, {id: :calendar_page_start_month}, class: "form-control" %>
       <%= form.select :start_day, (1..31), {id: :calendar_page_start_day}, class: "form-control" %>
-      <!-- <input class="datepicker form-control" id="calendar_page_start_day datepicker" placeholder="input date"> -->
     </div>
 
     <div class="form-group form-inline col-4">
@@ -46,13 +32,10 @@
     </div>
 
     <div class="col-2">
-      <%= request.xhr? ? form.submit('Create', class: "btn btn-kal-special") : form.submit('Update', class: "btn btn-kal-special") %>  <!-- temporary -->
+      <%= request.xhr? ? form.submit('Create', class: "btn btn-kal-special") : form.submit('Update', class: "btn btn-kal-special") %>
     </div>
   </div>
 <% end %>
-
-<!--
-<div class="btn btn-block btn-kal-standard" id="hide-modal">Cancel</div> -->
 
 
 

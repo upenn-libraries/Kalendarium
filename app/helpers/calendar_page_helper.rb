@@ -16,10 +16,7 @@ module CalendarPageHelper
   end
 
   def display_date(day)
-    if @never # Kal::Days::EGYPTIAN_DAYS2.include? [day.month_number, day.day_number]
-      e_d = content_tag :em, ' D', class: 'egyptian-day', title: 'Egyptian Day', data: {toggle: :tooltip}
-    end
-    content_tag(:strong, "#{month_name(day.month_number)[0..2]} #{day.day_number}", class: 'modern-date') + e_d.to_s
+    content_tag :strong, "#{month_name(day.month_number)[0..2]} #{day.day_number}", class: 'modern-date'
   end
 
   def display_kni(day)

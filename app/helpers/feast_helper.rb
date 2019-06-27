@@ -22,8 +22,6 @@ module FeastHelper
   end
 
 
-
-
   def add_name_link
     data = {toggle: 'modal', target: 'name-modal', remote: 'true'}
     classes = 'btn btn-kal-special btn-lg add-name-link'

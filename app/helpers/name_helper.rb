@@ -46,9 +46,8 @@ module NameHelper
       {
         label: name + ': ' + v.join(', '),
         value: name,
-        constructor: name,
-        model: rand(266..999),
-        type: v.join(' '),
+        name: name,
+        variants: v.join(' '),
       }.to_json
     end
   end

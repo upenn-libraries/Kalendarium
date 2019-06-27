@@ -1,7 +1,4 @@
-<% # if @hr_flag %>
- <!-- <hr style="border: solid #5b522b 1px; margin: 1px; width: 75%; size: 5px; align-self: right;"> -->
-<% # end %>
-<% # @hr_flag = true %>
+
 
 <% day = Kal::Days::DAY_TABLE.find{ |day| day.month_number == date.first && day.day_number == date.last } %>
 <% feasts = @calendar_page.feasts.select{ |feast| feast.month_number == date.first && feast.day_number == date.last } %>
@@ -23,32 +20,15 @@
 
   <div class="col-3">
     <% unless feasts.blank? %>
-
       <div class="btn-group btn-group-sm">
         <%= show_feast_link(date, feasts.first) %>
         <%= edit_feast_link(date, feasts.first) %>
         <%= delete_feast_link(feasts.first) %>
       </div>
-
       <%= add_feast_link(date)  %>
-      <%#= link_to 'add feast', new_calendar_page_feast_path(@calendar_page, @feast), class: 'btn btn-sm btn-kal-special float-right' %>
-
     <% else %>
-     <!--  <div class="btn-group btn-group-sm">
-        <%= link_to 'details', '#', class: 'btn btn-kal-standard disabled', 'aria-disabled': true %>
-        <%= link_to 'edit', '#', class: 'btn btn-kal-standard disabled', 'aria-disabled': true %>
-        <%= link_to 'delete', '#', class: 'btn btn-danger disabled', 'aria-disabled': true %>
-      </div>
- -->
-<!--  <div class="btn-group btn-group-sm">
-     <%= link_to 'details', '#', class: 'btn btn-kal-blank' %>
-        <%= link_to 'edit', '#', class: 'btn btn-kal-blank' %>
-        <%= link_to 'x', '#', class: 'btn btn-kal-blank' %>
- </div> -->
-
       <%= add_feast_link(date) %>
     <% end %>
-
   </div>
 </div>
 
@@ -67,9 +47,7 @@
           <%= delete_feast_link(feast) %>
         </div>
         <button class="btn-kal-blank btn-sm float-right"><%= 'add feast' %></button>
-       <!--  <div class="container empty-kal-space" style="background-color: #36472e !important;"></div> -->
       </div>
-      <!-- <div class="col-1"><button class="btn btn-kal-special btn-block"></button></div> -->
     </div>
   <% end %>
 <% end %>

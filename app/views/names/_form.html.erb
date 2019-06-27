@@ -24,11 +24,9 @@
   <%# end %>
 </div>
 
-
-
   <div class="row action-buttons">
     <% submit_button_classes = 'btn btn-kal-special' %>
-    <% # submit_button_classes.concat(' btn-block') if request.xhr? %>
+    <% # submit_button_classes.concat('btn-block') if request.xhr? %>
     <%= form.submit class: submit_button_classes %>
   </div>
 <%# end %>

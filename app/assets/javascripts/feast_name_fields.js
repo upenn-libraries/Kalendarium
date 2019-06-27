@@ -26,42 +26,16 @@ $(document).on('turbolinks:load', function() {
 
 
 
-// example from internet
-// var cars =
-// [
-//     {
-//         "label" : 'test2', //"BMW - Z3 - cabrio",
-//         "value" : "BMWZ3",
-//         "constructor" : "BMW",
-//         "model": "Z3",
-//         "type": "cabrio" },
-
-//     {
-//          "label" : 'test1',//"Porsche - 911 - coupe",
-//         "value" : "Porsche911",
-//         "constructor" : "Porsche",
-//         "model": "911",
-//         "type": "coupe" },
-
-
-// ];
-
 var variants = Array.from($('#all-names').data('variants2')).map(e => JSON.parse(e)); // JSON.parse($('#all-names').data('variants2'))
 
     $(".name-input").autocomplete({
         source: function(request, response){
             var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
             response( $.grep( variants, function( value ) {
-            return matcher.test(value['constructor']) || matcher.test(value.model) || matcher.test(value.type);
+            return matcher.test(value['name']) || matcher.test(value.variants);
         }));
         }
     })
-
-
-   // var names = $('#all-names').data('names').split('|')
-   // $(".name-input").autocomplete({
-   //   source: names
-   // });
 
 
   // name modal

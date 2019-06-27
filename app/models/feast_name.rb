@@ -20,7 +20,7 @@ class FeastName < ApplicationRecord
 
   ABBREVIATIONS = {}
   Kal::SaintAttributes::SAINT_ATTRIBUTES.each do |sa|
-    ABBREVIATIONS[sa.code] = sa.abbreviation + '.' ####
+    ABBREVIATIONS[sa.code] = sa.abbreviation + '.'
   end
   ABBREVIATIONS.default = ''
 

@@ -1,4 +1,3 @@
-<!-- <div class="container" id="feast-form-area"> -->
   <% options = {html: {class: "form"}} %>
   <% options.merge!({remote: true, format: :js}) if request.xhr? %>
 
@@ -7,4 +6,3 @@
   <% end %>
 
   <%= link_to 'back', calendar_page_path(@feast.calendar_page), class: "btn btn-kal-standard" unless request.xhr? %>
-<!-- </div> -->

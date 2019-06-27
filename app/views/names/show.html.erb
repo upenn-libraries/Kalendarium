@@ -6,9 +6,12 @@
     <%= @name %>
   </p>
 
-  <% @name.variants.each do |v| %>
-    <%#= "#{v.variant} (#{v.language.to_s.upcase})" %>
-    <%= ?* + v.to_s %>
+  <% if @name.variants.any? %>
+    <h5>Variants</h5>
+    <% @name.variants.each do |v| %>
+      <%= v.to_s %>
+      <br>
+    <% end %>
     <br>
   <% end %>
 
@@ -17,6 +20,7 @@
     <% @name.name_dates.each do |nd| %>
       <div><%= "#{month_name(nd.month)} #{nd.day}" %></div>
     <% end %>
+    <br>
   <% end  %>
 
   <div class="btn-group">

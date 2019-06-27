@@ -35,11 +35,6 @@ $(document).on('turbolinks:load', function() {
   //   }
   // });
 
-  // causes problems to have this like this (end up trying to split nil on other pages)
-  // names = $('#all-names').data('names').split('|')
-  // $(".name-input").autocomplete({
-  //   source: names
-  // });
 
   $(document).on('click', '.new-name', function() {
     var name_location = $(this).parents('.row').siblings('.name-form-location')
@@ -56,9 +51,6 @@ $(document).on('turbolinks:load', function() {
         },
         error: function(){ alert('ajax request failed') }
       });
-      // # on click 'cancel' (or something)
-      // name_location.removeClass('bordered-name-form')
-      // name_location.addClass('hidden');
   });
 
 

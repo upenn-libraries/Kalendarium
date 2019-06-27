@@ -37,12 +37,10 @@
 
 <hr>
 
-<% # if @calendar_page.manuscript.has_shading %>
-  <div class="form-group">
-    <h5><%= form.label :shading, 'Prescriptions' %></h5>
-    <%= form.text_field :shading, class: 'form-control' %>
-  </div>
-<% # end %>
+<div class="form-group">
+  <h5><%= form.label :shading, 'Prescriptions' %></h5>
+  <%= form.text_field :shading, class: 'form-control' %>
+</div>
 
 <div class="form-group">
   <h5><%= form.label :transcription %></h5>

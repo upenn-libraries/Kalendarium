@@ -111,11 +111,7 @@ class Manuscript < ApplicationRecord
 
     def generate_calendar_folios
       self.calendar_folios =
-      # begin
         if numbering_method == 'foliated'
-        # return [start_folio_number + start_folio_side] if
-        #   (start_folio_number == end_folio_number) &&
-        #   (start_folio_side == end_folio_side)
           start_recto = start_folio_side == 'r'
           end_verso   =   end_folio_side == 'v'
           initials = start_recto ? [start_folio_number + 'r', start_folio_number + 'v'] : [start_folio_number + 'v']
@@ -138,5 +134,7 @@ class Manuscript < ApplicationRecord
       @col_config = [present_columns, unit_span]
     end
 end
+
+
 
 

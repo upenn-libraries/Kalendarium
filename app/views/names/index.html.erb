@@ -29,16 +29,11 @@ $(function(){
           <%= link_to 'X', name, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         </div>
       </div>
-<!--       <% name.variants.each do |variant| %>
-        <div class="row"> <%= variant %></div>
-      <% end %> -->
     </div>
     <%= "</div>".html_safe if (i % 3 == 2) || i == @names.length %>
   <% end %>
 
- <br>
-
-  <%#= link_to 'New Name', new_name_path, class: 'btn btn-kal-standard' %>
+  <br>
 </div>
 
 
