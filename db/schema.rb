@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190325184254) do
+ActiveRecord::Schema.define(version: 20190625152830) do
 
   create_table "calendar_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "folio", null: false
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20190325184254) do
     t.bigint "name_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name_id", "variant", "language"], name: "index_variants_on_name_id_and_variant_and_language", unique: true
     t.index ["name_id"], name: "index_variants_on_name_id"
   end
 
